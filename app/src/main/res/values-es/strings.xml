@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">WorkIn</string>
+    <string name="title_my_routines">Mis Rutinas</string>
+    <string name="title_community">Comunidad</string>
+    <string name="title_favorites">Favoritos</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresa o Registro</string>
+    <string name="action_sign_in_short">"Registrarse"</string>
+    <string name="welcome">"Bienvenido !"</string>
+    <string name="invalid_username">"No es un nombre de usuario válido"</string>
+    <string name="invalid_password">"La contraseña debe tener mas de 5 caracteres"</string>
+    <string name="login_failed">"error de inicio de sesion"</string>
+</resources>
