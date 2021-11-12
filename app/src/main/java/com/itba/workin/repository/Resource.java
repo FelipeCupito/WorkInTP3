@@ -7,6 +7,8 @@ import static com.itba.workin.repository.Status.SUCCESS;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.itba.workin.backend.models.Error;
+
 import org.jetbrains.annotations.NotNull;
 
 public class Resource<T> {
