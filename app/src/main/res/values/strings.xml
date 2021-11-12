@@ -23,7 +23,6 @@
     <string name="no_account">Don\'t have an account</string>
     <string name="sign_up">Sing Up</string>
     <string name="last_name">Last Name</string>
-    <string name="login_failed">"Login failed"</string>
     <string name="app_bar_close">Close</string>
     <string name="app_bar_share">Share</string>
     <string name="app_bar_profile">Profile</string>
