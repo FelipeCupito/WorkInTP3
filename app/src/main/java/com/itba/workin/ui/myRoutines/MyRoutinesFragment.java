@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -23,8 +20,7 @@ public class MyRoutinesFragment extends Fragment {
     private FragmentMyRoutinesBinding binding;
     private final ArrayList<RecycleViewAdapter.RoutineWrapper> dataSet = new ArrayList<>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyRoutinesViewModel myRoutinesViewModel = new ViewModelProvider(this).get(MyRoutinesViewModel.class);
 
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
@@ -40,14 +36,6 @@ public class MyRoutinesFragment extends Fragment {
         binding.recyclerview.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
         binding.recyclerview.setAdapter(adapter);
 
-
-        final TextView textView = binding.textMyRoutines;
-        myRoutinesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 
