@@ -3,10 +3,12 @@ package com.itba.workin;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.itba.workin.databinding.ActivityMainBinding;
+import com.itba.workin.databinding.RoutineDetailBinding;
 
 public class RoutineDetailActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
 
         Log.d(TAG, "SecondaryActivity: onCreate()");
 
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        RoutineDetailBinding binding = RoutineDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
 
