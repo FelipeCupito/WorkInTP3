@@ -33,4 +33,7 @@
     <string name="invalid_name">The first name is not valid</string>
     <string name="invalid_last_name">The last name is not valid</string>
     <string name="invalid_password_conf">The passwords do not match</string>
+    <string name="app_bar_close">Cerrar</string>
+    <string name="app_bar_share">Compartir</string>
+    <string name="app_bar_profile">Perfil</string>
 </resources>
