@@ -1,5 +1,6 @@
 package com.itba.workin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,11 @@ public class MainActivity extends AppBarActivity {
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(mainBinding.navView, navController);
+
+        mainBinding.button2.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RoutineDetailActivity.class);
+            startActivity(intent);
+        });
     }
 
     // hay que descomentarla cuando tengamos otras views
