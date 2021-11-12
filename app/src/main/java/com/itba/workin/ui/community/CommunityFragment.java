@@ -11,23 +11,37 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.itba.workin.databinding.FragmentCommunityBinding;;
+import com.itba.workin.databinding.FragmentCommunityBinding;
+import com.itba.workin.ui.RecycleViewAdapter;
+
+import java.util.ArrayList;
 
 public class CommunityFragment extends Fragment {
 
-    private CommunityViewModel CommunityViewModel;
+    private final ArrayList<RecycleViewAdapter.RoutineWrapper> dataSet = new ArrayList<>();
     private FragmentCommunityBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        CommunityViewModel = new ViewModelProvider(this).get(CommunityViewModel.class);
+        CommunityViewModel communityViewModel = new ViewModelProvider(this).get(CommunityViewModel.class);
 
         binding = FragmentCommunityBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        for (int i = 0; i < 50; i++) {
+            dataSet.add(new RecycleViewAdapter.RoutineWrapper(
+                    i,"Buenas soy community " + i, "",0,0));
+        }
+
+        RecycleViewAdapter adapter = new RecycleViewAdapter(dataSet);
+
+        binding.recyclerview.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
+        binding.recyclerview.setAdapter(adapter);
+
         final TextView textView = binding.textCommunity;
-        CommunityViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        communityViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

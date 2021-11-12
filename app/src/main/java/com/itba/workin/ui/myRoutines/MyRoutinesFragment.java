@@ -11,24 +11,38 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.itba.workin.databinding.FragmentMyRoutinesBinding;
+import com.itba.workin.ui.RecycleViewAdapter;
+
+import java.util.ArrayList;
 
 public class MyRoutinesFragment extends Fragment {
 
-    private MyRoutinesViewModel MyRoutinesViewModel;
     private FragmentMyRoutinesBinding binding;
+    private final ArrayList<RecycleViewAdapter.RoutineWrapper> dataSet = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        MyRoutinesViewModel =
-                new ViewModelProvider(this).get(MyRoutinesViewModel.class);
+        MyRoutinesViewModel myRoutinesViewModel = new ViewModelProvider(this).get(MyRoutinesViewModel.class);
 
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        for (int i = 0; i < 50; i++) {
+            dataSet.add(new RecycleViewAdapter.RoutineWrapper(
+                    i,"Buenas soy routines " + i, "",0,0));
+        }
+
+        RecycleViewAdapter adapter = new RecycleViewAdapter(dataSet);
+
+        binding.recyclerview.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
+        binding.recyclerview.setAdapter(adapter);
+
+
         final TextView textView = binding.textMyRoutines;
-        MyRoutinesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        myRoutinesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

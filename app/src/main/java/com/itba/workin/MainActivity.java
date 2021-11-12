@@ -1,12 +1,10 @@
 package com.itba.workin;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.itba.workin.databinding.ActivityMainBinding;
@@ -25,7 +23,9 @@ public class MainActivity extends AppBarActivity {
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        assert navHostFragment != null;
+        NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(mainBinding.navView, navController);
     }
 
