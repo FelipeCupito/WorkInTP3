@@ -6,10 +6,33 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Login</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login_text">Don\'t have an account yet?</string>
+    <string name="register">register</string>
+    <string name="register_name">Name</string>
+    <string name="register_email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="account">Already have an account?</string>
+    <string name="sign_in">Sing In</string>
+    <string name="workin">WorkIn</string>
+    <string name="logInBtn">login</string>
+    <string name="no_account">Don\'t have an account</string>
+    <string name="sign_up">Sing Up</string>
+    <string name="last_name">Last Name</string>
+
+    <!-- ERRORS -->
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="invalid_login">Invalid credentials</string>
+    <string name="invalid_email">The email is not valid</string>
+    <string name="error_params">Error in parameters</string>
+    <string name="invalid_name">The first name is not valid</string>
+    <string name="invalid_last_name">The last name is not valid</string>
+    <string name="invalid_password_conf">The passwords do not match</string>
+
+
 </resources>
