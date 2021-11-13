@@ -38,12 +38,14 @@
 
         <RatingBar
             android:id="@+id/difficulty"
-            style="@style/smallDifficultyRatingBar"
+            style="@style/difficultyRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Rating Dificultad"
             android:isIndicator="true"
             android:numStars="3"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:rating="2"
             android:stepSize="1"
             app:layout_constraintTop_toBottomOf="@+id/routineName"
@@ -51,11 +53,13 @@
 
         <RatingBar
             android:id="@+id/rating"
-            style="@style/smallScoreRatingBar"
+            style="@style/scoreRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Rating Puntuación"
             android:isIndicator="true"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:numStars="5"
             android:rating="2.5"
             android:stepSize=".5"
