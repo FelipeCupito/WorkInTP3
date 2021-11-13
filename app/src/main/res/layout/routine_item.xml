@@ -3,31 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="192dp"
-        android:layout_height="127dp"
+        android:id="@+id/image"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:contentDescription="Description"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+        app:srcCompat="@drawable/square" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="192dp"
-        android:layout_height="21dp"
+        android:id="@+id/routineName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:fontFamily="sans-serif-black"
+        android:textSize="16sp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <RatingBar
+        android:id="@+id/difficulty"
+        style="@style/smallDifficultyRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Rating Dificultad"
+        android:isIndicator="true"
+        android:numStars="3"
+        android:rating="2"
+        android:stepSize="1"
+        app:layout_constraintTop_toBottomOf="@+id/routineName"
+        app:layout_constraintStart_toStartOf="@id/image" />
+
+    <RatingBar
+        android:id="@+id/rating"
+        style="@style/smallScoreRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Rating Puntuación"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="2.5"
+        android:stepSize=".5"
+        app:layout_constraintTop_toBottomOf="@+id/routineName"
+        app:layout_constraintEnd_toEndOf="@id/image" />
 </androidx.constraintlayout.widget.ConstraintLayout>

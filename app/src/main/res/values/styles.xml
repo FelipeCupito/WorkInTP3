@@ -10,4 +10,14 @@
         <item name="android:minHeight">23dip</item>
         <item name="android:maxHeight">25dip</item>
     </style>
+    <style name="smallScoreRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/star_selectors</item>
+        <item name="android:minHeight">13dip</item>
+        <item name="android:maxHeight">15dip</item>
+    </style>
+    <style name="smallDifficultyRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/fire_selectors</item>
+        <item name="android:minHeight">13dip</item>
+        <item name="android:maxHeight">15dip</item>
+    </style>
 </resources>
