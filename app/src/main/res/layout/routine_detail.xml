@@ -156,6 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
+                android:padding="3dp"
                 android:background="@drawable/square"
                 android:text="Descripción"
                 app:layout_constraintTop_toBottomOf="@+id/rateAction" />
@@ -165,6 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
+                android:padding="3dp"
                 android:background="@drawable/square"
                 android:text="Ejercicios....."
                 app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
