@@ -20,7 +20,7 @@ public class FullRoutine {
     @SerializedName("date")
     @Expose
     private Date date;
-    @SerializedName("averageRating")
+    @SerializedName("score")
     @Expose
     private int score;
     @SerializedName("isPublic")
