@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import com.itba.workin.BuildConfig;
 import com.itba.workin.App;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -40,13 +41,14 @@ public class ApiClient {
                 .build();
 
         Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new ApiDateTypeAdapter())
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(new com.itba.workin.backend.LiveDataCallAdapterFactory())
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .build();
 
         return retrofit.create(serviceClass);

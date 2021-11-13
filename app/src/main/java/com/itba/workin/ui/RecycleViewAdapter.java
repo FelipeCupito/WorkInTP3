@@ -49,7 +49,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             itemView.setOnClickListener(view1 -> {
                 Snackbar.make(itemView, "Element " + getAdapterPosition() + " clicked", BaseTransientBottomBar.LENGTH_LONG).show();
             });
-            textView = itemView.findViewById(R.id.textView);
+            textView = itemView.findViewById(R.id.routineName);
         }
 
         public TextView getTextView() {
