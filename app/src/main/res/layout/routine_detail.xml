@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Creador"
+                android:text="@string/routine_user_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Fecha de creación"
+                android:text="@string/routine_date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userTitle" />
 
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Dificultad"
+                android:text="@string/routine_difficulty_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dateTitle" />
 
@@ -116,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Puntuación"
+                android:text="@string/routine_score_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/difficultyTitle" />
 
@@ -152,24 +152,36 @@
                 app:layout_constraintTop_toTopOf="@+id/rateAction" />
 
             <TextView
+                android:id="@+id/descriptionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/routine_description_title"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rateAction" />
+
+            <TextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:padding="3dp"
                 android:background="@drawable/square"
-                android:text="Descripción"
-                app:layout_constraintTop_toBottomOf="@+id/rateAction" />
+                android:padding="3dp"
+                android:layout_marginTop="10dp"
+                android:text="TODO Descripton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
 
             <TextView
                 android:id="@+id/exerciseText"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:padding="3dp"
                 android:background="@drawable/square"
+                android:padding="3dp"
                 android:text="Ejercicios....."
-                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText"
+                tools:layout_editor_absoluteX="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -179,7 +191,7 @@
         android:layout_width="364dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
-        android:text="Empezar Rutina"
+        android:text="@string/routine_start_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

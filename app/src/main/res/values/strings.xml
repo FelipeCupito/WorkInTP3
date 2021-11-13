@@ -26,6 +26,11 @@
     <string name="app_bar_close">Close</string>
     <string name="app_bar_share">Share</string>
     <string name="app_bar_profile">Profile</string>
+    <string name="routine_user_title">Creator</string>
+    <string name="routine_date">Creation date</string>
+    <string name="routine_difficulty_title">Difficulty</string>
+    <string name="routine_score_title">Rating</string>
+    <string name="routine_description_title">Description</string>
 
     <!-- ERRORS -->
     <string name="invalid_username">Not a valid username</string>
@@ -36,4 +41,5 @@
     <string name="invalid_name">The first name is not valid</string>
     <string name="invalid_last_name">The last name is not valid</string>
     <string name="invalid_password_conf">The passwords do not match</string>
+    <string name="routine_start_title">Start Routine</string>
 </resources>
