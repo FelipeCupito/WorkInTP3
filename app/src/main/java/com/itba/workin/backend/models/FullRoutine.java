@@ -3,6 +3,7 @@ package com.itba.workin.backend.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class FullRoutine {
@@ -18,10 +19,10 @@ public class FullRoutine {
     private String detail;
     @SerializedName("date")
     @Expose
-    private long date;
+    private Date date;
     @SerializedName("averageRating")
     @Expose
-    private int averageRating;
+    private int score;
     @SerializedName("isPublic")
     @Expose
     private boolean isPublic;
@@ -52,7 +53,7 @@ public class FullRoutine {
      * @param date
      * @param difficulty
      * @param metadata
-     * @param averageRating
+     * @param score
      * @param name
      * @param isPublic
      * @param id
@@ -60,13 +61,13 @@ public class FullRoutine {
      * @param category
      * @param publicUser
      */
-    public FullRoutine(int id, String name, String detail, long date, int averageRating, boolean isPublic, String difficulty, PublicUser publicUser, Category category, Object metadata) {
+    public FullRoutine(int id, String name, String detail, Date date, int score, boolean isPublic, String difficulty, PublicUser publicUser, Category category, Object metadata) {
         super();
         this.id = id;
         this.name = name;
         this.detail = detail;
         this.date = date;
-        this.averageRating = averageRating;
+        this.score = score;
         this.isPublic = isPublic;
         this.difficulty = difficulty;
         this.publicUser = publicUser;
@@ -99,20 +100,20 @@ public class FullRoutine {
         this.detail = detail;
     }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
     public int getAverageRating() {
-        return averageRating;
+        return score;
     }
 
-    public void setAverageRating(int averageRating) {
-        this.averageRating = averageRating;
+    public void setAverageRating(int score) {
+        this.score = score;
     }
 
     public boolean isIsPublic() {

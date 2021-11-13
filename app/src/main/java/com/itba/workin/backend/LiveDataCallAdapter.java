@@ -12,7 +12,7 @@ import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LiveDataCallAdapter<R> implements CallAdapter<R, LiveData<com.itba.workin.backend.ApiResponse<R>>> {
+public class LiveDataCallAdapter<R> implements CallAdapter<R, LiveData<ApiResponse<R>>> {
     private final Type responseType;
     public LiveDataCallAdapter(Type responseType) {
         this.responseType = responseType;
@@ -26,8 +26,8 @@ public class LiveDataCallAdapter<R> implements CallAdapter<R, LiveData<com.itba.
 
     @NotNull
     @Override
-    public LiveData<com.itba.workin.backend.ApiResponse<R>> adapt(@NotNull Call<R> call) {
-        return new LiveData<com.itba.workin.backend.ApiResponse<R>>() {
+    public LiveData<ApiResponse<R>> adapt(@NotNull Call<R> call) {
+        return new LiveData<ApiResponse<R>>() {
             final AtomicBoolean started = new AtomicBoolean(false);
             @Override
             protected void onActive() {
@@ -37,12 +37,12 @@ public class LiveDataCallAdapter<R> implements CallAdapter<R, LiveData<com.itba.
                     call.enqueue(new Callback<R>() {
                         @Override
                         public void onResponse(@NotNull Call<R> call, @NotNull Response<R> response) {
-                            postValue(new com.itba.workin.backend.ApiResponse(response));
+                            postValue(new ApiResponse(response));
                         }
 
                         @Override
                         public void onFailure(@NotNull Call<R> call, @NotNull Throwable throwable) {
-                            postValue(new com.itba.workin.backend.ApiResponse(throwable));
+                            postValue(new ApiResponse(throwable));
                         }
                     });
                 }

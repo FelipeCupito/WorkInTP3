@@ -3,6 +3,8 @@ package com.itba.workin.backend.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class PublicUser {
 
     @SerializedName("id")
@@ -19,10 +21,10 @@ public class PublicUser {
     private String avatarUrl;
     @SerializedName("date")
     @Expose
-    private long date;
+    private Date date;
     @SerializedName("lastActivity")
     @Expose
-    private long lastActivity;
+    private Date lastActivity;
 
     /**
      * No args constructor for use in serialization
@@ -40,7 +42,7 @@ public class PublicUser {
      * @param id
      * @param username
      */
-    public PublicUser(int id, String username, String gender, String avatarUrl, long date, long lastActivity) {
+    public PublicUser(int id, String username, String gender, String avatarUrl, Date date, Date lastActivity) {
         super();
         this.id = id;
         this.username = username;
@@ -82,19 +84,19 @@ public class PublicUser {
         this.avatarUrl = avatarUrl;
     }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public long getLastActivity() {
+    public Date getLastActivity() {
         return lastActivity;
     }
 
-    public void setLastActivity(long lastActivity) {
+    public void setLastActivity(Date lastActivity) {
         this.lastActivity = lastActivity;
     }
 
