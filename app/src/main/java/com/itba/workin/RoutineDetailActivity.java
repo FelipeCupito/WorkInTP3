@@ -2,7 +2,6 @@ package com.itba.workin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,14 +9,16 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.itba.workin.backend.models.Error;
+import androidx.annotation.NonNull;
+
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
-import com.itba.workin.repository.Resource;
 import com.squareup.picasso.Picasso;
 
 public class RoutineDetailActivity extends AppBarActivity {
+
+    private MyRoutine routine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,12 @@ public class RoutineDetailActivity extends AppBarActivity {
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
 
-        Intent intent = getIntent();
-        MyRoutine routine = (MyRoutine) intent.getSerializableExtra("MyRoutine");
+        if (savedInstanceState == null) {
+            Intent intent = getIntent();
+            routine = (MyRoutine) intent.getSerializableExtra("MyRoutine");
+        } else {
+            routine = (MyRoutine) savedInstanceState.getSerializable("MyRoutine");
+        }
         if (routine == null) throw new IllegalStateException();
         setView(root,routine);
     }
@@ -54,7 +59,12 @@ public class RoutineDetailActivity extends AppBarActivity {
         descriptionText.setText(routine.getDetail());
         rating.setRating(routine.getScore());
         difficulty.setRating(routine.getDifficulty());
+    }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("MyRoutine",routine);
     }
 
     @Override
@@ -67,17 +77,5 @@ public class RoutineDetailActivity extends AppBarActivity {
         ProfileItem.setVisible(false);
 
         return super.onPrepareOptionsMenu(menu);
-    }
-
-    private void defaultResourceHandler(Resource<?> resource) {
-        switch (resource.getStatus()) {
-            case LOADING:
-                break;
-            case ERROR:
-                Error error = resource.getError();
-                String message = "Error: " + error.getDescription() + error.getCode();
-                Log.d("UI", message);
-                break;
-        }
     }
 }
