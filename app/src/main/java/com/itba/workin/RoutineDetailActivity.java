@@ -35,18 +35,9 @@ public class RoutineDetailActivity extends AppBarActivity {
         setSupportActionBar(toolbarBinding.toolbar);
 
         Intent intent = getIntent();
-        int id = intent.getIntExtra("ID" , -1);
-        if (id == -1) throw new IllegalStateException();
-
-        App app = (App) getApplication();
-        app.getRoutinesRepository().getRoutine(id).observe(this, r -> {
-            if (r.getStatus() == Status.SUCCESS) {
-
-                setView(root, new MyRoutine(r.getData()));
-            } else {
-                defaultResourceHandler(r);
-            }
-        });
+        MyRoutine routine = (MyRoutine) intent.getSerializableExtra("MyRoutine");
+        if (routine == null) throw new IllegalStateException();
+        setView(root,routine);
     }
 
     private void setView(View view, MyRoutine routine) {

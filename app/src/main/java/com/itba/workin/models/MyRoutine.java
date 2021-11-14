@@ -1,13 +1,12 @@
 package com.itba.workin.models;
 
-import com.itba.workin.backend.models.Category;
 import com.itba.workin.backend.models.FullRoutine;
-import com.itba.workin.backend.models.PublicUser;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class MyRoutine {
+public class MyRoutine implements Serializable {
 
     private final int id;
     private final Date date;
@@ -20,18 +19,7 @@ public class MyRoutine {
     private final String routineUrl;
     private final String userName;
 
-    public MyRoutine(int id, Date date, String name, String detail, boolean isPublic, String difficulty, int score, Category category, String routineUrl, PublicUser user) {
-        this.id = id;
-        this.date = date;
-        this.name = name;
-        this.detail = detail;
-        this.isPublic = isPublic;
-        this.difficulty = getDifficulty(difficulty);
-        this.score = score;
-        this.category = category.getName();
-        this.routineUrl = routineUrl;
-        this.userName = user.getUsername();
-    }
+
 
     public MyRoutine(FullRoutine routine) {
         this.id = routine.getId();
