@@ -2,6 +2,7 @@ package com.itba.workin;
 
 import android.app.Application;
 
+import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.SportRepository;
 import com.itba.workin.repository.UserRepository;
 
@@ -11,6 +12,7 @@ public class App extends Application {
     private AppPreferences preferences;
     private UserRepository userRepository;
     private SportRepository sportRepository;
+    private RoutinesRepository routinesRepository;
 
 
     public AppPreferences getPreferences() { return preferences; }
@@ -23,6 +25,9 @@ public class App extends Application {
         return sportRepository;
     }
 
+    public RoutinesRepository getRoutinesRepository() {
+        return routinesRepository;
+    }
 
     @Override
     public void onCreate() {
@@ -33,6 +38,8 @@ public class App extends Application {
         userRepository = new UserRepository(this);
 
         sportRepository = new SportRepository(this);
+
+        routinesRepository = new RoutinesRepository(this);
 
     }
 }

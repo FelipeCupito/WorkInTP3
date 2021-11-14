@@ -108,11 +108,11 @@ public class FullRoutine {
         this.date = date;
     }
 
-    public int getAverageRating() {
+    public int getScore() {
         return score;
     }
 
-    public void setAverageRating(int score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

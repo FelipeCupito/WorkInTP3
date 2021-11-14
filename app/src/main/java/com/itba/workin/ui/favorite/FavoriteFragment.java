@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.itba.workin.databinding.FragmentFavoriteBinding;
+import com.itba.workin.models.MyRoutine;
 import com.itba.workin.ui.RecycleViewAdapter;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class FavoriteFragment extends Fragment {
 
-    private final ArrayList<RecycleViewAdapter.RoutineWrapper> dataSet = new ArrayList<>();
+    private final ArrayList<MyRoutine> dataSet = new ArrayList<>();
     private FragmentFavoriteBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class FavoriteFragment extends Fragment {
         View root = binding.getRoot();
 
         for (int i = 0; i < 50; i++) {
-            dataSet.add(new RecycleViewAdapter.RoutineWrapper(
-                    i,"Buenas soy favorito " + i, "",0,0));
+//            dataSet.add(new MyRoutine(
+//                    i,"Buenas soy favorito " + i, "",0,0));
         }
 
         RecycleViewAdapter adapter = new RecycleViewAdapter(dataSet);

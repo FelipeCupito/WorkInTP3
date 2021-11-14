@@ -1,25 +1,41 @@
 package com.itba.workin.ui;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 import com.itba.workin.R;
+import com.itba.workin.RoutineDetailActivity;
+import com.itba.workin.models.MyRoutine;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>{
-    private final ArrayList<RecycleViewAdapter.RoutineWrapper> dataSet;
+    private ArrayList<MyRoutine> dataSet;
 
-    public RecycleViewAdapter(ArrayList<RoutineWrapper> dataSet) {
+    public RecycleViewAdapter(ArrayList<MyRoutine> dataSet) {
         this.dataSet = dataSet;
+    }
+
+    public void setDataSet(ArrayList<MyRoutine> dataSet) {
+        this.dataSet = dataSet;
+        this.notifyDataSetChanged();
     }
 
     @NonNull
@@ -32,7 +48,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull RecycleViewAdapter.ViewHolder holder, int position) {
-        holder.getTextView().setText(dataSet.get(position).getTitle());
+        holder.getTextView().setText(dataSet.get(position).getName());
+        Picasso.get().load(dataSet.get(position).getRoutineUrl()).placeholder(holder.getImageView().getDrawable()).resize(150,100).into(holder.getImageView());
+        holder.getDifficultyBar().setRating(dataSet.get(position).getDifficulty());
+        holder.getScoreBar().setRating(dataSet.get(position).getScore());
     }
 
     @Override
@@ -40,74 +59,43 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return dataSet.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
+        private final ImageView imageView;
+        private final RatingBar difficultyBar;
+        private final RatingBar scoreBar;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            // TODO remove
-            itemView.setOnClickListener(view1 -> {
-                Snackbar.make(itemView, "Element " + getAdapterPosition() + " clicked", BaseTransientBottomBar.LENGTH_LONG).show();
+        private final Context context;
+
+        public ViewHolder(@NonNull View view) {
+            super(view);
+            context = view.getContext();
+            textView = view.findViewById(R.id.routineName);
+            imageView = view.findViewById(R.id.image);
+            difficultyBar = view.findViewById(R.id.difficulty);
+            scoreBar = view.findViewById(R.id.rating);
+            view.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                Intent intent = new Intent(context, RoutineDetailActivity.class);
+                intent.putExtra("ID", dataSet.get(position).getId());
+                context.startActivity(intent);
             });
-            textView = itemView.findViewById(R.id.routineName);
         }
 
         public TextView getTextView() {
             return textView;
         }
-    }
 
-    public static class RoutineWrapper implements Comparable<RoutineWrapper> {
-        private final int id;
-        private final String title;
-        private final String imgUrl;
-        private final int difficulty;
-        private final Integer rating;
-
-        public RoutineWrapper(int id, String title, String imgUrl, int difficulty, Integer rating) {
-            this.id = id;
-            this.title = title;
-            this.imgUrl = imgUrl;
-            this.difficulty = difficulty;
-            this.rating = rating;
+        public ImageView getImageView() {
+            return imageView;
         }
 
-        public String getTitle() {
-            return title;
+        public RatingBar getDifficultyBar() {
+            return difficultyBar;
         }
 
-        public String getImgUrl() {
-            return imgUrl;
-        }
-
-        public int getDifficulty() {
-            return difficulty;
-        }
-
-        public Integer getRating() {
-            return rating;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            RoutineWrapper that = (RoutineWrapper) o;
-            return getId() == that.getId();
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(getId());
-        }
-
-        @Override
-        public int compareTo(RoutineWrapper o) {
-            return Integer.compare(id, o.getId());
+        public RatingBar getScoreBar() {
+            return scoreBar;
         }
     }
 }
