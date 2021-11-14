@@ -14,19 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.itba.workin.R;
 import com.itba.workin.RoutineDetailActivity;
-import com.itba.workin.models.MyRoutine;
+import com.itba.workin.domain.MyRoutine;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>{
-    private ArrayList<MyRoutine> dataSet;
+public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHolder>{
+    private List<MyRoutine> dataSet;
 
-    public RecycleViewAdapter(ArrayList<MyRoutine> dataSet) {
+    public RoutineAdapter(List<MyRoutine> dataSet) {
         this.dataSet = dataSet;
     }
 
-    public void setDataSet(ArrayList<MyRoutine> dataSet) {
+    public void setDataSet(List<MyRoutine> dataSet) {
         this.dataSet = dataSet;
         this.notifyDataSetChanged();
     }
@@ -40,11 +40,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecycleViewAdapter.ViewHolder holder, int position) {
-        holder.getTextView().setText(dataSet.get(position).getName());
-        Picasso.get().load(dataSet.get(position).getRoutineUrl()).placeholder(holder.getImageView().getDrawable()).resize(150,100).into(holder.getImageView());
-        holder.getDifficultyBar().setRating(dataSet.get(position).getDifficulty());
-        holder.getScoreBar().setRating(dataSet.get(position).getScore());
+    public void onBindViewHolder(@NonNull RoutineAdapter.ViewHolder holder, int position) {
+        holder.bindTo(dataSet.get(position));
     }
 
     @Override
@@ -75,20 +72,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             });
         }
 
-        public TextView getTextView() {
-            return textView;
-        }
-
-        public ImageView getImageView() {
-            return imageView;
-        }
-
-        public RatingBar getDifficultyBar() {
-            return difficultyBar;
-        }
-
-        public RatingBar getScoreBar() {
-            return scoreBar;
+        public void bindTo(MyRoutine routine) {
+            textView.setText(routine.getName());
+            Picasso.get().load(routine.getRoutineUrl()).placeholder(imageView.getDrawable()).resize(150,100).into(imageView);
+            difficultyBar.setRating(routine.getDifficulty());
+            scoreBar.setRating(routine.getScore());
         }
     }
 }

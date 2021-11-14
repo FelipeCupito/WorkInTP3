@@ -8,14 +8,16 @@ import androidx.lifecycle.MediatorLiveData;
 
 import com.itba.workin.backend.ApiResponse;
 
+import java.util.function.Function;
+
 public abstract class NetworkBoundResource<Model, Domain> {
 
     private final MediatorLiveData<Resource<Domain>> result = new MediatorLiveData<>();
 
     @MainThread
-    public NetworkBoundResource() {
+    public NetworkBoundResource(Function<Model, Domain> mapModelToDomain) {
 
-        setValue(Resource.loading(null));
+        result.setValue(Resource.loading(null));
 
         LiveData<ApiResponse<Model>> apiResponse = createCall();
         result.addSource(apiResponse, response -> {
@@ -25,8 +27,13 @@ public abstract class NetworkBoundResource<Model, Domain> {
                 onFetchFailed();
                 setValue(Resource.error(response.getError(), null));
             } else {
-                Domain data = processResponse(response.getData());
-                setValue(Resource.success(data));
+                Model model = processResponse(response);
+                if (mapModelToDomain != null) {
+                    Domain data = mapModelToDomain.apply(model);
+                    setValue(Resource.success(data));
+                } else {
+                    setValue(Resource.success((Domain) model));
+                }
             }
         });
     }
@@ -42,9 +49,9 @@ public abstract class NetworkBoundResource<Model, Domain> {
     }
 
     @WorkerThread
-    protected Domain processResponse(Model response)
+    protected Model processResponse(ApiResponse<Model> response)
     {
-        return (Domain) response;
+        return response.getData();
     }
 
     @NonNull

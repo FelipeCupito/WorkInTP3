@@ -11,15 +11,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.itba.workin.backend.models.Error;
-import com.itba.workin.backend.models.FullRoutine;
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
-import com.itba.workin.models.MyRoutine;
+import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.Resource;
-import com.itba.workin.repository.Status;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 public class RoutineDetailActivity extends AppBarActivity {
 

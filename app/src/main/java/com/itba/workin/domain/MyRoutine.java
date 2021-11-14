@@ -1,4 +1,4 @@
-package com.itba.workin.models;
+package com.itba.workin.domain;
 
 import com.itba.workin.backend.models.FullRoutine;
 

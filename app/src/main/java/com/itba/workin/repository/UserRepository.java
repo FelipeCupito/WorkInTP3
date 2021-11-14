@@ -20,7 +20,7 @@ public class UserRepository {
     }
 
     public LiveData<Resource<Token>> login(Credentials credentials) {
-        return new NetworkBoundResource<Token, Token>()
+        return new NetworkBoundResource<Token, Token>(null)
         {
             @NonNull
             @Override
@@ -31,7 +31,7 @@ public class UserRepository {
     }
 
     public LiveData<Resource<Void>> logout() {
-        return new NetworkBoundResource<Void, Void>()
+        return new NetworkBoundResource<Void, Void>(null)
         {
             @NonNull
             @Override
@@ -42,7 +42,7 @@ public class UserRepository {
     }
 
     public LiveData<Resource<FullUser>> getCurrentUser() {
-        return new NetworkBoundResource<FullUser, FullUser>()
+        return new NetworkBoundResource<FullUser, FullUser>(null)
         {
             @NonNull
             @Override
