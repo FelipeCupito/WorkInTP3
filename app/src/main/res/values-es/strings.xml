@@ -15,19 +15,19 @@
     <string name="invalid_password">"La contraseña debe tener mas de 5 caracteres"</string>
     <string name="invalid_login">Credenciales invalidas</string>
     <string name="login_failed">"error de inicio de sesion"</string>
-    <string name="login_text">registerse</string>
+    <string name="login_text">Registerse</string>
     <string name="register">register now</string>
     <string name="register_name">Nombre</string>
     <string name="register_email">Email</string>
     <string name="password">Password</string>
-    <string name="repeat_password">Repeat Password</string>
+    <string name="repeat_password">Repita la contraseña</string>
     <string name="account">Already have an account?</string>
     <string name="sign_in">Sing In</string>
     <string name="workin">WorkIn</string>
     <string name="logInBtn">login</string>
     <string name="no_account">Don\'t have an account</string>
     <string name="sign_up">Sing Up</string>
-    <string name="invalid_email">El email no es valido</string>
+    <string name="invalid_email">El email no es válido</string>
     <string name="error_params">Error en los parametros</string>
     <string name="last_name">Last Name</string>
     <string name="invalid_name">The first name is not valid</string>
@@ -42,4 +42,6 @@
     <string name="routine_score_title">Puntuación</string>
     <string name="routine_start_title">Comenzar Rutina</string>
     <string name="routine_description_title">Descripción</string>
+    <string name="next">Próximo</string>
+    <string name="previous">Anterior</string>
 </resources>
