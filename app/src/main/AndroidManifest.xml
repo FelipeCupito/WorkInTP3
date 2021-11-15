@@ -30,6 +30,9 @@
         <activity
             android:name=".RoutineDetailActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".WorkoutActivity"
+            android:parentActivityName=".RoutineDetailActivity" />
     </application>
 
 </manifest>
