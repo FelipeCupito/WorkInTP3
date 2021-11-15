@@ -20,15 +20,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHolder>{
-    private List<MyRoutine> dataSet;
+    private final List<MyRoutine> dataSet;
 
     public RoutineAdapter(List<MyRoutine> dataSet) {
         this.dataSet = dataSet;
-    }
-
-    public void setDataSet(List<MyRoutine> dataSet) {
-        this.dataSet = dataSet;
-        this.notifyDataSetChanged();
     }
 
     @NonNull
@@ -67,7 +62,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
             view.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 Intent intent = new Intent(context, RoutineDetailActivity.class);
-                intent.putExtra("MyRoutine", dataSet.get(position));
+                intent.putExtra("id", dataSet.get(position).getId());
                 context.startActivity(intent);
             });
         }

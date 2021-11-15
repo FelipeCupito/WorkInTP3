@@ -1,7 +1,9 @@
 package com.itba.workin;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
+import com.itba.workin.repository.Status;
 import com.squareup.picasso.Picasso;
 
 public class RoutineDetailActivity extends AppBarActivity {
@@ -33,15 +36,38 @@ public class RoutineDetailActivity extends AppBarActivity {
 
         if (savedInstanceState == null) {
             Intent intent = getIntent();
-            routine = (MyRoutine) intent.getSerializableExtra("MyRoutine");
+            int id;
+            if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_VIEW)) {
+                Uri data = intent.getData();
+                if (data != null && data.getQueryParameter("id") != null && !data.getQueryParameter("id").equals("")) {
+                    id = Integer.parseInt(data.getQueryParameter("id"));
+                } else {
+                    id = -1;
+                }
+            } else {
+                id = intent.getIntExtra("id", -1);
+            }
+            if (id == -1) {
+                // TODO check
+            }
+            App app = (App) getApplication();
+            app.getRoutinesRepository().getRoutine(id).observe(this, r -> {
+                if (r.getStatus() == Status.SUCCESS) {
+                    routine = r.getData();
+                    assert routine != null;
+                    setView(root, routine);
+                } else {
+//                      defaultResourceHandler(r); //TODO
+                }
+            });
         } else {
             routine = (MyRoutine) savedInstanceState.getSerializable("MyRoutine");
+            setView(root,routine);
         }
-        if (routine == null) throw new IllegalStateException();
-        setView(root,routine);
+
     }
 
-    private void setView(View view, MyRoutine routine) {
+    private void setView(View view, @NonNull MyRoutine routine) {
         ImageView image= view.findViewById(R.id.image);
         TextView routineName = view.findViewById(R.id.routineName);
         TextView user = view.findViewById(R.id.user);
@@ -77,5 +103,20 @@ public class RoutineDetailActivity extends AppBarActivity {
         ProfileItem.setVisible(false);
 
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.app_bar_share) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_TEXT, "http://workin.app/routine?id=" + routine.getId());
+            intent.setType("text/plain");
+            Intent shareIntent = Intent.createChooser(intent, null);
+            startActivity(shareIntent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
