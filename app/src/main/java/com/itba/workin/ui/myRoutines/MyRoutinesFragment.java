@@ -9,32 +9,61 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.itba.workin.App;
 import com.itba.workin.databinding.FragmentMyRoutinesBinding;
 import com.itba.workin.domain.MyRoutine;
+import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.RoutineAdapter;
+import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyRoutinesFragment extends Fragment {
 
     private FragmentMyRoutinesBinding binding;
-    private final ArrayList<MyRoutine> dataSet = new ArrayList<>();
+    private final List<MyRoutine> routines = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MyRoutinesViewModel myRoutinesViewModel = new ViewModelProvider(this).get(MyRoutinesViewModel.class);
+
+        App app = (App) requireActivity().getApplication();
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+        MyRoutinesViewModel myRoutinesViewModel = new ViewModelProvider(requireActivity(),viewModelFactory).get(MyRoutinesViewModel.class);
 
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        for (int i = 0; i < 50; i++) {
-//            dataSet.add(new MyRoutine(
-//                    i,"Buenas soy routines " + i, "",0,0,));
-        }
+        RoutineAdapter adapter = new RoutineAdapter(routines);
 
-        RoutineAdapter adapter = new RoutineAdapter(dataSet);
+        myRoutinesViewModel.getRoutines().observe(getViewLifecycleOwner(), r -> {
+            switch (r.getStatus()) {
+                case LOADING:
+                    // TODO
+                    break;
+                case SUCCESS:
+                    routines.clear();
+                    if (r.getData() != null) {
+                        routines.addAll(r.getData());
+                        adapter.notifyDataSetChanged();
+                        binding.recyclerview.scrollToPosition(routines.size() - 1);
+                    }
+                    break;
+            }
+        });
 
         binding.recyclerview.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
+        binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!binding.recyclerview.canScrollVertically(1)) {
+                    myRoutinesViewModel.getMoreRoutines();
+                }
+            }
+        });
         binding.recyclerview.setAdapter(adapter);
 
         return root;

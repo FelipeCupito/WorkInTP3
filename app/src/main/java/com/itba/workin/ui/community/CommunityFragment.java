@@ -79,16 +79,4 @@ public class CommunityFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-    private void defaultResourceHandler(Resource<?> resource) {
-        switch (resource.getStatus()) {
-            case LOADING:
-                break;
-            case ERROR:
-                Error error = resource.getError();
-                String message = "Error: " + error.getDescription() + error.getCode();
-                Log.d("UI", message);
-                break;
-        }
-    }
 }

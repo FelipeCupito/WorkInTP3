@@ -9,11 +9,12 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiFavouritesService {
 
-    @GET("favourites?size=50")
-    LiveData<ApiResponse<PagedList<FullRoutine>>> getFavourites();
+    @GET("favourites")
+    LiveData<ApiResponse<PagedList<FullRoutine>>> getFavourites(@Query("page") int page, @Query("size") int size);
 
     @POST("favourites/{routineId}/")
     LiveData<ApiResponse<Void>> addFavourite(@Path("routineId") int routineId);
