@@ -11,11 +11,10 @@ import retrofit2.http.Path;
 
 public interface ApiCycleService {
 
-    @GET("routines/{routineId}/cycles")
+    @GET("routines/{routineId}/cycles?orderBy=order")
     LiveData<ApiResponse<PagedList<FullCycle>>> getCycles(@Path("routineId") int routineId);
 
-    @GET("cycles/{cycleId}/exercises")
+    @GET("cycles/{cycleId}/exercises?orderBy=order")
     LiveData<ApiResponse<PagedList<FullCycleExercise>>> getCycleExercises(@Path("cycleId") int cycleId);
-
 
 }
