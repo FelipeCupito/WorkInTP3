@@ -45,6 +45,10 @@ public class MainActivity extends AppBarActivity {
         closeItem.setVisible(false);
         MenuItem ProfileItem = menu.findItem(R.id.app_bar_profile);
         ProfileItem.setVisible(true);
+        MenuItem timerItem = menu.findItem(R.id.app_bar_clock);
+        timerItem.setVisible(false);
+        MenuItem listItem = menu.findItem(R.id.app_bar_list);
+        listItem.setVisible(false);
 
         return super.onPrepareOptionsMenu(menu);
     }

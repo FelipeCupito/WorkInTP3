@@ -44,4 +44,6 @@
     <string name="routine_description_title">Descripción</string>
     <string name="next">Próximo</string>
     <string name="previous">Anterior</string>
+    <string name="app_bar_clock">Cronometro</string>
+    <string name="app_bar_list">Lista</string>
 </resources>
