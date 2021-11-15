@@ -95,4 +95,15 @@ public class RoutinesRepository {
             }
         }.asLiveData();
     }
+
+    public LiveData<Resource<Void>> deleteFavourite(int routineId) {
+        return new NetworkBoundResource<Void, Void>(null)
+        {
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<Void>> createCall() {
+                return apiFavouriteService.deleteFavourite(routineId);
+            }
+        }.asLiveData();
+    }
 }

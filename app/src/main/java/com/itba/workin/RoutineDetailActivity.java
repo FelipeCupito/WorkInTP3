@@ -16,12 +16,15 @@ import androidx.annotation.NonNull;
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
+import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
 import com.squareup.picasso.Picasso;
 
 public class RoutineDetailActivity extends AppBarActivity {
 
     private MyRoutine routine;
+    private int id;
+    private RoutinesRepository routinesRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +33,14 @@ public class RoutineDetailActivity extends AppBarActivity {
         View root = routineDetailBinding.getRoot();
         setContentView(root);
 
+        routinesRepository = ((App) getApplication()).getRoutinesRepository();
+
         ToolbarMainBinding toolbarBinding = ToolbarMainBinding.bind(root);
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
 
         if (savedInstanceState == null) {
             Intent intent = getIntent();
-            int id;
             if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_VIEW)) {
                 Uri data = intent.getData();
                 if (data != null && data.getQueryParameter("id") != null && !data.getQueryParameter("id").equals("")) {
@@ -55,6 +59,7 @@ public class RoutineDetailActivity extends AppBarActivity {
                 if (r.getStatus() == Status.SUCCESS) {
                     routine = r.getData();
                     assert routine != null;
+                    id = routine.getId();
                     setView(root, routine);
                 } else {
 //                      defaultResourceHandler(r); //TODO
@@ -65,6 +70,35 @@ public class RoutineDetailActivity extends AppBarActivity {
             setView(root,routine);
         }
 
+        routineDetailBinding.favouriteAction.setOnClickListener(view -> {
+            routinesRepository.addFavourite(id).observe(this, r -> {
+                switch ( r.getStatus()) {
+                    case LOADING:
+                        view.findViewById(R.id.favouriteAction).setEnabled(false);
+                        break;
+                    case SUCCESS:
+                        view.findViewById(R.id.favouriteAction).setEnabled(true);
+                        break;
+                    case ERROR:
+                        int code = r.getError().getCode();
+                        if (code == 2) { // Data constraint: hay un repetido
+                            routinesRepository.deleteFavourite(id).observe(this, r2 -> {
+                                switch (r2.getStatus()) {
+                                    case SUCCESS:
+                                        view.findViewById(R.id.favouriteAction).setEnabled(true);
+                                        break;
+                                    case ERROR:
+                                        // TODO unknown error
+                                        break;
+                                }
+                            });
+                            break;
+                        } else {
+                            // TODO unknown error
+                        }
+                }
+            });
+        });
     }
 
     private void setView(View view, @NonNull MyRoutine routine) {
