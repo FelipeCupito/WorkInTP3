@@ -1,6 +1,7 @@
 package com.itba.workin.domain;
 
 import com.itba.workin.backend.models.FullRoutine;
+import com.itba.workin.backend.models.RoutineMetadata;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,8 +20,6 @@ public class MyRoutine implements Serializable {
     private final String routineUrl;
     private final String userName;
 
-
-
     public MyRoutine(FullRoutine routine) {
         this.id = routine.getId();
         this.date = routine.getDate();
@@ -30,8 +29,21 @@ public class MyRoutine implements Serializable {
         this.difficulty = getDifficulty(routine.getDifficulty());
         this.score = routine.getScore();
         this.category = routine.getCategory().getName();
-        this.routineUrl = null; // TODO fix IMPORTANTE NO PONGAS STRING VACIO PORQUE CRASHEA PONELE NULL
-        this.userName = routine.getUser().getUsername();
+        this.routineUrl = getUrl(routine.getMetadata());
+        this.userName = routine.getUser() == null ? null : routine.getUser().getUsername();
+    }
+
+    private String getUrl(RoutineMetadata metadata) {
+        String url;
+        if (metadata != null) {
+            url = metadata.getRoutineUrl();
+            if (url != null && url.equals("")) {
+                url = null;
+            }
+        } else {
+            url = null;
+        }
+        return url;
     }
 
     private int getDifficulty(String difficulty) {

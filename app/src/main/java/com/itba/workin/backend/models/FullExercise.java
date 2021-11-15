@@ -4,6 +4,8 @@ package com.itba.workin.backend.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class FullExercise {
 
     @SerializedName("id")
@@ -20,10 +22,13 @@ public class FullExercise {
     private String type;
     @SerializedName("date")
     @Expose
-    private long date;
+    private Date date;
     @SerializedName("order")
     @Expose
     private int order;
+    @SerializedName("metadata")
+    @Expose
+    ExcerciseMetadata metadata;
 
     /**
      * No args constructor for use in serialization
@@ -41,7 +46,7 @@ public class FullExercise {
      * @param type
      * @param order
      */
-    public FullExercise(int id, String name, String detail, String type, long date, int order) {
+    public FullExercise(int id, String name, String detail, String type, Date date, int order, ExcerciseMetadata metadata) {
         super();
         this.id = id;
         this.name = name;
@@ -49,6 +54,7 @@ public class FullExercise {
         this.type = type;
         this.date = date;
         this.order = order;
+        this.metadata = metadata;
     }
 
     public int getId() {
@@ -83,11 +89,11 @@ public class FullExercise {
         this.type = type;
     }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -99,4 +105,11 @@ public class FullExercise {
         this.order = order;
     }
 
+    public ExcerciseMetadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(ExcerciseMetadata metadata) {
+        this.metadata = metadata;
+    }
 }
