@@ -1,5 +1,8 @@
 package com.itba.workin;
 
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,31 +25,27 @@ import com.itba.workin.ui.community.CommunityViewModel;
 import com.itba.workin.ui.favorite.FavoriteViewModel;
 import com.itba.workin.ui.myRoutines.MyRoutinesViewModel;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
+import com.itba.workin.ui.login.LoginActivity;
 
 public class MainActivity extends AppBarActivity {
 
     ActivityMainBinding mainBinding;
     App app;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        sp = getSharedPreferences("login",MODE_PRIVATE);
+        if(!sp.getBoolean("logged",false)){
+            goToLogin();
+        }
+
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View root = mainBinding.getRoot();
         setContentView(root);
         app = (App) getApplication();
-
-        // TODO sacar de aca va en login
-        Credentials credentials = new Credentials("johndoe", "1234567890");
-        app.getUserRepository().login(credentials).observe(this, r -> {
-            if (r.getStatus() == Status.SUCCESS) {
-                app.getPreferences().setAuthToken(r.getData().getToken());
-                Log.d("UI", "Conectado a api"); //TODO remove
-            } else {
-                defaultResourceHandler(r);
-            }
-        });
 
         ToolbarMainBinding toolbarBinding = ToolbarMainBinding.bind(root);
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
@@ -77,6 +76,12 @@ public class MainActivity extends AppBarActivity {
         myRoutinesViewModel.restart();
     }
 
+    public void goToLogin(){
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+  
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem shareItem = menu.findItem(R.id.app_bar_share);
