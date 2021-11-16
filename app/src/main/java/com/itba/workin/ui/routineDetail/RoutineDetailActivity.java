@@ -22,6 +22,8 @@ import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+
 public class RoutineDetailActivity extends AppBarActivity {
 
     private MyRoutine routine;
@@ -90,7 +92,7 @@ public class RoutineDetailActivity extends AppBarActivity {
         Picasso.get().load(routine.getRoutineUrl()).placeholder(image.getDrawable()).resize(300,200).into(image);
         routineName.setText(routine.getName());
         user.setText(routine.getUserName());
-        date.setText(routine.getDate().toString());
+        date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()).toString());
         descriptionText.setText(routine.getDetail());
         rating.setRating(routine.getScore());
         difficulty.setRating(routine.getDifficulty());
