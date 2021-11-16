@@ -47,6 +47,7 @@
     <string name="previous">Anterior</string>
     <string name="app_bar_clock">Cronometro</string>
     <string name="app_bar_list">Lista</string>
+    <string name="app_bar_favorite">Favorito</string>
     <string name="play_button">Botón para Continuar</string>
     <string name="pause_button">Botón para Pausar</string>
 </resources>

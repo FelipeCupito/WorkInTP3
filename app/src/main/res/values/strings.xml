@@ -36,6 +36,7 @@
     <string name="previous">Previous</string>
     <string name="app_bar_clock">Timer</string>
     <string name="app_bar_list">CheckList</string>
+    <string name="app_bar_favorite">Favorite</string>
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
 

@@ -14,6 +14,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/app_bar_favorite"
+        android:title="@string/app_bar_favorite"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/app_bar_clock"
         android:title="@string/app_bar_clock"
         android:icon="@drawable/ic_baseline_timer_24"

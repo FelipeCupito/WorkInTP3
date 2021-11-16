@@ -152,24 +152,15 @@
                 app:layout_constraintTop_toTopOf="@+id/categoryTitle"
                 android:layout_marginStart="10dp"/>
 
-            <Button
-                android:id="@+id/favouriteAction"
-                android:layout_width="165dp"
-                android:layout_height="48dp"
-                android:text="Favoritos"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryName"
-                android:layout_marginTop="5dp"/>
-
             <TextView
                 android:id="@+id/descriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/routine_description_title"
                 android:textSize="16sp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favouriteAction"
+                app:layout_constraintTop_toBottomOf="@+id/categoryTitle"
                 tools:layout_editor_absoluteY="193dp" />
 
             <TextView

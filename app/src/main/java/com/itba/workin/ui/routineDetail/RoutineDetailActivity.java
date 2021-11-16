@@ -42,6 +42,7 @@ public class RoutineDetailActivity extends AppBarActivity {
         ToolbarMainBinding toolbarBinding = ToolbarMainBinding.bind(root);
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
             Intent intent = getIntent();
@@ -73,36 +74,6 @@ public class RoutineDetailActivity extends AppBarActivity {
             routine = (MyRoutine) savedInstanceState.getSerializable("MyRoutine");
             setView();
         }
-
-        routineDetailBinding.favouriteAction.setOnClickListener(view -> {
-            routinesRepository.addFavourite(id).observe(this, r -> {
-                switch ( r.getStatus()) {
-                    case LOADING:
-                        view.findViewById(R.id.favouriteAction).setEnabled(false);
-                        break;
-                    case SUCCESS:
-                        view.findViewById(R.id.favouriteAction).setEnabled(true);
-                        break;
-                    case ERROR:
-                        int code = r.getError().getCode();
-                        if (code == 2) { // Data constraint: hay un repetido
-                            routinesRepository.deleteFavourite(id).observe(this, r2 -> {
-                                switch (r2.getStatus()) {
-                                    case SUCCESS:
-                                        view.findViewById(R.id.favouriteAction).setEnabled(true);
-                                        break;
-                                    case ERROR:
-                                        // TODO unknown error
-                                        break;
-                                }
-                            });
-                            break;
-                        } else {
-                            // TODO unknown error
-                        }
-                }
-            });
-        });
     }
 
     private void setView() {
@@ -112,7 +83,7 @@ public class RoutineDetailActivity extends AppBarActivity {
         TextView date = root.findViewById(R.id.date);
         TextView descriptionText = root.findViewById(R.id.descriptionText);
         TextView exerciseText = root.findViewById(R.id.exerciseText); // TODO
-        // TODO category JUAN
+        TextView categoryText = root.findViewById(R.id.categoryName);
         RatingBar rating = root.findViewById(R.id.rating);
         RatingBar difficulty = root.findViewById(R.id.difficulty);
 
@@ -123,6 +94,7 @@ public class RoutineDetailActivity extends AppBarActivity {
         descriptionText.setText(routine.getDetail());
         rating.setRating(routine.getScore());
         difficulty.setRating(routine.getDifficulty());
+        categoryText.setText(routine.getCategory());
     }
 
     @Override
@@ -136,13 +108,15 @@ public class RoutineDetailActivity extends AppBarActivity {
         MenuItem shareItem = menu.findItem(R.id.app_bar_share);
         shareItem.setVisible(true);
         MenuItem closeItem = menu.findItem(R.id.app_bar_close);
-        closeItem.setVisible(true);
+        closeItem.setVisible(false);
         MenuItem ProfileItem = menu.findItem(R.id.app_bar_profile);
         ProfileItem.setVisible(false);
         MenuItem timerItem = menu.findItem(R.id.app_bar_clock);
         timerItem.setVisible(false);
         MenuItem listItem = menu.findItem(R.id.app_bar_list);
         listItem.setVisible(false);
+        MenuItem favoriteItem = menu.findItem(R.id.app_bar_favorite);
+        favoriteItem.setVisible(true);
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -156,6 +130,35 @@ public class RoutineDetailActivity extends AppBarActivity {
             intent.setType("text/plain");
             Intent shareIntent = Intent.createChooser(intent, null);
             startActivity(shareIntent);
+            return true;
+        } else if (item.getItemId() == R.id.app_bar_favorite) {
+            routinesRepository.addFavourite(id).observe(this, r -> {
+                switch ( r.getStatus()) {
+                    case LOADING:
+                        item.setEnabled(false);
+                        break;
+                    case SUCCESS:
+                        item.setEnabled(true);
+                        break;
+                    case ERROR:
+                        int code = r.getError().getCode();
+                        if (code == 2) { // Data constraint: hay un repetido
+                            routinesRepository.deleteFavourite(id).observe(this, r2 -> {
+                                switch (r2.getStatus()) {
+                                    case SUCCESS:
+                                        item.setEnabled(true);
+                                        break;
+                                    case ERROR:
+                                        // TODO unknown error
+                                        break;
+                                }
+                            });
+                            break;
+                        } else {
+                            // TODO unknown error
+                        }
+                }
+            });
             return true;
         } else {
             return super.onOptionsItemSelected(item);

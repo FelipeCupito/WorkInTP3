@@ -95,6 +95,8 @@ public class MainActivity extends AppBarActivity {
         timerItem.setVisible(false);
         MenuItem listItem = menu.findItem(R.id.app_bar_list);
         listItem.setVisible(false);
+        MenuItem favoriteItem = menu.findItem(R.id.app_bar_favorite);
+        favoriteItem.setVisible(false);
 
         return super.onPrepareOptionsMenu(menu);
     }
