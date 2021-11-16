@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,11 +15,11 @@ import com.itba.workin.App;
 import com.itba.workin.MainActivity;
 import com.itba.workin.R;
 import com.itba.workin.backend.models.Credentials;
+import com.itba.workin.backend.models.Error;
 import com.itba.workin.databinding.ActivityLoginBinding;
 import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.Status;
 import com.itba.workin.ui.register.Register;
-import com.itba.workin.backend.models.Error;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -56,15 +55,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(View view) {
         EditText emailView = binding.loginName;
+
         String email = emailView.getText().toString();
         EditText passView = binding.loginPassword;
         String pass = passView.getText().toString();
         boolean error = false;
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.trim().length() == 0){
-            error = true;
-            emailView.setError(getText(R.string.invalid_email));
-        }
+//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.trim().length() == 0){
+//            error = true;
+//            emailView.setError(getText(R.string.invalid_email));
+//        }
 
         if (pass.trim().length() == 0){
             error = true;
