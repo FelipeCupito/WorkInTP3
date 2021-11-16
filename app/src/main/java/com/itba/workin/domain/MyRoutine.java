@@ -28,7 +28,7 @@ public class MyRoutine implements Serializable {
         this.isPublic = routine.isIsPublic();
         this.difficulty = getDifficulty(routine.getDifficulty());
         this.score = routine.getScore();
-        this.category = routine.getCategory().getName();
+        this.category = routine.getCategory() == null ? null :routine.getCategory().getName();
         this.routineUrl = getUrl(routine.getMetadata());
         this.userName = routine.getUser() == null ? null : routine.getUser().getUsername();
     }
