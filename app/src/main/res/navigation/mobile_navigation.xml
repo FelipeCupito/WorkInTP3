@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_my_routines"
-        android:name="com.itba.workin.ui.myRoutines.MyRoutinesFragment"
+        android:name="com.itba.workin.ui.main.fragments.myRoutines.MyRoutinesFragment"
         android:label="@string/title_my_routines"
         tools:layout="@layout/fragment_my_routines" />
 
     <fragment
         android:id="@+id/navigation_community"
-        android:name="com.itba.workin.ui.community.CommunityFragment"
+        android:name="com.itba.workin.ui.main.fragments.community.CommunityFragment"
         android:label="@string/title_community"
         tools:layout="@layout/fragment_community" />
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.itba.workin.ui.favorite.FavoriteFragment"
+        android:name="com.itba.workin.ui.main.fragments.favorite.FavoriteFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorite" />
 </navigation>

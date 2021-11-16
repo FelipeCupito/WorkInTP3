@@ -1,9 +1,8 @@
-package com.itba.workin;
+package com.itba.workin.ui.routineDetail;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,16 +12,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.itba.workin.App;
+import com.itba.workin.ui.AppBarActivity;
+import com.itba.workin.R;
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
-import com.itba.workin.domain.MyCycle;
-import com.itba.workin.domain.MyCycleExcercise;
 import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class RoutineDetailActivity extends AppBarActivity {
 

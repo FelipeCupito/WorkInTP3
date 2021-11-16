@@ -1,7 +1,7 @@
-package com.itba.workin.ui.favorite;
+package com.itba.workin.ui.main.fragments.favorite;
 
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.ui.RoutineViewModel;
+import com.itba.workin.ui.main.fragments.RoutineViewModel;
 
 public class FavoriteViewModel extends RoutineViewModel {
 

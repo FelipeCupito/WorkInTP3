@@ -1,4 +1,4 @@
-package com.itba.workin.ui.favorite;
+package com.itba.workin.ui.main.fragments.favorite;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.itba.workin.App;
 import com.itba.workin.databinding.FragmentFavoriteBinding;
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.ui.RoutineFragment;
+import com.itba.workin.ui.main.fragments.RoutineFragment;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
 

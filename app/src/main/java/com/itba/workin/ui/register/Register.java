@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.itba.workin.MainActivity;
+import com.itba.workin.ui.main.MainActivity;
 import com.itba.workin.R;
 import com.itba.workin.databinding.ActivityRegisterBinding;
 import com.itba.workin.ui.login.LoginActivity;

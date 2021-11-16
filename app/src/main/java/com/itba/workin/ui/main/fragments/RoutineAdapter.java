@@ -1,4 +1,4 @@
-package com.itba.workin.ui;
+package com.itba.workin.ui.main.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.itba.workin.R;
-import com.itba.workin.RoutineDetailActivity;
+import com.itba.workin.ui.routineDetail.RoutineDetailActivity;
 import com.itba.workin.domain.MyRoutine;
 import com.squareup.picasso.Picasso;
 

@@ -1,4 +1,4 @@
-package com.itba.workin.ui;
+package com.itba.workin.ui.main.fragments;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;

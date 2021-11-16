@@ -1,7 +1,7 @@
-package com.itba.workin.ui.myRoutines;
+package com.itba.workin.ui.main.fragments.myRoutines;
 
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.ui.RoutineViewModel;
+import com.itba.workin.ui.main.fragments.RoutineViewModel;
 
 public class MyRoutinesViewModel extends RoutineViewModel {
 

@@ -1,4 +1,4 @@
-package com.itba.workin;
+package com.itba.workin.ui.main;
 
 
 import android.content.Intent;
@@ -14,18 +14,19 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import com.itba.workin.backend.models.Credentials;
+import com.itba.workin.App;
+import com.itba.workin.ui.AppBarActivity;
+import com.itba.workin.R;
 import com.itba.workin.backend.models.Error;
 import com.itba.workin.databinding.ActivityMainBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.repository.Status;
-import com.itba.workin.ui.community.CommunityViewModel;
-import com.itba.workin.ui.favorite.FavoriteViewModel;
-import com.itba.workin.ui.myRoutines.MyRoutinesViewModel;
-import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 import com.itba.workin.ui.login.LoginActivity;
+import com.itba.workin.ui.main.fragments.community.CommunityViewModel;
+import com.itba.workin.ui.main.fragments.favorite.FavoriteViewModel;
+import com.itba.workin.ui.main.fragments.myRoutines.MyRoutinesViewModel;
+import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
 public class MainActivity extends AppBarActivity {
 

@@ -1,4 +1,4 @@
-package com.itba.workin.ui;
+package com.itba.workin.ui.main.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

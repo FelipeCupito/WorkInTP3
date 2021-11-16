@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.itba.workin.App;
-import com.itba.workin.MainActivity;
+import com.itba.workin.ui.main.MainActivity;
 import com.itba.workin.R;
 import com.itba.workin.backend.models.Credentials;
 import com.itba.workin.backend.models.Error;
@@ -93,8 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             } else {
                 defaultResourceHandler(r);
-                if (r.getStatus() == Status.ERROR)
-                    Toast.makeText(getApplicationContext(),getText(R.string.invalid_credentials),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -108,7 +106,12 @@ public class LoginActivity extends AppCompatActivity {
             case ERROR:
                 Error error = resource.getError();
                 assert error != null;
-                Log.d("LOGIN", error.getDescription() + error.getCode() + "");
+                if (error.getCode() == 4) {
+                    Toast.makeText(getApplicationContext(),getText(R.string.invalid_credentials),Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d("LOGIN", error.getDescription() + error.getCode() + "");
+                    Toast.makeText(getApplicationContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }

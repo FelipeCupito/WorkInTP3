@@ -1,4 +1,4 @@
-package com.itba.workin;
+package com.itba.workin.ui;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -6,6 +6,8 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.itba.workin.R;
 
 public abstract class AppBarActivity extends AppCompatActivity {
 
