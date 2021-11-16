@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.itba.workin.databinding.ActivityMainBinding;
@@ -35,13 +35,33 @@ public class MainActivity extends AppBarActivity {
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        assert navHostFragment != null;
+        NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(mainBinding.navView, navController);
+
+        mainBinding.button2.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RoutineDetailActivity.class);
+            startActivity(intent);
+        });
     }
+
 
     public void goToLogin(){
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         finish();
+    }
+  
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem shareItem = menu.findItem(R.id.app_bar_share);
+        shareItem.setVisible(false);
+        MenuItem closeItem = menu.findItem(R.id.app_bar_close);
+        closeItem.setVisible(false);
+        MenuItem ProfileItem = menu.findItem(R.id.app_bar_profile);
+        ProfileItem.setVisible(true);
+
+        return super.onPrepareOptionsMenu(menu);
     }
 }

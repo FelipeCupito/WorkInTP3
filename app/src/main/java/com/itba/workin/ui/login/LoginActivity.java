@@ -5,12 +5,11 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.itba.workin.App;
 import com.itba.workin.MainActivity;
 import com.itba.workin.R;
@@ -112,7 +111,6 @@ public class LoginActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     private void goToRegister(View view) {
         Intent i = new Intent(this, Register.class);

@@ -7,6 +7,8 @@ import com.google.gson.GsonBuilder;
 import com.itba.workin.BuildConfig;
 import com.itba.workin.App;
 
+
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -22,7 +24,9 @@ public class ApiClient {
     // No usar localhost o la IP 127.0.0.1 porque es la interfaz de loopback
     // del emulador. La forma de salir del emulador para acceder al localhost
     // de host del mismo es usando la IP 10.0.2.2.
+  
     public static final String BASE_URL = "http://10.0.2.2:8081/api/";
+
 
     private ApiClient() {
     }
@@ -40,15 +44,18 @@ public class ApiClient {
                 .build();
 
         Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new ApiDateTypeAdapter())
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(new com.itba.workin.backend.LiveDataCallAdapterFactory())
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .build();
 
         return retrofit.create(serviceClass);
     }
+
 }
+

@@ -4,11 +4,14 @@ package com.itba.workin.backend.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
+
 public class FullUser {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private Integer id;
     @SerializedName("username")
     @Expose
     private String username;
@@ -23,7 +26,7 @@ public class FullUser {
     private String gender;
     @SerializedName("birthdate")
     @Expose
-    private long birthdate;
+    private Date birthdate;
     @SerializedName("email")
     @Expose
     private String email;
@@ -33,64 +36,40 @@ public class FullUser {
     @SerializedName("avatarUrl")
     @Expose
     private String avatarUrl;
-    @SerializedName("metadata")
-    @Expose
-    private Object metadata;
     @SerializedName("date")
     @Expose
-    private long date;
+    private Date date;
     @SerializedName("lastActivity")
     @Expose
-    private long lastActivity;
+    private Date lastActivity;
     @SerializedName("verified")
     @Expose
-    private boolean verified;
+    private Boolean verified;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public FullUser() {
     }
 
-    /**
-     *
-     * @param date
-     * @param lastName
-     * @param metadata
-     * @param birthdate
-     * @param gender
-     * @param avatarUrl
-     * @param verified
-     * @param firstName
-     * @param phone
-     * @param lastActivity
-     * @param id
-     * @param email
-     * @param username
-     */
-    public FullUser(int id, String username, String firstName, String lastName, String gender, long birthdate, String email, String phone, String avatarUrl, Object metadata, long date, long lastActivity, boolean verified) {
+    public FullUser(Integer id, String username, String firstName, String lastName, String gender, Date birthdate, String email, String phone, String avatarUrl, Date date, Date lastActivity, Boolean verified) {
+
         super();
         this.id = id;
         this.username = username;
         this.firstName = firstName;
-        this.lastName = lastName;
         this.gender = gender;
         this.birthdate = birthdate;
         this.email = email;
         this.phone = phone;
         this.avatarUrl = avatarUrl;
-        this.metadata = metadata;
         this.date = date;
         this.lastActivity = lastActivity;
         this.verified = verified;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -110,7 +89,7 @@ public class FullUser {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public String getFLastName() {
         return lastName;
     }
 
@@ -126,11 +105,11 @@ public class FullUser {
         this.gender = gender;
     }
 
-    public long getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(long birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -158,35 +137,27 @@ public class FullUser {
         this.avatarUrl = avatarUrl;
     }
 
-    public Object getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(Object metadata) {
-        this.metadata = metadata;
-    }
-
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public long getLastActivity() {
+    public Date getLastActivity() {
         return lastActivity;
     }
 
-    public void setLastActivity(long lastActivity) {
+    public void setLastActivity(Date lastActivity) {
         this.lastActivity = lastActivity;
     }
 
-    public boolean isVerified() {
+    public Boolean getVerified() {
         return verified;
     }
 
-    public void setVerified(boolean verified) {
+    public void setVerified(Boolean verified) {
         this.verified = verified;
     }
 
