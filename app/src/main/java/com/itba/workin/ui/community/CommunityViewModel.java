@@ -1,19 +1,12 @@
 package com.itba.workin.ui.community;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import com.itba.workin.repository.RoutinesRepository;
+import com.itba.workin.ui.RoutineViewModel;
 
-public class CommunityViewModel extends ViewModel {
+public class CommunityViewModel extends RoutineViewModel {
 
-    private MutableLiveData<String> mText;
-
-    public CommunityViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Community fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
+    public CommunityViewModel(RoutinesRepository repository) {
+        super(repository);
+        this.routineGetter = repository::getRoutines;
     }
 }

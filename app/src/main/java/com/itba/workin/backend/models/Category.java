@@ -14,7 +14,7 @@ public class Category {
     private String name;
     @SerializedName("detail")
     @Expose
-    private Object detail;
+    private String detail;
 
     /**
      * No args constructor for use in serialization
@@ -29,7 +29,7 @@ public class Category {
      * @param id
      * @param detail
      */
-    public Category(int id, String name, Object detail) {
+    public Category(int id, String name, String detail) {
         super();
         this.id = id;
         this.name = name;
@@ -52,11 +52,11 @@ public class Category {
         this.name = name;
     }
 
-    public Object getDetail() {
+    public String getDetail() {
         return detail;
     }
 
-    public void setDetail(Object detail) {
+    public void setDetail(String detail) {
         this.detail = detail;
     }
 

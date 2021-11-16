@@ -1,19 +1,12 @@
 package com.itba.workin.ui.favorite;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import com.itba.workin.repository.RoutinesRepository;
+import com.itba.workin.ui.RoutineViewModel;
 
-public class FavoriteViewModel extends ViewModel {
+public class FavoriteViewModel extends RoutineViewModel {
 
-    private MutableLiveData<String> mText;
-
-    public FavoriteViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Favorite fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
+    public FavoriteViewModel(RoutinesRepository repository) {
+        super(repository);
+        this.routineGetter = repository::getFavourites;
     }
 }

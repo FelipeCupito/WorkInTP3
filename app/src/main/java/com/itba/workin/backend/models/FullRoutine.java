@@ -36,7 +36,7 @@ public class FullRoutine {
     private Category category;
     @SerializedName("metadata")
     @Expose
-    private Object metadata;
+    private RoutineMetadata metadata;
 
     private boolean isFavourite = false;
 
@@ -60,7 +60,7 @@ public class FullRoutine {
      * @param category
      * @param publicUser
      */
-    public FullRoutine(int id, String name, String detail, Date date, int score, boolean isPublic, String difficulty, PublicUser publicUser, Category category, Object metadata) {
+    public FullRoutine(int id, String name, String detail, Date date, int score, boolean isPublic, String difficulty, PublicUser publicUser, Category category, RoutineMetadata metadata) {
         super();
         this.id = id;
         this.name = name;
@@ -107,11 +107,11 @@ public class FullRoutine {
         this.date = date;
     }
 
-    public int getAverageRating() {
+    public int getScore() {
         return score;
     }
 
-    public void setAverageRating(int score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
@@ -147,11 +147,11 @@ public class FullRoutine {
         this.category = category;
     }
 
-    public Object getMetadata() {
+    public RoutineMetadata getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(Object metadata) {
+    public void setMetadata(RoutineMetadata metadata) {
         this.metadata = metadata;
     }
 

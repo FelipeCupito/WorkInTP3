@@ -1,19 +1,12 @@
 package com.itba.workin.ui.myRoutines;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import com.itba.workin.repository.RoutinesRepository;
+import com.itba.workin.ui.RoutineViewModel;
 
-public class MyRoutinesViewModel extends ViewModel {
+public class MyRoutinesViewModel extends RoutineViewModel {
 
-    private MutableLiveData<String> mText;
-
-    public MyRoutinesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is MyRoutines fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
+    public MyRoutinesViewModel(RoutinesRepository repository) {
+        super(repository);
+        this.routineGetter = repository::getUserRoutines;
     }
 }

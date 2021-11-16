@@ -14,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Query;
 
 public interface ApiUserService {
 
@@ -33,7 +34,7 @@ public interface ApiUserService {
     LiveData<ApiResponse<FullUser>> getCurrentUser();
 
     @GET("users/current/routines/")
-    LiveData<ApiResponse<PagedList<FullRoutine>>> getUserRoutines();
+    LiveData<ApiResponse<PagedList<FullRoutine>>> getUserRoutines(@Query("page") int page, @Query("size") int size);
 
     @PUT("users/current")
     LiveData<ApiResponse<FullUser>> editCurrentUser(@Body FullUser user);

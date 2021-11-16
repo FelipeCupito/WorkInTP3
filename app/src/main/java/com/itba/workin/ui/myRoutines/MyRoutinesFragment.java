@@ -6,37 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.itba.workin.App;
 import com.itba.workin.databinding.FragmentMyRoutinesBinding;
-import com.itba.workin.ui.RecycleViewAdapter;
+import com.itba.workin.repository.RoutinesRepository;
+import com.itba.workin.ui.RoutineFragment;
+import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
-import java.util.ArrayList;
-
-public class MyRoutinesFragment extends Fragment {
+public class MyRoutinesFragment extends RoutineFragment {
 
     private FragmentMyRoutinesBinding binding;
-    private final ArrayList<RecycleViewAdapter.RoutineWrapper> dataSet = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MyRoutinesViewModel myRoutinesViewModel = new ViewModelProvider(this).get(MyRoutinesViewModel.class);
-
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        recyclerView = binding.recyclerview;
+        root = binding.getRoot();
 
-        for (int i = 0; i < 50; i++) {
-            dataSet.add(new RecycleViewAdapter.RoutineWrapper(
-                    i,"Buenas soy routines " + i, "",0,0));
-        }
+        App app = (App) requireActivity().getApplication();
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+        routineViewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(MyRoutinesViewModel.class);
 
-        RecycleViewAdapter adapter = new RecycleViewAdapter(dataSet);
-
-        binding.recyclerview.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
-        binding.recyclerview.setAdapter(adapter);
-
-        return root;
+        return super.onCreateView(inflater,container,savedInstanceState);
     }
 
     @Override
