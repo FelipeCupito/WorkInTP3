@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+
 public class FullUser {
 
     @SerializedName("id")
@@ -49,6 +50,7 @@ public class FullUser {
     }
 
     public FullUser(Integer id, String username, String firstName, String lastName, String gender, Date birthdate, String email, String phone, String avatarUrl, Date date, Date lastActivity, Boolean verified) {
+
         super();
         this.id = id;
         this.username = username;

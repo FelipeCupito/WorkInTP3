@@ -1,6 +1,7 @@
 package com.itba.workin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,11 +13,21 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.itba.workin.databinding.ActivityMainBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
+import com.itba.workin.ui.login.LoginActivity;
 
 public class MainActivity extends AppBarActivity {
+
+    SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_main);
+
+        sp = getSharedPreferences("login",MODE_PRIVATE);
+        if(!sp.getBoolean("logged",false)){
+            goToLogin();
+        }
 
         ActivityMainBinding mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View root = mainBinding.getRoot();
@@ -37,6 +48,12 @@ public class MainActivity extends AppBarActivity {
         });
     }
 
+    public void goToLogin(){
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+  
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem shareItem = menu.findItem(R.id.app_bar_share);

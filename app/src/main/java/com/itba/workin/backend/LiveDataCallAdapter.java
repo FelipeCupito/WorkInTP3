@@ -1,16 +1,14 @@
 package com.itba.workin.backend;
 
 import androidx.lifecycle.LiveData;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Type;
 import java.util.concurrent.atomic.AtomicBoolean;
-
 import retrofit2.Call;
 import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class LiveDataCallAdapter<R> implements CallAdapter<R, LiveData<ApiResponse<R>>> {
     private final Type responseType;

@@ -36,10 +36,12 @@
     <string name="app_bar_close">Cerrar</string>
     <string name="app_bar_share">Compartir</string>
     <string name="app_bar_profile">Perfil</string>
+    <string name="invalid_credentials">Your username/password is not valid</string>
     <string name="routine_user_title">Creador</string>
     <string name="routine_date">Fecha de creación</string>
     <string name="routine_difficulty_title">Dificultad</string>
     <string name="routine_score_title">Puntuación</string>
     <string name="routine_start_title">Comenzar Rutina</string>
     <string name="routine_description_title">Descripción</string>
+  
 </resources>
