@@ -15,22 +15,28 @@ import androidx.annotation.NonNull;
 
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
+import com.itba.workin.domain.MyCycle;
+import com.itba.workin.domain.MyCycleExcercise;
 import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 public class RoutineDetailActivity extends AppBarActivity {
 
     private MyRoutine routine;
+    private String cycleText;
     private int id;
     private RoutinesRepository routinesRepository;
+    private View root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RoutineDetailBinding routineDetailBinding = RoutineDetailBinding.inflate(getLayoutInflater());
-        View root = routineDetailBinding.getRoot();
+        root = routineDetailBinding.getRoot();
         setContentView(root);
 
         routinesRepository = ((App) getApplication()).getRoutinesRepository();
@@ -60,14 +66,14 @@ public class RoutineDetailActivity extends AppBarActivity {
                     routine = r.getData();
                     assert routine != null;
                     id = routine.getId();
-                    setView(root, routine);
+                    setView();
                 } else {
 //                      defaultResourceHandler(r); //TODO
                 }
             });
         } else {
             routine = (MyRoutine) savedInstanceState.getSerializable("MyRoutine");
-            setView(root,routine);
+            setView();
         }
 
         routineDetailBinding.favouriteAction.setOnClickListener(view -> {
@@ -101,16 +107,16 @@ public class RoutineDetailActivity extends AppBarActivity {
         });
     }
 
-    private void setView(View view, @NonNull MyRoutine routine) {
-        ImageView image= view.findViewById(R.id.image);
-        TextView routineName = view.findViewById(R.id.routineName);
-        TextView user = view.findViewById(R.id.user);
-        TextView date = view.findViewById(R.id.date);
-        TextView descriptionText = view.findViewById(R.id.descriptionText);
-        TextView exerciseText = view.findViewById(R.id.exerciseText); // TODO
+    private void setView() {
+        ImageView image= root.findViewById(R.id.image);
+        TextView routineName = root.findViewById(R.id.routineName);
+        TextView user = root.findViewById(R.id.user);
+        TextView date = root.findViewById(R.id.date);
+        TextView descriptionText = root.findViewById(R.id.descriptionText);
+        TextView exerciseText = root.findViewById(R.id.exerciseText); // TODO
         // TODO category JUAN
-        RatingBar rating = view.findViewById(R.id.rating);
-        RatingBar difficulty = view.findViewById(R.id.difficulty);
+        RatingBar rating = root.findViewById(R.id.rating);
+        RatingBar difficulty = root.findViewById(R.id.difficulty);
 
         Picasso.get().load(routine.getRoutineUrl()).placeholder(image.getDrawable()).resize(300,200).into(image);
         routineName.setText(routine.getName());
