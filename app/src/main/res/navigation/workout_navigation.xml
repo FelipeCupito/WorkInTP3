@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/workoutDetailedFragment"
-        android:name="com.itba.workin.WorkoutDetailedFragment"
+        android:name="com.itba.workin.ui.workout.fragments.WorkoutDetailedFragment"
         android:label="WorkoutDetailedFragment" >
         <action
             android:id="@+id/action_workoutDetailedFragment_to_workoutSimpleFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/workoutSimpleFragment"
-        android:name="WorkoutSimpleFragment"
+        android:name="com.itba.workin.ui.workout.fragments.WorkoutSimpleFragment"
         android:label="WorkoutSimpleFragment" >
         <action
             android:id="@+id/action_workoutSimpleFragment_to_workoutDetailedFragment"

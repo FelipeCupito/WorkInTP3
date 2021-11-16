@@ -1,4 +1,4 @@
-package com.itba.workin;
+package com.itba.workin.ui.workout;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,9 +6,10 @@ import android.view.View;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.itba.workin.R;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.databinding.WorkoutActivityBinding;
-import com.itba.workin.databinding.WorkoutSimpleBinding;
+import com.itba.workin.ui.AppBarActivity;
 
 public class WorkoutActivity extends AppBarActivity {
 

@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WorkoutActivity"
+            android:name=".ui.workout.WorkoutActivity"
             android:parentActivityName=".ui.routineDetail.RoutineDetailActivity" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.itba.workin;
+package com.itba.workin.ui.workout.fragments;
 
 import androidx.fragment.app.Fragment;
 
