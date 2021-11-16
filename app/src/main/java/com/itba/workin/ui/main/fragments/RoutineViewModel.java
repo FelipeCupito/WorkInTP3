@@ -14,13 +14,14 @@ import java.util.List;
 
 public abstract class RoutineViewModel extends RepositoryViewModel<RoutinesRepository> {
 
-    public final static int PAGE_SIZE = 10;
+    public final static int PAGE_SIZE = 8;
     private boolean firstTime = true;
     private int routinePage = 0;
     private boolean isLastRoutinePage = false;
     private final List<MyRoutine> allRoutines = new ArrayList<>();
     private final MediatorLiveData<Resource<List<MyRoutine>>> routines = new MediatorLiveData<>();
     protected RoutineGetter routineGetter;
+    private boolean called = false;
 
     public RoutineViewModel(RoutinesRepository repository) {
         super(repository);
@@ -45,9 +46,10 @@ public abstract class RoutineViewModel extends RepositoryViewModel<RoutinesRepos
     }
 
     public void getMoreRoutines() {
-        if (isLastRoutinePage && !firstTime) {
+        if ((isLastRoutinePage && !firstTime) || called) {
             return;
         }
+        called = true;
         if (firstTime) {
             allRoutines.clear();
         }
@@ -63,8 +65,12 @@ public abstract class RoutineViewModel extends RepositoryViewModel<RoutinesRepos
                 if (resource.getData() != null)
                     allRoutines.addAll(resource.getData());
                 routines.setValue(Resource.success(allRoutines));
+                called = false;
             } else if (resource.getStatus() == Status.LOADING) {
                 routines.setValue(resource);
+            } else if (resource.getStatus() == Status.ERROR) {
+                // TODO error management
+                called = false;
             }
         });
     }

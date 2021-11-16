@@ -30,7 +30,6 @@ public abstract class RoutineFragment extends Fragment {
         for (int i = 0; i < RoutineViewModel.PAGE_SIZE && i < prevRoutines.size(); i++) {
             routines.add(prevRoutines.get(i));
         }
-        routineViewModel.restart();
         adapter = new RoutineAdapter(routines);
 
         recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
@@ -62,7 +61,7 @@ public abstract class RoutineFragment extends Fragment {
                     if (r.getData() != null) {
                         routines.addAll(r.getData());
                         adapter.notifyDataSetChanged();
-                        recyclerView.scrollToPosition(routines.size() - 1);
+//                        recyclerView.scrollToPosition(routines.size() - 1);
                     }
                     break;
             }
