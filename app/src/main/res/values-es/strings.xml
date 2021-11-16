@@ -36,4 +36,5 @@
     <string name="app_bar_close">Cerrar</string>
     <string name="app_bar_share">Compartir</string>
     <string name="app_bar_profile">Perfil</string>
+    <string name="invalid_credentials">Your username/password is not valid</string>
 </resources>

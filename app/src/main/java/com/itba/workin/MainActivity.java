@@ -1,8 +1,6 @@
 package com.itba.workin;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -28,17 +26,4 @@ public class MainActivity extends AppBarActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(mainBinding.navView, navController);
     }
-
-    // hay que descomentarla cuando tengamos otras views
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        MenuItem shareItem = menu.findItem(R.id.app_bar_share);
-//        shareItem.setVisible(false);
-//        MenuItem closeItem = menu.findItem(R.id.app_bar_close);
-//        closeItem.setVisible(false);
-//        MenuItem ProfileItem = menu.findItem(R.id.app_bar_profile);
-//        ProfileItem.setVisible(false);
-//
-//        return super.onPrepareOptionsMenu(menu);
-//    }
 }

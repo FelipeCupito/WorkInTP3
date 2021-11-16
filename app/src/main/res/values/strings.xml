@@ -36,4 +36,5 @@
     <string name="invalid_name">The first name is not valid</string>
     <string name="invalid_last_name">The last name is not valid</string>
     <string name="invalid_password_conf">The passwords do not match</string>
+    <string name="invalid_credentials">Your username/password is not valid</string>
 </resources>
