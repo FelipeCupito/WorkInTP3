@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/workout_navigation"
+    app:startDestination="@id/workoutDetailedFragment">
+
+    <fragment
+        android:id="@+id/workoutDetailedFragment"
+        android:name="com.itba.workin.WorkoutDetailedFragment"
+        android:label="WorkoutDetailedFragment" >
+        <action
+            android:id="@+id/action_workoutDetailedFragment_to_workoutSimpleFragment"
+            app:destination="@id/workoutSimpleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutSimpleFragment"
+        android:name="WorkoutSimpleFragment"
+        android:label="WorkoutSimpleFragment" >
+        <action
+            android:id="@+id/action_workoutSimpleFragment_to_workoutDetailedFragment"
+            app:destination="@id/workoutDetailedFragment" />
+    </fragment>
+</navigation>
