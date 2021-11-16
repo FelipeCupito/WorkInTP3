@@ -1,77 +1,33 @@
 package com.itba.workin.ui.community;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.itba.workin.App;
-import com.itba.workin.backend.models.Error;
-import com.itba.workin.backend.models.FullRoutine;
 import com.itba.workin.databinding.FragmentCommunityBinding;
-import com.itba.workin.domain.MyRoutine;
-import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.repository.Status;
-import com.itba.workin.ui.RoutineAdapter;
+import com.itba.workin.ui.RoutineFragment;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+public class CommunityFragment extends RoutineFragment {
 
-public class CommunityFragment extends Fragment {
-
-    private final List<MyRoutine> routines = new ArrayList<>();
     private FragmentCommunityBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentCommunityBinding.inflate(inflater, container, false);
+        recyclerView = binding.recyclerview;
+        root = binding.getRoot();
 
         App app = (App) requireActivity().getApplication();
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
-        CommunityViewModel communityViewModel = new ViewModelProvider(requireActivity(),viewModelFactory).get(CommunityViewModel.class);
+        routineViewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(CommunityViewModel.class);
 
-        binding = FragmentCommunityBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        RoutineAdapter adapter = new RoutineAdapter(routines);
-
-        communityViewModel.getRoutines().observe(getViewLifecycleOwner(), r -> {
-            switch (r.getStatus()) {
-                case LOADING:
-                    // TODO
-                    break;
-                case SUCCESS:
-                    routines.clear();
-                    if (r.getData() != null) {
-                        routines.addAll(r.getData());
-                        adapter.notifyDataSetChanged();
-                        binding.recyclerview.scrollToPosition(routines.size() - 1);
-                    }
-                    break;
-            }
-        });
-
-        binding.recyclerview.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
-        binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if (!binding.recyclerview.canScrollVertically(1)) {
-                    communityViewModel.getMoreRoutines();
-                }
-            }
-        });
-        binding.recyclerview.setAdapter(adapter);
-
-        return root;
+        return super.onCreateView(inflater,container,savedInstanceState);
     }
 
     @Override

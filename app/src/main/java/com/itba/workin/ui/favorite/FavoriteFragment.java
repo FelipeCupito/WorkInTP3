@@ -6,68 +6,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.itba.workin.App;
 import com.itba.workin.databinding.FragmentFavoriteBinding;
-import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.ui.RoutineAdapter;
+import com.itba.workin.ui.RoutineFragment;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
-import java.util.ArrayList;
-import java.util.List;
 
+public class FavoriteFragment extends RoutineFragment {
 
-public class FavoriteFragment extends Fragment {
-
-    private final List<MyRoutine> routines = new ArrayList<>();
     private FragmentFavoriteBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false);
+        recyclerView = binding.recyclerview;
+        root = binding.getRoot();
 
         App app = (App) requireActivity().getApplication();
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
-        FavoriteViewModel favoriteViewModel = new ViewModelProvider(requireActivity(),viewModelFactory).get(FavoriteViewModel.class);
+        routineViewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(FavoriteViewModel.class);
 
-        binding = FragmentFavoriteBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        RoutineAdapter adapter = new RoutineAdapter(routines);
-
-        favoriteViewModel.getRoutines().observe(getViewLifecycleOwner(), r -> {
-            switch (r.getStatus()) {
-                case LOADING:
-                    // TODO
-                    break;
-                case SUCCESS:
-                    routines.clear();
-                    if (r.getData() != null) {
-                        routines.addAll(r.getData());
-                        adapter.notifyDataSetChanged();
-                        binding.recyclerview.scrollToPosition(routines.size() - 1);
-                    }
-                    break;
-            }
-        });
-
-        binding.recyclerview.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
-        binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if (!binding.recyclerview.canScrollVertically(1)) {
-                    favoriteViewModel.getMoreRoutines();
-                }
-            }
-        });
-        binding.recyclerview.setAdapter(adapter);
-
-        return root;
+        return super.onCreateView(inflater,container,savedInstanceState);
     }
 
     @Override

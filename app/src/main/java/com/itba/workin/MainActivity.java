@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
@@ -15,11 +16,17 @@ import com.itba.workin.backend.models.Error;
 import com.itba.workin.databinding.ActivityMainBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.repository.Resource;
+import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
+import com.itba.workin.ui.community.CommunityViewModel;
+import com.itba.workin.ui.favorite.FavoriteViewModel;
+import com.itba.workin.ui.myRoutines.MyRoutinesViewModel;
+import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
 public class MainActivity extends AppBarActivity {
 
     ActivityMainBinding mainBinding;
+    App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +35,9 @@ public class MainActivity extends AppBarActivity {
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View root = mainBinding.getRoot();
         setContentView(root);
+        app = (App) getApplication();
 
         // TODO sacar de aca va en login
-        App app = (App) getApplication();
         Credentials credentials = new Credentials("johndoe", "1234567890");
         app.getUserRepository().login(credentials).observe(this, r -> {
             if (r.getStatus() == Status.SUCCESS) {
@@ -49,6 +56,25 @@ public class MainActivity extends AppBarActivity {
         assert navHostFragment != null;
         NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(mainBinding.navView, navController);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        resetViewModels();
+    }
+
+    private void resetViewModels() {
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+        FavoriteViewModel favoriteViewModel = new ViewModelProvider(this,viewModelFactory).get(FavoriteViewModel.class);
+        viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+        CommunityViewModel communityViewModel = new ViewModelProvider(this,viewModelFactory).get(CommunityViewModel.class);
+        viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+        MyRoutinesViewModel myRoutinesViewModel = new ViewModelProvider(this,viewModelFactory).get(MyRoutinesViewModel.class);
+
+        favoriteViewModel.restart();
+        communityViewModel.restart();
+        myRoutinesViewModel.restart();
     }
 
     @Override
