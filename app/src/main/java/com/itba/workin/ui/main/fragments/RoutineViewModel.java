@@ -69,7 +69,7 @@ public abstract class RoutineViewModel extends RepositoryViewModel<RoutinesRepos
             } else if (resource.getStatus() == Status.LOADING) {
                 routines.setValue(resource);
             } else if (resource.getStatus() == Status.ERROR) {
-                // TODO error management
+                routines.setValue(resource);
                 called = false;
             }
         });

@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.itba.workin.R;
 import com.itba.workin.domain.MyRoutine;
 
 import java.util.ArrayList;
@@ -51,18 +54,23 @@ public abstract class RoutineFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        ProgressBar progressBar = getActivity().findViewById(R.id.loading);
         routineViewModel.getRoutines().observe(getViewLifecycleOwner(), r -> {
             switch (r.getStatus()) {
                 case LOADING:
-                    //TODO
+                    progressBar.setVisibility(View.VISIBLE);
                     break;
                 case SUCCESS:
                     routines.clear();
                     if (r.getData() != null) {
                         routines.addAll(r.getData());
                         adapter.notifyDataSetChanged();
-//                        recyclerView.scrollToPosition(routines.size() - 1);
                     }
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                case ERROR:
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(root.getContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG).show();
                     break;
             }
         });

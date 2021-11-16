@@ -20,6 +20,7 @@ import com.itba.workin.databinding.ActivityLoginBinding;
 import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.Status;
 import com.itba.workin.ui.register.Register;
+import com.itba.workin.ui.routineDetail.RoutineDetailActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String COMEBACK_URL = "com.itba.workin.COMEBACK_URL";
     SharedPreferences sp;
     Uri uri;
+    int id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
         binding.textSignIn.setOnClickListener(this::goToRegister);
 
         sp = getSharedPreferences("login",MODE_PRIVATE);
+
+        id = getIntent().getIntExtra("id",-1);
+
         if (getIntent().getExtras() == null || getIntent().getExtras().getString(COMEBACK_URL) == null)
             uri = null;
         else
@@ -82,13 +87,17 @@ public class LoginActivity extends AppCompatActivity {
             if (r.getStatus() == Status.SUCCESS) {
                 app.getPreferences().setAuthToken(r.getData().getToken());
                 sp.edit().putBoolean("logged",true).apply();
-                if (uri != null){
+                if (uri != null) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(uri);
                     i.setPackage("com.itba.workin");
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
-                }else {
+                } else if (id != -1) {
+                    Intent intent = new Intent(this, RoutineDetailActivity.class);
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+                } else {
                     goToMainActivity();
                 }
             } else {

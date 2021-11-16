@@ -39,6 +39,8 @@
     <string name="app_bar_favorite">Favorite</string>
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
+    <string name="favorite_yes">This routine has been added to favorites</string>
+    <string name="favorite_no">This routine has been removed from favorites</string>
 
     <!-- ERRORS -->
     <string name="invalid_username">Not a valid username</string>
