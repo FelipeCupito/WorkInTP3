@@ -3,6 +3,8 @@ package com.itba.workin;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -45,7 +47,6 @@ public class MainActivity extends AppBarActivity {
             startActivity(intent);
         });
     }
-
 
     public void goToLogin(){
         Intent i = new Intent(this, LoginActivity.class);
