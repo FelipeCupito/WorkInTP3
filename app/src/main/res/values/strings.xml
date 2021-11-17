@@ -57,6 +57,7 @@
     <string name="unexpected_error">An unexpected error occurred, please try again later</string>
     <string name="query_too_short">Your search is too short! please make it longer</string>
 
+    <string name="search_text">Showing results for %s, click here to reset search</string>
     <string name="sort_default">Default</string>
     <string name="sort_name">Name</string>
     <string name="sort_date">Date</string>

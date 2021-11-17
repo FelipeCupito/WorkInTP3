@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,8 @@ public abstract class RoutineFragment extends Fragment {
     protected View root;
     private RoutineAdapter adapter;
     protected MenuItem defaultOpt, nameOpt, dateOpt, scoreOpt, difficultyOpt, categoryOpt;
+    private TextView searchText;
+    private ProgressBar loading;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,10 +53,21 @@ public abstract class RoutineFragment extends Fragment {
         }
         adapter = new RoutineAdapter(routines);
 
+        loading = requireActivity().findViewById(R.id.loading);
+        searchText = requireActivity().findViewById(R.id.search_text);
+
         if (savedInstanceState != null) {
             routineViewModel.setOrder((RoutinesRepository.SORT) savedInstanceState.getSerializable("ORDER"));
             routineViewModel.setSearch(savedInstanceState.getString("SEARCH"));
         }
+
+        searchText.setOnClickListener(v -> {
+            routineViewModel.setSearch(null);
+            routineViewModel.restart();
+            fetchRoutines();
+            searchText.setText(null);
+            searchText.setVisibility(View.GONE);
+        });
 
         recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -85,11 +99,11 @@ public abstract class RoutineFragment extends Fragment {
     }
 
     private void fetchRoutines() {
-        ProgressBar progressBar = getActivity().findViewById(R.id.loading);
+
         routineViewModel.getRoutines().observe(getViewLifecycleOwner(), r -> {
             switch (r.getStatus()) {
                 case LOADING:
-                    progressBar.setVisibility(View.VISIBLE);
+                    loading.setVisibility(View.VISIBLE);
                     break;
                 case SUCCESS:
                     routines.clear();
@@ -97,10 +111,10 @@ public abstract class RoutineFragment extends Fragment {
                         routines.addAll(r.getData());
                         adapter.notifyDataSetChanged();
                     }
-                    progressBar.setVisibility(View.GONE);
+                    loading.setVisibility(View.GONE);
                     break;
                 case ERROR:
-                    progressBar.setVisibility(View.GONE);
+                    loading.setVisibility(View.GONE);
                     Toast toast = Toast.makeText(root.getContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                     toast.show();
@@ -113,10 +127,10 @@ public abstract class RoutineFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-
         MenuItem searchItem = menu.findItem(R.id.app_bar_search);
         MenuItem profileItem = menu.findItem(R.id.app_bar_profile);
         MenuItem sortItem = menu.findItem(R.id.sort_category);
+
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
@@ -142,6 +156,8 @@ public abstract class RoutineFragment extends Fragment {
                     routineViewModel.setSearch(query);
                     routineViewModel.restart();
                     fetchRoutines();
+                    searchText.setText(String.format(getString(R.string.search_text), query));
+                    searchText.setVisibility(View.VISIBLE);
                     searchItem.collapseActionView();
                     return true;
                 }
@@ -180,6 +196,12 @@ public abstract class RoutineFragment extends Fragment {
             case CATEGORY:
                 categoryOpt.setChecked(true);
                 break;
+        }
+        if (routineViewModel.getSearch() != null) {
+            searchText.setText(String.format(getString(R.string.search_text), routineViewModel.getSearch()));
+            searchText.setVisibility(View.VISIBLE);
+        } else {
+            searchText.setVisibility(View.GONE);
         }
         super.onPrepareOptionsMenu(menu);
     }
