@@ -98,7 +98,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
         binding.user.setText(routine.getUserName());
         binding.date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()).toString());
         binding.descriptionText.setText(routine.getDetail());
-        binding.rating.setRating(routine.getScore());
+        binding.rating.setRating((float)(routine.getScore()/2.0));
         binding.difficulty.setRating(routine.getDifficulty());
         binding.categoryName.setText(routine.getCategory());
 
