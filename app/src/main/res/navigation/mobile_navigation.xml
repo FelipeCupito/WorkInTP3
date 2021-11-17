@@ -9,7 +9,7 @@
         android:id="@+id/navigation_my_routines"
         android:name="com.itba.workin.ui.main.fragments.myRoutines.MyRoutinesFragment"
         android:label="@string/title_my_routines"
-        tools:layout="@layout/fragment_my_routines" />
+        tools:layout="@layout/main_activity_fragment" />
 
     <fragment
         android:id="@+id/navigation_community"

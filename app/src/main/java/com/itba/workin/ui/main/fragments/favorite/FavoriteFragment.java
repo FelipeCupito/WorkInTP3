@@ -9,18 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.itba.workin.App;
-import com.itba.workin.databinding.FragmentFavoriteBinding;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.main.fragments.RoutineFragment;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
+import com.itba.workin.databinding.MainActivityFragmentBinding;
 
 
 public class FavoriteFragment extends RoutineFragment {
 
-    private FragmentFavoriteBinding binding;
+    private MainActivityFragmentBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentFavoriteBinding.inflate(inflater, container, false);
+        binding = MainActivityFragmentBinding.inflate(inflater, container, false);
         recyclerView = binding.recyclerview;
         root = binding.getRoot();
 

@@ -37,8 +37,14 @@
     <string name="app_bar_clock">Timer</string>
     <string name="app_bar_list">CheckList</string>
     <string name="app_bar_favorite">Favorite</string>
+    <string name="app_bar_search">Search</string>
+    <string name="app_bar_sort">Filter</string>
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
+    <string name="details_button">Details</string>
+
+    <string name="favorite_yes">This routine has been added to favorites</string>
+    <string name="favorite_no">This routine has been removed from favorites</string>
 
     <!-- ERRORS -->
     <string name="invalid_username">Not a valid username</string>
@@ -51,8 +57,22 @@
     <string name="invalid_password_conf">The passwords do not match</string>
     <string name="invalid_credentials">Your username/password is not valid</string>
     <string name="unexpected_error">An unexpected error occurred, please try again later</string>
+
+    <string name="remainign_sets_text">remainign sets</string>
+
     <string name="logout">Log Out</string>
     <string name="socre_text">"Felitaciones! "</string>
     <string name="socre_bnt">next</string>
     <string name="title_activity_score">ScoreActivity</string>
+
+    <string name="query_too_short">Your search is too short! please make it longer</string>
+
+    <string name="search_text">Showing results for %s, click here to reset search</string>
+    <string name="sort_default">Default</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_date">Date</string>
+    <string name="sort_score">Score</string>
+    <string name="sort_difficulty">Difficulty</string>
+    <string name="sort_category">Category</string>
+
 </resources>

@@ -6,37 +6,36 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.itba.workin.App;
-import com.itba.workin.ui.AppBarActivity;
 import com.itba.workin.R;
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.repository.Status;
+import com.itba.workin.ui.login.LoginActivity;
 import com.squareup.picasso.Picasso;
-
 import java.text.SimpleDateFormat;
 
-public class RoutineDetailActivity extends AppBarActivity {
+public class RoutineDetailActivity extends AppCompatActivity {
+
 
     private MyRoutine routine;
     private String cycleText;
     private int id;
     private RoutinesRepository routinesRepository;
-    private View root;
+    private RoutineDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RoutineDetailBinding routineDetailBinding = RoutineDetailBinding.inflate(getLayoutInflater());
-        root = routineDetailBinding.getRoot();
+        binding = RoutineDetailBinding.inflate(getLayoutInflater());
+        View root = binding.getRoot();
         setContentView(root);
 
         routinesRepository = ((App) getApplication()).getRoutinesRepository();
@@ -44,8 +43,12 @@ public class RoutineDetailActivity extends AppBarActivity {
         ToolbarMainBinding toolbarBinding = ToolbarMainBinding.bind(root);
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
+        binding.loading.setVisibility(View.VISIBLE);
         if (savedInstanceState == null) {
             Intent intent = getIntent();
             if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_VIEW)) {
@@ -63,13 +66,24 @@ public class RoutineDetailActivity extends AppBarActivity {
             }
             App app = (App) getApplication();
             app.getRoutinesRepository().getRoutine(id).observe(this, r -> {
-                if (r.getStatus() == Status.SUCCESS) {
-                    routine = r.getData();
-                    assert routine != null;
-                    id = routine.getId();
-                    setView();
-                } else {
-//                      defaultResourceHandler(r); //TODO
+                switch (r.getStatus()) {
+                    case SUCCESS:
+                        routine = r.getData();
+                        assert routine != null;
+                        id = routine.getId();
+                        setView();
+                        break;
+                    case ERROR:
+                        if (r.getError().getCode() == 7) { // unauthorized
+                            Intent i = new Intent(this, LoginActivity.class);
+                            i.putExtra("id",id);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            binding.loading.setVisibility(View.GONE);
+                            Toast.makeText(root.getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
+                            break;
+                        }
                 }
             });
         } else {
@@ -79,24 +93,20 @@ public class RoutineDetailActivity extends AppBarActivity {
     }
 
     private void setView() {
-        ImageView image= root.findViewById(R.id.image);
-        TextView routineName = root.findViewById(R.id.routineName);
-        TextView user = root.findViewById(R.id.user);
-        TextView date = root.findViewById(R.id.date);
-        TextView descriptionText = root.findViewById(R.id.descriptionText);
-        TextView exerciseText = root.findViewById(R.id.exerciseText); // TODO
-        TextView categoryText = root.findViewById(R.id.categoryName);
-        RatingBar rating = root.findViewById(R.id.rating);
-        RatingBar difficulty = root.findViewById(R.id.difficulty);
+        Picasso.get().load(routine.getRoutineUrl()).placeholder(binding.image.getDrawable()).resize(300,200).into(binding.image);
+        binding.routineName.setText(routine.getName());
+        binding.user.setText(routine.getUserName());
+        binding.date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()).toString());
+        binding.descriptionText.setText(routine.getDetail());
+        binding.rating.setRating(routine.getScore());
+        binding.difficulty.setRating(routine.getDifficulty());
+        binding.categoryName.setText(routine.getCategory());
 
-        Picasso.get().load(routine.getRoutineUrl()).placeholder(image.getDrawable()).resize(300,200).into(image);
-        routineName.setText(routine.getName());
-        user.setText(routine.getUserName());
-        date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()).toString());
-        descriptionText.setText(routine.getDetail());
-        rating.setRating(routine.getScore());
-        difficulty.setRating(routine.getDifficulty());
-        categoryText.setText(routine.getCategory());
+        binding.routineName.setVisibility(View.VISIBLE);
+        binding.image.setVisibility(View.VISIBLE);
+        binding.scrollView.setVisibility(View.VISIBLE);
+        binding.startRoutine.setVisibility(View.VISIBLE);
+        binding.loading.setVisibility(View.GONE);
     }
 
     @Override
@@ -109,18 +119,16 @@ public class RoutineDetailActivity extends AppBarActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem shareItem = menu.findItem(R.id.app_bar_share);
         shareItem.setVisible(true);
-        MenuItem closeItem = menu.findItem(R.id.app_bar_close);
-        closeItem.setVisible(false);
-        MenuItem ProfileItem = menu.findItem(R.id.app_bar_profile);
-        ProfileItem.setVisible(false);
-        MenuItem timerItem = menu.findItem(R.id.app_bar_clock);
-        timerItem.setVisible(false);
-        MenuItem listItem = menu.findItem(R.id.app_bar_list);
-        listItem.setVisible(false);
         MenuItem favoriteItem = menu.findItem(R.id.app_bar_favorite);
         favoriteItem.setVisible(true);
 
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_bar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -140,6 +148,7 @@ public class RoutineDetailActivity extends AppBarActivity {
                         item.setEnabled(false);
                         break;
                     case SUCCESS:
+                        Toast.makeText(binding.getRoot().getContext(),getText(R.string.favorite_yes),Toast.LENGTH_LONG).show();
                         item.setEnabled(true);
                         break;
                     case ERROR:
@@ -148,17 +157,19 @@ public class RoutineDetailActivity extends AppBarActivity {
                             routinesRepository.deleteFavourite(id).observe(this, r2 -> {
                                 switch (r2.getStatus()) {
                                     case SUCCESS:
+                                        Toast.makeText(binding.getRoot().getContext(),getText(R.string.favorite_no),Toast.LENGTH_LONG).show();
                                         item.setEnabled(true);
                                         break;
                                     case ERROR:
-                                        // TODO unknown error
+                                        Toast.makeText(binding.getRoot().getContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG).show();
                                         break;
                                 }
                             });
                             break;
-                        } else {
-                            // TODO unknown error
                         }
+                        Toast.makeText(binding.getRoot().getContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG).show();
+                        item.setEnabled(true);
+                        break;
                 }
             });
             return true;

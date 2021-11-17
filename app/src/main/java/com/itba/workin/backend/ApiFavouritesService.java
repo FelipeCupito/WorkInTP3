@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 public interface ApiFavouritesService {
 
     @GET("favourites")
-    LiveData<ApiResponse<PagedList<FullRoutine>>> getFavourites(@Query("page") int page, @Query("size") int size);
+    LiveData<ApiResponse<PagedList<FullRoutine>>> getFavourites(@Query("page") int page, @Query("size") int size, @Query("search") String search, @Query("orderBy") String order);
 
     @POST("favourites/{routineId}/")
     LiveData<ApiResponse<Void>> addFavourite(@Path("routineId") int routineId);
