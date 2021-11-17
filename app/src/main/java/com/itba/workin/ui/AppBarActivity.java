@@ -58,6 +58,7 @@ public abstract class AppBarActivity extends AppCompatActivity {
         App app = (App)this.getApplicationContext();
         app.getUserRepository().logout().observe(this, r -> {
             if (r.getStatus() == Status.SUCCESS) {
+                app.getPreferences().setAuthToken(null);
                 sp = getSharedPreferences("login", MODE_PRIVATE);
                 sp.edit().putBoolean("logged",false).apply();
                 goToLogin();
@@ -65,6 +66,5 @@ public abstract class AppBarActivity extends AppCompatActivity {
                 Resource.defaultResourceHandler(r);
             }
         });
-
     }
 }
