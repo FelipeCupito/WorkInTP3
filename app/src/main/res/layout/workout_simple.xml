@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="remainign sets"
+        android:text="@string/remainign_sets_text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/remainingRepetitions"
@@ -134,6 +134,7 @@
         app:srcCompat="@drawable/ic_play" />
 
     <Button
+        style="?attr/borderlessButtonStyle"
         android:id="@+id/nextButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -144,6 +145,7 @@
         app:layout_constraintStart_toEndOf="@+id/prevButton" />
 
     <Button
+        style="?attr/borderlessButtonStyle"
         android:id="@+id/prevButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
