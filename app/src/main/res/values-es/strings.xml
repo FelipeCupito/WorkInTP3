@@ -50,4 +50,5 @@
     <string name="app_bar_favorite">Favorito</string>
     <string name="play_button">Botón para Continuar</string>
     <string name="pause_button">Botón para Pausar</string>
+    <string name="logout">Log Out</string>
 </resources>

@@ -51,4 +51,5 @@
     <string name="invalid_password_conf">The passwords do not match</string>
     <string name="invalid_credentials">Your username/password is not valid</string>
     <string name="unexpected_error">An unexpected error occurred, please try again later</string>
+    <string name="logout">Log Out</string>
 </resources>

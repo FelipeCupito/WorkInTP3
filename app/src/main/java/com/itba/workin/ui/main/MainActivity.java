@@ -4,7 +4,6 @@ package com.itba.workin.ui.main;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,13 +14,11 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.itba.workin.App;
-import com.itba.workin.ui.AppBarActivity;
 import com.itba.workin.R;
-import com.itba.workin.backend.models.Error;
 import com.itba.workin.databinding.ActivityMainBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
-import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.RoutinesRepository;
+import com.itba.workin.ui.AppBarActivity;
 import com.itba.workin.ui.login.LoginActivity;
 import com.itba.workin.ui.main.fragments.community.CommunityViewModel;
 import com.itba.workin.ui.main.fragments.favorite.FavoriteViewModel;
@@ -101,15 +98,4 @@ public class MainActivity extends AppBarActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    private void defaultResourceHandler(Resource<?> resource) {
-        switch (resource.getStatus()) {
-            case LOADING:
-                break;
-            case ERROR:
-                Error error = resource.getError();
-                String message = "Error: " + error.getDescription() + error.getCode();
-                Log.d("UI", message);
-                break;
-        }
-    }
 }
