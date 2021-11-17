@@ -52,4 +52,6 @@
     <string name="invalid_credentials">Your username/password is not valid</string>
     <string name="unexpected_error">An unexpected error occurred, please try again later</string>
     <string name="logout">Log Out</string>
+    <string name="socre_text">"Felitaciones! "</string>
+    <string name="socre_bnt">next</string>
 </resources>

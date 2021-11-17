@@ -52,4 +52,6 @@
     <string name="pause_button">Botón para Pausar</string>
     <string name="unexpected_error">Ocurrió un error inesperado. Vuelva a intentarlo más tarde.</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="socre_text">"Felitaciones! "</string>
+    <string name="socre_bnt">next</string>
 </resources>
