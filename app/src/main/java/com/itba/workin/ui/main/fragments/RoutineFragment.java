@@ -20,21 +20,19 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.itba.workin.R;
+import com.itba.workin.databinding.MainActivityFragmentBinding;
 import com.itba.workin.domain.MyRoutine;
-import com.itba.workin.ui.utils.GridSpacingItemDecoration;
 import com.itba.workin.repository.RoutinesRepository;
-
+import com.itba.workin.ui.utils.GridSpacingItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class RoutineFragment extends Fragment {
 
+    private MainActivityFragmentBinding binding;
     private final List<MyRoutine> routines = new ArrayList<>();
     protected RoutineViewModel routineViewModel;
-    protected RecyclerView recyclerView;
-    protected View root;
     private RoutineAdapter adapter;
     protected MenuItem defaultOpt, nameOpt, dateOpt, scoreOpt, difficultyOpt, categoryOpt;
     private TextView searchText;
@@ -47,6 +45,8 @@ public abstract class RoutineFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        binding = MainActivityFragmentBinding.inflate(inflater, container, false);
 
         routines.clear();
         List<MyRoutine> prevRoutines = routineViewModel.getPrevRoutines();
@@ -71,20 +71,20 @@ public abstract class RoutineFragment extends Fragment {
             searchText.setVisibility(View.GONE);
         });
 
-        recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        binding.recyclerview.setLayoutManager(new GridLayoutManager(binding.getRoot().getContext(), 2));
+        binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if (!RoutineFragment.this.recyclerView.canScrollVertically(1)) {
+                if (!RoutineFragment.this.binding.recyclerview.canScrollVertically(1)) {
                     routineViewModel.getMoreRoutines();
                 }
             }
         });
-        recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2,20,false, getContext()));
-        return root;
+        binding.recyclerview.setAdapter(adapter);
+        binding.recyclerview.addItemDecoration(new GridSpacingItemDecoration(2,20,false, getContext()));
+        return binding.getRoot();
     }
 
     @Override
@@ -117,7 +117,7 @@ public abstract class RoutineFragment extends Fragment {
                     break;
                 case ERROR:
                     loading.setVisibility(View.GONE);
-                    Toast toast = Toast.makeText(root.getContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(binding.recyclerview.getContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                     toast.show();
                     break;
@@ -163,7 +163,7 @@ public abstract class RoutineFragment extends Fragment {
                     searchItem.collapseActionView();
                     return true;
                 }
-                Toast toast = Toast.makeText(root.getContext(),getText(R.string.query_too_short),Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(binding.recyclerview.getContext(),getText(R.string.query_too_short),Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.BOTTOM, 0, 200);
                 toast.show();
                 return false;
@@ -254,5 +254,11 @@ public abstract class RoutineFragment extends Fragment {
         routineViewModel.restart();
         fetchRoutines();
         return true;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

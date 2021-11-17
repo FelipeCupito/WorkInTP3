@@ -19,13 +19,7 @@ import com.itba.workin.databinding.MainActivityFragmentBinding;
 
 public class MyRoutinesFragment extends RoutineFragment {
 
-    private MainActivityFragmentBinding binding;
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = MainActivityFragmentBinding.inflate(inflater, container, false);
-        recyclerView = binding.recyclerview;
-        root = binding.getRoot();
-
         App app = (App) requireActivity().getApplication();
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
         routineViewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(MyRoutinesViewModel.class);
@@ -38,11 +32,5 @@ public class MyRoutinesFragment extends RoutineFragment {
         // se desactiva porque esta roto en la api
         super.onPrepareOptionsMenu(menu);
         categoryOpt.setVisible(false);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }
