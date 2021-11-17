@@ -34,7 +34,7 @@ public interface ApiUserService {
     LiveData<ApiResponse<FullUser>> getCurrentUser();
 
     @GET("users/current/routines/")
-    LiveData<ApiResponse<PagedList<FullRoutine>>> getUserRoutines(@Query("page") int page, @Query("size") int size);
+    LiveData<ApiResponse<PagedList<FullRoutine>>> getUserRoutines(@Query("page") int page, @Query("size") int size, @Query("search") String search, @Query("orderBy") String order);
 
     @PUT("users/current")
     LiveData<ApiResponse<FullUser>> editCurrentUser(@Body FullUser user);

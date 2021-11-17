@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 public interface ApiRoutineService {
 
     @GET("routines")
-    LiveData<ApiResponse<PagedList<FullRoutine>>> getRoutines(@Query("page") int page, @Query("size") int size);
+    LiveData<ApiResponse<PagedList<FullRoutine>>> getRoutines(@Query("page") int page, @Query("size") int size, @Query("search") String search, @Query("orderBy") String order);
 
     @GET("routines?size=50")
     LiveData<ApiResponse<PagedList<FullRoutine>>> getRoutinesByDiff(@Query("difficulty") String difficulty);
