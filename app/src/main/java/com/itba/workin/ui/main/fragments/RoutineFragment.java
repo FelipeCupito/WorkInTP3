@@ -131,7 +131,7 @@ public abstract class RoutineFragment extends Fragment {
 
         MenuItem searchItem = menu.findItem(R.id.app_bar_search);
         MenuItem profileItem = menu.findItem(R.id.app_bar_profile);
-        MenuItem sortItem = menu.findItem(R.id.sort_category);
+        MenuItem sortItem = menu.findItem(R.id.app_bar_sort);
 
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
