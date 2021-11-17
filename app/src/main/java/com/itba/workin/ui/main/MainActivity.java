@@ -22,7 +22,6 @@ import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
-import com.itba.workin.ui.AppBarActivity;
 import com.itba.workin.ui.login.LoginActivity;
 import com.itba.workin.ui.main.fragments.community.CommunityViewModel;
 import com.itba.workin.ui.main.fragments.favorite.FavoriteViewModel;
