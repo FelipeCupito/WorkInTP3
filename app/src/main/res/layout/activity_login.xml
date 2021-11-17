@@ -52,11 +52,12 @@
 
     <Button
         android:id="@+id/loginBtn"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
+        android:minWidth="200dp"
         android:text="@string/logInBtn"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
