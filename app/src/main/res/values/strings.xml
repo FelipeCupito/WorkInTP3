@@ -37,6 +37,8 @@
     <string name="app_bar_clock">Timer</string>
     <string name="app_bar_list">CheckList</string>
     <string name="app_bar_favorite">Favorite</string>
+    <string name="app_bar_search">Search</string>
+    <string name="app_bar_sort">Filter</string>
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
     <string name="favorite_yes">This routine has been added to favorites</string>
@@ -53,4 +55,12 @@
     <string name="invalid_password_conf">The passwords do not match</string>
     <string name="invalid_credentials">Your username/password is not valid</string>
     <string name="unexpected_error">An unexpected error occurred, please try again later</string>
+    <string name="query_too_short">Your search is too short! please make it longer</string>
+
+    <string name="sort_default">Default</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_date">Date</string>
+    <string name="sort_score">Score</string>
+    <string name="sort_difficulty">Difficulty</string>
+    <string name="sort_category">Category</string>
 </resources>

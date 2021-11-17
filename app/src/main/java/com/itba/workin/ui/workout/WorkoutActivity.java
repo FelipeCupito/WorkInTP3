@@ -1,17 +1,18 @@
 package com.itba.workin.ui.workout;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.itba.workin.R;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.databinding.WorkoutActivityBinding;
-import com.itba.workin.ui.AppBarActivity;
 
-public class WorkoutActivity extends AppBarActivity {
+public class WorkoutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +31,11 @@ public class WorkoutActivity extends AppBarActivity {
         NavController navController = navHostFragment.getNavController();
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_bar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

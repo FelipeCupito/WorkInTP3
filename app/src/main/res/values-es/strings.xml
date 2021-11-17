@@ -48,6 +48,15 @@
     <string name="app_bar_clock">Cronometro</string>
     <string name="app_bar_list">Lista</string>
     <string name="app_bar_favorite">Favorito</string>
+    <string name="app_bar_search">Buscar</string>
+    <string name="app_bar_sort">Filtrar</string>
     <string name="play_button">Botón para Continuar</string>
     <string name="pause_button">Botón para Pausar</string>
+
+    <string name="sort_default">Por defecto</string>
+    <string name="sort_name">Nombre</string>
+    <string name="sort_date">Fecha</string>
+    <string name="sort_score">Puntuacion</string>
+    <string name="sort_difficulty">Dificultad</string>
+    <string name="sort_category">Categoría</string>
 </resources>

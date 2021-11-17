@@ -6,26 +6,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.itba.workin.App;
-import com.itba.workin.ui.AppBarActivity;
 import com.itba.workin.R;
 import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.repository.Status;
 import com.itba.workin.ui.login.LoginActivity;
 import com.squareup.picasso.Picasso;
 
-public class RoutineDetailActivity extends AppBarActivity {
+public class RoutineDetailActivity extends AppCompatActivity {
 
     private MyRoutine routine;
     private String cycleText;
@@ -45,7 +41,10 @@ public class RoutineDetailActivity extends AppBarActivity {
         ToolbarMainBinding toolbarBinding = ToolbarMainBinding.bind(root);
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         binding.loading.setVisibility(View.VISIBLE);
         if (savedInstanceState == null) {
@@ -118,18 +117,16 @@ public class RoutineDetailActivity extends AppBarActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem shareItem = menu.findItem(R.id.app_bar_share);
         shareItem.setVisible(true);
-        MenuItem closeItem = menu.findItem(R.id.app_bar_close);
-        closeItem.setVisible(false);
-        MenuItem ProfileItem = menu.findItem(R.id.app_bar_profile);
-        ProfileItem.setVisible(false);
-        MenuItem timerItem = menu.findItem(R.id.app_bar_clock);
-        timerItem.setVisible(false);
-        MenuItem listItem = menu.findItem(R.id.app_bar_list);
-        listItem.setVisible(false);
         MenuItem favoriteItem = menu.findItem(R.id.app_bar_favorite);
         favoriteItem.setVisible(true);
 
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_bar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

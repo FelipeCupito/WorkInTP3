@@ -22,6 +22,8 @@ public abstract class RoutineViewModel extends RepositoryViewModel<RoutinesRepos
     private final MediatorLiveData<Resource<List<MyRoutine>>> routines = new MediatorLiveData<>();
     protected RoutineGetter routineGetter;
     private boolean called = false;
+    private RoutinesRepository.SORT order = RoutinesRepository.SORT.DEFAULT;
+    private String search = null;
 
     public RoutineViewModel(RoutinesRepository repository) {
         super(repository);
@@ -36,8 +38,20 @@ public abstract class RoutineViewModel extends RepositoryViewModel<RoutinesRepos
         return allRoutines;
     }
 
-    public void setRoutineGetter(RoutineGetter routineGetter) {
-        this.routineGetter = routineGetter;
+    public void setOrder(RoutinesRepository.SORT order) {
+        this.order = order;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+    public RoutinesRepository.SORT getOrder() {
+        return order;
+    }
+
+    public String getSearch() {
+        return search;
     }
 
     public void restart() {
@@ -55,7 +69,7 @@ public abstract class RoutineViewModel extends RepositoryViewModel<RoutinesRepos
         }
         firstTime = false;
 
-        routines.addSource(routineGetter.get(routinePage, PAGE_SIZE), resource -> {
+        routines.addSource(routineGetter.get(routinePage, PAGE_SIZE, search, order), resource -> {
             if (resource.getStatus() == Status.SUCCESS) {
                 if ((resource.getData() == null) || (resource.getData().size() == 0) || (resource.getData().size() < PAGE_SIZE))
                     isLastRoutinePage = true;
