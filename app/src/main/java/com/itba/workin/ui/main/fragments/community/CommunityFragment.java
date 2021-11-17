@@ -9,17 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.itba.workin.App;
-import com.itba.workin.databinding.FragmentCommunityBinding;
+import com.itba.workin.databinding.MainActivityFragmentBinding;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.main.fragments.RoutineFragment;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 
 public class CommunityFragment extends RoutineFragment {
 
-    private FragmentCommunityBinding binding;
+    private MainActivityFragmentBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentCommunityBinding.inflate(inflater, container, false);
+        binding = MainActivityFragmentBinding.inflate(inflater, container, false);
         recyclerView = binding.recyclerview;
         root = binding.getRoot();
 

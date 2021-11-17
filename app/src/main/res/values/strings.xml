@@ -41,6 +41,8 @@
     <string name="app_bar_sort">Filter</string>
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
+    <string name="details_button">Details</string>
+
     <string name="favorite_yes">This routine has been added to favorites</string>
     <string name="favorite_no">This routine has been removed from favorites</string>
 
@@ -55,6 +57,9 @@
     <string name="invalid_password_conf">The passwords do not match</string>
     <string name="invalid_credentials">Your username/password is not valid</string>
     <string name="unexpected_error">An unexpected error occurred, please try again later</string>
+
+    <string name="remainign_sets_text">remainign sets</string>
+
     <string name="logout">Log Out</string>
 
     <string name="query_too_short">Your search is too short! please make it longer</string>
@@ -66,5 +71,6 @@
     <string name="sort_score">Score</string>
     <string name="sort_difficulty">Difficulty</string>
     <string name="sort_category">Category</string>
+
 
 </resources>

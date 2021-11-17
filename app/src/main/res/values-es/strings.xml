@@ -53,9 +53,10 @@
     <string name="play_button">Botón para Continuar</string>
     <string name="pause_button">Botón para Pausar</string>
 
+    <string name="details_button">Detalles</string>
+    <string name="remainign_sets_text">repeticiones restantes</string>
     <string name="unexpected_error">Ocurrió un error inesperado. Vuelva a intentarlo más tarde.</string>
     <string name="logout">Cerrar sesión</string>
-
 
     <string name="sort_default">Por defecto</string>
     <string name="sort_name">Nombre</string>

@@ -4,11 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragments.community.CommunityFragment">
+    tools:context=".ui.main.fragments.myRoutines.MyRoutinesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:clipToPadding="false"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

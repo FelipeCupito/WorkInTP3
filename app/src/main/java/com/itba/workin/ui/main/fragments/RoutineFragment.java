@@ -21,7 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.itba.workin.R;
 import com.itba.workin.domain.MyRoutine;
+import com.itba.workin.ui.utils.GridSpacingItemDecoration;
 import com.itba.workin.repository.RoutinesRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +83,7 @@ public abstract class RoutineFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(adapter);
-
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2,20,false, getContext()));
         return root;
     }
 
