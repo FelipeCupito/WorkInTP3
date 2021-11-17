@@ -40,7 +40,7 @@ public class RoutinesRepository {
         return new MyRoutine(routine);
     }
 
-    public LiveData<Resource<List<MyRoutine>>> getRoutines(int page, int size) {
+    public LiveData<Resource<List<MyRoutine>>> getRoutines(int page, int size, String search, SORT order) {
         return new NetworkBoundResource<PagedList<FullRoutine>, List<MyRoutine>>(model ->
                 model.getContent().stream()
                 .map(MyRoutine::new)
@@ -49,7 +49,7 @@ public class RoutinesRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<PagedList<FullRoutine>>> createCall() {
-                return apiRoutineService.getRoutines(page, size);
+                return apiRoutineService.getRoutines(page, size, search, convertSort(order) );
             }
         }.asLiveData();
     }
@@ -82,7 +82,7 @@ public class RoutinesRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<List<MyRoutine>>> getFavourites(int page, int size) {
+    public LiveData<Resource<List<MyRoutine>>> getFavourites(int page, int size, String search, SORT order) {
         return new NetworkBoundResource<PagedList<FullRoutine>, List<MyRoutine>>(model ->
                 model.getContent().stream()
                         .map(MyRoutine::new)
@@ -90,12 +90,12 @@ public class RoutinesRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<PagedList<FullRoutine>>> createCall() {
-                return apiFavouriteService.getFavourites(page,size);
+                return apiFavouriteService.getFavourites(page,size, search, convertSort(order) );
             }
         }.asLiveData();
     }
 
-    public LiveData<Resource<List<MyRoutine>>> getUserRoutines(int page, int size) {
+    public LiveData<Resource<List<MyRoutine>>> getUserRoutines(int page, int size, String search, SORT order) {
         return new NetworkBoundResource<PagedList<FullRoutine>, List<MyRoutine>>(model ->
                 model.getContent().stream()
                         .map(MyRoutine::new)
@@ -103,7 +103,7 @@ public class RoutinesRepository {
             @NonNull
             @Override
             protected LiveData<ApiResponse<PagedList<FullRoutine>>> createCall() {
-                return apiUserService.getUserRoutines(page,size);
+                return apiUserService.getUserRoutines(page,size, search, convertSort(order) );
             }
         }.asLiveData();
     }
@@ -140,5 +140,30 @@ public class RoutinesRepository {
                 return apiFavouriteService.deleteFavourite(routineId);
             }
         }.asLiveData();
+    }
+
+    private String convertSort(SORT sort) {
+        switch (sort) {
+            case NAME:
+                return "name";
+            case DATE:
+                return "date";
+            case SCORE:
+                return "score";
+            case DIFFICULTY:
+                return "difficulty";
+            case CATEGORY:
+                return "category";
+        }
+        return null;
+    }
+
+    public enum SORT {
+        DEFAULT,
+        NAME,
+        DATE,
+        SCORE,
+        DIFFICULTY,
+        CATEGORY,
     }
 }
