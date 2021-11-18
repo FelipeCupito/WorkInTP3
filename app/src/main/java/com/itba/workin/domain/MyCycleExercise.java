@@ -2,12 +2,13 @@ package com.itba.workin.domain;
 
 import com.itba.workin.backend.models.FullCycleExercise;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class MyCycleExercise implements Comparable<MyCycleExercise> {
+public class MyCycleExercise implements Comparable<MyCycleExercise>, Serializable {
     private final int order;
-    private final int duration;
-    private final int repetitions;
+    private int duration;
+    private int repetitions;
     private final MyExercise exercise;
     private final int routineOrder;
 
@@ -17,6 +18,14 @@ public class MyCycleExercise implements Comparable<MyCycleExercise> {
         this.repetitions = exercise.getRepetitions();
         this.exercise = new MyExercise(exercise.getExercise());
         this.routineOrder = routineOrder;
+    }
+
+    public MyCycleExercise(MyCycleExercise exercise) {
+        this.order = exercise.order;
+        this.duration = exercise.duration;
+        this.repetitions = exercise.repetitions;
+        this.exercise = new MyExercise(exercise.getExercise());
+        this.routineOrder = exercise.routineOrder;
     }
 
     public int getOrder() {
@@ -37,6 +46,22 @@ public class MyCycleExercise implements Comparable<MyCycleExercise> {
 
     public int getRoutineOrder() {
         return routineOrder;
+    }
+
+    public void decreaseDuration() {
+        duration--;
+    }
+
+    public void decreaseRepetitions() {
+        repetitions--;
+    }
+
+    public void setRepetitions(int repetitions) {
+        this.repetitions = repetitions;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     @Override

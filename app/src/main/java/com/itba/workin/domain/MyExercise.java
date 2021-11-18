@@ -21,6 +21,14 @@ public class MyExercise implements Serializable {
         this.isRest = excercise.getMetadata() != null && excercise.getMetadata().getRest() != null && excercise.getMetadata().getRest();
     }
 
+    public MyExercise(MyExercise exercise) {
+        this.id = exercise.id;
+        this.name = exercise.name;
+        this.description = exercise.description;
+        this.excerciseUrl = exercise.excerciseUrl;
+        this.isRest = exercise.isRest;
+    }
+
     private String getUrl(ExcerciseMetadata metadata) {
         String url;
         if (metadata != null) {

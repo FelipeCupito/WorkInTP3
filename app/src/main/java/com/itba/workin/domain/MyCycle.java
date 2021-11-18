@@ -2,14 +2,18 @@ package com.itba.workin.domain;
 
 import com.itba.workin.backend.models.FullCycle;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class MyCycle implements Comparable<MyCycle>{
+public class MyCycle implements Comparable<MyCycle>, Serializable {
     private final int id;
     private final String name;
     private final String type;
     private final int order;
-    private final int repetitions;
+    private int repetitions;
+    private final List<MyCycleExercise> exercises = new ArrayList<>();
 
     public MyCycle(FullCycle cycle) {
         this.id = cycle.getId();
@@ -17,6 +21,24 @@ public class MyCycle implements Comparable<MyCycle>{
         this.type = cycle.getType();
         this.order = cycle.getOrder();
         this.repetitions = cycle.getRepetitions();
+    }
+
+    public MyCycle(MyCycle cycle) {
+        this.id = cycle.getId();
+        this.name = cycle.getName();
+        this.type = cycle.getType();
+        this.order = cycle.getOrder();
+        this.repetitions = cycle.getRepetitions();
+    }
+
+    public List<MyCycleExercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<MyCycleExercise> exercises) {
+        for (MyCycleExercise exercise : exercises) {
+            this.exercises.add(new MyCycleExercise(exercise));
+        }
     }
 
     public int getId() {
@@ -33,6 +55,10 @@ public class MyCycle implements Comparable<MyCycle>{
 
     public int getOrder() {
         return order;
+    }
+
+    public void decreaseRepetitions() {
+        repetitions--;
     }
 
     public int getRepetitions() {

@@ -88,6 +88,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
             });
         } else {
             routine = (MyRoutine) savedInstanceState.getSerializable("MyRoutine");
+            id = savedInstanceState.getInt("id");
             setView();
         }
     }
@@ -107,10 +108,10 @@ public class RoutineDetailActivity extends AppCompatActivity {
         binding.scrollView.setVisibility(View.VISIBLE);
         binding.startRoutine.setVisibility(View.VISIBLE);
         binding.loading.setVisibility(View.GONE);
-        binding.startRoutine.setOnClickListener(this::goToScore);
+        binding.startRoutine.setOnClickListener(this::goToWorkout);
     }
 
-    private void goToScore(View view) {
+    private void goToWorkout(View view) {
         Intent intent = new Intent(this, WorkoutActivity.class);
         intent.putExtra("id", id);
         startActivity(intent);
@@ -120,6 +121,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("MyRoutine",routine);
+        outState.putInt("id",id);
     }
 
     @Override

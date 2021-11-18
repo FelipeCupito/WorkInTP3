@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import com.itba.workin.App;
 import com.itba.workin.R;
@@ -42,13 +43,23 @@ public class WorkoutActivity extends AppCompatActivity {
                 getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_workout);
         assert navHostFragment != null;
         navController = navHostFragment.getNavController();
-        navController.navigate(R.id.workoutSimpleFragment);
+
+        App app = (App) getApplication();
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+        cycleViewModel = new ViewModelProvider(this, viewModelFactory).get(CycleViewModel.class);
+
+        Intent intent = getIntent();
+        id = intent.getIntExtra("id",-1);
+        if (id == -1) {
+            // TODO check
+        }
+        cycleViewModel.setRoutineId(id);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        clockItem = menu.findItem(R.id.app_bar_clock);
-        listItem = menu.findItem(R.id.app_bar_list);
+        clockItem = menu.findItem(R.id.workoutSimpleFragment);
+        listItem = menu.findItem(R.id.workoutDetailedFragment);
         listItem.setVisible(true);
 
         return super.onPrepareOptionsMenu(menu);
@@ -56,16 +67,14 @@ public class WorkoutActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.app_bar_clock) {
+        if (item.getItemId() == R.id.workoutSimpleFragment) {
             listItem.setVisible(true);
             clockItem.setVisible(false);
-            navController.navigate(R.id.action_workoutDetailedFragment_to_workoutSimpleFragment);
-            return true;
-        } else if (item.getItemId() == R.id.app_bar_list) {
+            return NavigationUI.onNavDestinationSelected(item, navController);
+        } else if (item.getItemId() == R.id.workoutDetailedFragment) {
             listItem.setVisible(false);
             clockItem.setVisible(true);
-            navController.navigate(R.id.action_workoutSimpleFragment_to_workoutDetailedFragment);
-            return true;
+            return NavigationUI.onNavDestinationSelected(item, navController);
         } else {
             return super.onOptionsItemSelected(item);
         }

@@ -58,11 +58,6 @@ public abstract class RoutineFragment extends Fragment {
         loading = requireActivity().findViewById(R.id.loading);
         searchText = requireActivity().findViewById(R.id.search_text);
 
-        if (savedInstanceState != null) {
-            routineViewModel.setOrder((RoutinesRepository.SORT) savedInstanceState.getSerializable("ORDER"));
-            routineViewModel.setSearch(savedInstanceState.getString("SEARCH"));
-        }
-
         searchText.setOnClickListener(v -> {
             routineViewModel.setSearch(null);
             routineViewModel.restart();
@@ -85,13 +80,6 @@ public abstract class RoutineFragment extends Fragment {
         binding.recyclerview.setAdapter(adapter);
         binding.recyclerview.addItemDecoration(new GridSpacingItemDecoration(2,20,false, getContext()));
         return binding.getRoot();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("ORDER", routineViewModel.getOrder());
-        outState.putString("SEARCH", routineViewModel.getSearch());
     }
 
     @Override
