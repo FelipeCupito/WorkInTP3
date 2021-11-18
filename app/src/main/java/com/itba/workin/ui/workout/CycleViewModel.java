@@ -20,11 +20,23 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
         if (o1 instanceof MyCycle && o2 instanceof MyCycle) {
             return ((MyCycle) o1).compareTo((MyCycle) o2);
         } else if (o1 instanceof MyCycleExercise && o2 instanceof MyCycleExercise) {
-            return ((MyCycleExercise) o1).compareTo((MyCycleExercise) o2);
+            int result = Integer.compare(((MyCycleExercise) o1).getRoutineOrder(),((MyCycleExercise) o2).getRoutineOrder());
+            if (result == 0) {
+                return ((MyCycleExercise) o1).compareTo((MyCycleExercise) o2);
+            }
+            return result;
         } else if (o1 instanceof MyCycle && o2 instanceof MyCycleExercise) {
-            return Integer.compare(((MyCycle) o1).getOrder(),((MyCycleExercise) o2).getRoutineOrder());
+            int result = Integer.compare(((MyCycle) o1).getOrder(),((MyCycleExercise) o2).getRoutineOrder());
+            if (result == 0) {
+                return -1;
+            }
+            return result;
         } else if (o1 instanceof MyCycleExercise && o2 instanceof MyCycle) {
-            return Integer.compare(((MyCycleExercise) o1).getRoutineOrder(),((MyCycle) o2).getOrder());
+            int result = Integer.compare(((MyCycleExercise) o1).getRoutineOrder(),((MyCycle) o2).getOrder());
+            if (result == 0) {
+                return 1;
+            }
+            return result;
         }
         throw new IllegalStateException();
     });
@@ -43,6 +55,10 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
         return cycles;
     }
 
+    public void setRoutineId(int routineId) {
+        this.routineId = routineId;
+    }
+
     public void getMoreCycles() {
         if (called) {
             return;
@@ -51,8 +67,14 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
 
         cycles.addSource(repository.getCycles(routineId), cycleResource -> {
             if (cycleResource.getStatus() == Status.SUCCESS) {
-                if (cycleResource.getData() != null)
+                if (cycleResource.getData() != null) {
+                    if (cycleResource.getData().isEmpty()) {
+                        cycles.setValue(Resource.error(cycleResource.getError(), null));
+                        called = false;
+                        return;
+                    }
                     allCycles.addAll(cycleResource.getData());
+                }
                 AtomicInteger size = new AtomicInteger(allCycles.size());
                 for (Object cycle : allCycles) {
                     cycles.addSource(repository.getCycleExercises(((MyCycle) cycle).getId(),((MyCycle) cycle).getOrder()), exerciseResource -> {

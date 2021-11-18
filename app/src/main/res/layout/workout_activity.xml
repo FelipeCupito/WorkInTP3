@@ -10,7 +10,7 @@
         android:layout_height="wrap_content" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
+        android:id="@+id/nav_host_fragment_activity_workout"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

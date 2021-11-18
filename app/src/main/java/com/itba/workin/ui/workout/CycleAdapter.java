@@ -34,7 +34,7 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             case EXERCISE_VIEW:
                 view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.exercise_item, parent, false);
-                return new CycleViewHolder(view);
+                return new ExerciseViewHolder(view);
         }
         throw new IllegalStateException("oncreateviewholderillegal");
     }
@@ -47,7 +47,7 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 ((CycleViewHolder) holder).bindTo((MyCycle) dataSet.get(position));
                 break;
             case EXERCISE_VIEW:
-                ((ExcerciseViewHolder) holder).bindTo((MyCycleExercise) dataSet.get(position));
+                ((ExerciseViewHolder) holder).bindTo((MyCycleExercise) dataSet.get(position));
                 break;
         }
     }
@@ -68,12 +68,12 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         throw new IllegalStateException("viewCycleadaptererrorgetitemviewtype");
     }
 
-    public static class ExcerciseViewHolder extends RecyclerView.ViewHolder {
+    public static class ExerciseViewHolder extends RecyclerView.ViewHolder {
         private final TextView exerciseName;
         private final TextView remainingRepetitions;
         private final TextView remainingTime;
 
-        public ExcerciseViewHolder(@NonNull View view) {
+        public ExerciseViewHolder(@NonNull View view) {
             super(view);
             exerciseName = view.findViewById(R.id.exerciseName);
             remainingRepetitions = view.findViewById(R.id.remainingRepetitions);
@@ -81,15 +81,15 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             view.findViewById(R.id.exerciseDetails).setOnClickListener(v -> {
 //                int position = getAdapterPosition();
 //                Intent intent = new Intent(context, RoutineDetailActivity.class);
-//                intent.putExtra("id", ((MyCycleExercise) dataSet.get(position)).getExcercise().getId());
+//                intent.putExtra("id", ((MyCycleExercise) dataSet.get(position)).getExercise().getId());
 //                context.startActivity(intent);
             });
         }
 
         public void bindTo(MyCycleExercise exercise) {
-            exerciseName.setText(exercise.getExcercise().getName());
-            remainingRepetitions.setText(exercise.getRepetitions());
-            remainingTime.setText(exercise.getDuration());
+            exerciseName.setText(exercise.getExercise().getName());
+            remainingRepetitions.setText(String.valueOf(exercise.getRepetitions()));
+            remainingTime.setText(String.valueOf(exercise.getDuration()));
         }
     }
 
@@ -105,7 +105,7 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public void bindTo(MyCycle cycle ) {
             cycleName.setText(cycle.getName());
-            repetitions.setText(cycle.getRepetitions());
+            repetitions.setText(String.valueOf(cycle.getRepetitions()));
         }
     }
 }

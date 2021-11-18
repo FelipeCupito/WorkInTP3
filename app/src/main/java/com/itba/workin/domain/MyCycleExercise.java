@@ -8,14 +8,14 @@ public class MyCycleExercise implements Comparable<MyCycleExercise> {
     private final int order;
     private final int duration;
     private final int repetitions;
-    private final MyExercise excercise;
+    private final MyExercise exercise;
     private final int routineOrder;
 
     public MyCycleExercise(FullCycleExercise exercise, int routineOrder) {
         this.order = exercise.getOrder();
         this.duration = exercise.getDuration();
         this.repetitions = exercise.getRepetitions();
-        this.excercise = new MyExercise(exercise.getExercise());
+        this.exercise = new MyExercise(exercise.getExercise());
         this.routineOrder = routineOrder;
     }
 
@@ -31,8 +31,8 @@ public class MyCycleExercise implements Comparable<MyCycleExercise> {
         return repetitions;
     }
 
-    public MyExercise getExcercise() {
-        return excercise;
+    public MyExercise getExercise() {
+        return exercise;
     }
 
     public int getRoutineOrder() {
@@ -44,12 +44,12 @@ public class MyCycleExercise implements Comparable<MyCycleExercise> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MyCycleExercise that = (MyCycleExercise) o;
-        return Objects.equals(getExcercise(), that.getExcercise());
+        return Objects.equals(getExercise(), that.getExercise());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getExcercise());
+        return Objects.hash(getExercise());
     }
 
     @Override
