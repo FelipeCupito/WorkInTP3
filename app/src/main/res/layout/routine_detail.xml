@@ -24,12 +24,12 @@
         android:indeterminateTint="@color/purple_500" />
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/image"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
         android:contentDescription="Description"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,6 @@
         app:srcCompat="@drawable/routine_picture" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/routineName"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
@@ -46,6 +45,7 @@
         android:gravity="center"
         android:text="RoutineName"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +53,9 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/startRoutine"
         app:layout_constraintEnd_toEndOf="@+id/routineName"
         app:layout_constraintHorizontal_bias="1.0"
@@ -151,30 +151,30 @@
                 app:layout_constraintTop_toTopOf="@+id/ratingTitle" />
 
             <TextView
+                android:id="@+id/categoryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/categoryTitle"
-                android:text="Category"
-                app:layout_constraintTop_toBottomOf="@+id/ratingTitle"
                 android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:text="Category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingTitle" />
 
             <TextView
+                android:id="@+id/categoryName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/categoryName"
+                android:layout_marginStart="10dp"
                 android:text="CategoryName"
                 app:layout_constraintStart_toEndOf="@+id/categoryTitle"
-                app:layout_constraintTop_toTopOf="@+id/categoryTitle"
-                android:layout_marginStart="10dp"/>
+                app:layout_constraintTop_toTopOf="@+id/categoryTitle" />
 
             <TextView
                 android:id="@+id/descriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/routine_description_title"
                 android:textSize="16sp"
-                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryTitle"
                 tools:layout_editor_absoluteY="193dp" />
@@ -183,9 +183,9 @@
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/square"
                 android:padding="3dp"
-                android:layout_marginTop="10dp"
                 android:text="TODO Descripton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
@@ -205,12 +205,11 @@
     </ScrollView>
 
     <Button
-        android:visibility="gone"
         android:id="@+id/startRoutine"
         android:layout_width="364dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
         android:text="@string/routine_start_title"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

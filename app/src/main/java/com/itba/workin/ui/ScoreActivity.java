@@ -26,6 +26,8 @@ public class ScoreActivity extends AppCompatActivity {
     private RoutinesRepository routinesRepository;
     private int id;
     private Context context;
+    private Float score = null;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,17 +49,8 @@ public class ScoreActivity extends AppCompatActivity {
         binding.scoreRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingBar.setIsIndicator(false);
                 if (fromUser) {
-                    routinesRepository.addReview(id, new Review((int)rating,"")).observe((LifecycleOwner) context, r -> {
-                        if (r.getStatus() == Status.SUCCESS) {
-                            Toast.makeText(context,getText(R.string.rated),Toast.LENGTH_SHORT).show();
-                            ratingBar.setIsIndicator(true);
-
-                        }else {
-                            Resource.defaultResourceHandler(r);
-                        }
-                    });
+                    score = rating * 2;
                 }
             }
 
@@ -65,6 +58,16 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
     public void goToMainActivity(View view){
+        if(score != null){
+            routinesRepository.addReview(id, new Review((int) score.floatValue(),"")).observe((LifecycleOwner) context, r -> {
+                if (r.getStatus() == Status.SUCCESS) {
+                    Toast.makeText(context,getText(R.string.rated),Toast.LENGTH_SHORT).show();
+                }else {
+                    Resource.defaultResourceHandler(r);
+                }
+            });
+        }
+
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
