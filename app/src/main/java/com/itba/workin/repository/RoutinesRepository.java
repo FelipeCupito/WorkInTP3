@@ -10,12 +10,14 @@ import com.itba.workin.backend.ApiClient;
 import com.itba.workin.backend.ApiCycleService;
 import com.itba.workin.backend.ApiFavouritesService;
 import com.itba.workin.backend.ApiResponse;
+import com.itba.workin.backend.ApiReviewService;
 import com.itba.workin.backend.ApiRoutineService;
 import com.itba.workin.backend.ApiUserService;
 import com.itba.workin.backend.models.FullCycle;
 import com.itba.workin.backend.models.FullCycleExercise;
 import com.itba.workin.backend.models.FullRoutine;
 import com.itba.workin.backend.models.PagedList;
+import com.itba.workin.backend.models.Review;
 import com.itba.workin.domain.MyCycle;
 import com.itba.workin.domain.MyCycleExcercise;
 import com.itba.workin.domain.MyRoutine;
@@ -28,12 +30,14 @@ public class RoutinesRepository {
     private final ApiFavouritesService apiFavouriteService;
     private final ApiUserService apiUserService;
     private final ApiCycleService apiCycleService;
+    private final ApiReviewService apiReviewService;
 
     public RoutinesRepository(App application) {
         this.apiRoutineService = ApiClient.create(application, ApiRoutineService.class);
         this.apiFavouriteService = ApiClient.create(application, ApiFavouritesService.class);
         this.apiUserService = ApiClient.create(application, ApiUserService.class);
         this.apiCycleService = ApiClient.create(application, ApiCycleService.class);
+        this.apiReviewService = ApiClient.create(application, ApiReviewService.class );
     }
 
     private MyRoutine mapRoutineModelToDomain(FullRoutine routine) {
@@ -131,6 +135,7 @@ public class RoutinesRepository {
         }.asLiveData();
     }
 
+
     public LiveData<Resource<Void>> deleteFavourite(int routineId) {
         return new NetworkBoundResource<Void, Void>(null)
         {
@@ -138,6 +143,17 @@ public class RoutinesRepository {
             @Override
             protected LiveData<ApiResponse<Void>> createCall() {
                 return apiFavouriteService.deleteFavourite(routineId);
+            }
+        }.asLiveData();
+    }
+
+    public LiveData<Resource<Void>> addReview(int routineId, Review review) {
+        return new NetworkBoundResource<Void, Void>(null)
+        {
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<Void>> createCall() {
+                return apiReviewService.addReview(routineId, review);
             }
         }.asLiveData();
     }

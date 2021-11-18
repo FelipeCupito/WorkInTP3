@@ -74,5 +74,6 @@
     <string name="sort_score">Score</string>
     <string name="sort_difficulty">Difficulty</string>
     <string name="sort_category">Category</string>
+    <string name="rated">you have rated this routine</string>
 
 </resources>

@@ -18,6 +18,7 @@ import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
+import com.itba.workin.ui.ScoreActivity;
 import com.itba.workin.ui.login.LoginActivity;
 import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
@@ -107,6 +108,13 @@ public class RoutineDetailActivity extends AppCompatActivity {
         binding.scrollView.setVisibility(View.VISIBLE);
         binding.startRoutine.setVisibility(View.VISIBLE);
         binding.loading.setVisibility(View.GONE);
+        binding.startRoutine.setOnClickListener(this::goToScore);
+    }
+
+    private void goToScore(View view) {
+        Intent intent = new Intent(this, ScoreActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 
     @Override

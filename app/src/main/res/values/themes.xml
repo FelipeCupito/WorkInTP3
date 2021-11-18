@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/workin_primary_light</item>
         <item name="colorPrimaryVariant">@color/workin_primary_darkest</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorAccent">@color/purple_500</item>
+        <item name="colorAccent">@color/workin_accent</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/workin_secondary_light</item>
         <item name="colorSecondaryVariant">@color/workin_secondary_darkest</item>
