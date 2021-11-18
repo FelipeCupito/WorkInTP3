@@ -60,7 +60,7 @@
     <string name="remainign_sets_text">repeticiones restantes</string>
     <string name="unexpected_error">Ocurrió un error inesperado. Vuelva a intentarlo más tarde.</string>
     <string name="logout">Cerrar sesión</string>
-    <string name="socre_text">"Felitaciones! "</string>
+    <string name="socre_text">"¡Felicitaciones! has terminado esta rutina. \n¿Deseas puntuar esta rutina?"</string>
     <string name="socre_bnt">next</string>
     <string name="title_activity_score">Score Activity</string>
     <string name="sort_default">Por defecto</string>

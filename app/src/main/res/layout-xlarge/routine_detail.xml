@@ -47,7 +47,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:contentDescription="Description"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:srcCompat="@drawable/routine_picture" />
         </LinearLayout>
 
@@ -70,11 +70,12 @@
                 android:id="@+id/routineName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="RoutineName"
                 android:textSize="34sp"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -85,165 +86,137 @@
                     android:id="@+id/divider5"
                     android:layout_width="300dp"
                     android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="?android:attr/listDivider"
+                    app:layout_constraintBottom_toTopOf="@+id/userTitle"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <LinearLayout
-                    android:id="@+id/linearLayout6"
+                <TextView
+                    android:id="@+id/userTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+                    android:layout_marginEnd="160dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/routine_user_title"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/dateTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
-                    <TextView
-                        android:id="@+id/dateTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/routine_date"
-                        android:textSize="22sp" />
-
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="01/09/2021"
-                        android:textSize="22sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout7"
+                <TextView
+                    android:id="@+id/user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+                    android:layout_marginStart="20dp"
+                    android:text="Nombre"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/userTitle"
+                    app:layout_constraintStart_toEndOf="@+id/userTitle" />
 
-                    <TextView
-                        android:id="@+id/difficultyTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/routine_difficulty_title"
-                        android:textSize="22sp" />
-
-                    <RatingBar
-                        android:id="@+id/difficulty"
-                        style="@style/difficultyRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="2dp"
-                        android:contentDescription="Rating Dificultad"
-                        android:isIndicator="true"
-                        android:numStars="3"
-                        android:rating="2"
-                        android:stepSize="1" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout5"
+                <TextView
+                    android:id="@+id/dateTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+                    android:layout_marginEnd="160dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/routine_date"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/difficultyTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
-                    <TextView
-                        android:id="@+id/ratingTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/routine_score_title"
-                        android:textSize="22sp" />
-
-                    <RatingBar
-                        android:id="@+id/rating"
-                        style="@style/scoreRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="2dp"
-                        android:contentDescription="Rating Puntuación"
-                        android:isIndicator="true"
-                        android:numStars="5"
-                        android:rating="2.5"
-                        android:stepSize=".5" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/linearLayout4"
+                <TextView
+                    android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+                    android:layout_marginStart="20dp"
+                    android:text="01/09/2021"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/dateTitle"
+                    app:layout_constraintStart_toEndOf="@+id/dateTitle" />
 
-                    <TextView
-                        android:id="@+id/categoryTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Category"
-                        android:textSize="22sp" />
-
-                    <TextView
-                        android:id="@+id/categoryName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="CategoryName"
-                        android:textSize="22sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
+                <TextView
+                    android:id="@+id/difficultyTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider6">
+                    android:layout_marginEnd="160dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/routine_difficulty_title"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/ratingTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
-                    <TextView
-                        android:id="@+id/user"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="Nombre"
-                        android:textSize="22sp" />
+                <RatingBar
+                    android:id="@+id/difficulty"
+                    style="@style/difficultyRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="1dp"
+                    android:contentDescription="Rating Dificultad"
+                    android:isIndicator="true"
+                    android:numStars="3"
+                    android:rating="2"
+                    android:stepSize="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/difficultyTitle"
+                    app:layout_constraintStart_toEndOf="@+id/difficultyTitle" />
 
-                    <TextView
-                        android:id="@+id/userTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/routine_user_title"
-                        android:textSize="22sp" />
+                <TextView
+                    android:id="@+id/ratingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="160dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/routine_score_title"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/categoryTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
-                </LinearLayout>
+                <RatingBar
+                    android:id="@+id/rating"
+                    style="@style/scoreRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="1dp"
+                    android:contentDescription="Rating Puntuación"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize=".5"
+                    app:layout_constraintBottom_toBottomOf="@+id/ratingTitle"
+                    app:layout_constraintStart_toEndOf="@+id/ratingTitle" />
+
+                <TextView
+                    android:id="@+id/categoryTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="160dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Category"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/divider6"
+                    app:layout_constraintEnd_toEndOf="@+id/divider5" />
+
+                <TextView
+                    android:id="@+id/categoryName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="CategoryName"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/categoryTitle"
+                    app:layout_constraintStart_toEndOf="@+id/categoryTitle" />
 
                 <View
                     android:id="@+id/divider6"
                     android:layout_width="300dp"
                     android:layout_height="2dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
                     android:background="?android:attr/listDivider"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -254,7 +227,7 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -296,7 +269,7 @@
             <TextView
                 android:id="@+id/exerciseText"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="100dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
@@ -318,7 +291,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/routine_start_title"
         android:textSize="16sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -61,7 +61,7 @@
     <string name="remainign_sets_text">remainign sets</string>
 
     <string name="logout">Log Out</string>
-    <string name="socre_text">"Felitaciones! "</string>
+    <string name="socre_text">"¡Felicitaciones! has terminado esta rutina. \n¿Deseas puntuar esta rutina?"</string>
     <string name="socre_bnt">next</string>
     <string name="title_activity_score">ScoreActivity</string>
 
