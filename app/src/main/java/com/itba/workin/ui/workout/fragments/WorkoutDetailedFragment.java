@@ -53,6 +53,7 @@ public class WorkoutDetailedFragment extends Fragment {
         adapter = new CycleAdapter(cycles);
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
         binding.recyclerview.setAdapter(adapter);
+        binding.recyclerview.addItemDecoration(new GridSpacingItemDecoration(1,20,false, getContext()));
 
         cycleViewModel.getCycles().observe(getViewLifecycleOwner(), r -> {
             switch (r.getStatus()) {
