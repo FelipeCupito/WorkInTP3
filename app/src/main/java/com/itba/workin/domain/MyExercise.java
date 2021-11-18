@@ -6,14 +6,14 @@ import com.itba.workin.backend.models.FullExercise;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class MyExcercise implements Serializable {
+public class MyExercise implements Serializable {
     private final int id;
     private final String name;
     private final String description;
     private final String excerciseUrl;
     private final boolean isRest;
 
-    public MyExcercise(FullExercise excercise) {
+    public MyExercise(FullExercise excercise) {
         this.id = excercise.getId();
         this.name = excercise.getName();
         this.description = excercise.getDetail();
@@ -58,7 +58,7 @@ public class MyExcercise implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MyExcercise that = (MyExcercise) o;
+        MyExercise that = (MyExercise) o;
         return getId() == that.getId();
     }
 

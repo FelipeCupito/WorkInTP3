@@ -22,7 +22,7 @@
             android:padding="12dp">
 
             <TextView
-                android:id="@+id/excersiceName"
+                android:id="@+id/exerciseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ExcerciseName"
@@ -38,7 +38,7 @@
                 android:text="Tiempo restante"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                app:layout_constraintStart_toStartOf="@id/excersiceName"
+                app:layout_constraintStart_toStartOf="@id/exerciseName"
                 app:layout_constraintTop_toBottomOf="@id/repetitionsTitle"/>
 
             <TextView
@@ -60,8 +60,8 @@
                 android:text="Repeticiones restantes"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                app:layout_constraintStart_toStartOf="@+id/excersiceName"
-                app:layout_constraintTop_toBottomOf="@+id/excersiceName"/>
+                app:layout_constraintStart_toStartOf="@+id/exerciseName"
+                app:layout_constraintTop_toBottomOf="@+id/exerciseName"/>
 
             <TextView
                 android:id="@+id/remainingRepetitions"
@@ -76,6 +76,7 @@
 
             <com.google.android.material.button.MaterialButton
                 style="?attr/borderlessButtonStyle"
+                android:id="@+id/exerciseDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_my_routines">
 
     <fragment
         android:id="@+id/navigation_my_routines"
         android:name="com.itba.workin.ui.main.fragments.myRoutines.MyRoutinesFragment"
-        android:label="@string/title_my_routines"
-        tools:layout="@layout/main_activity_fragment" />
+        android:label="@string/title_my_routines" />
 
     <fragment
         android:id="@+id/navigation_community"
         android:name="com.itba.workin.ui.main.fragments.community.CommunityFragment"
-        android:label="@string/title_community"
-        tools:layout="@layout/fragment_community" />
+        android:label="@string/title_community" />
 
     <fragment
         android:id="@+id/navigation_favorites"
         android:name="com.itba.workin.ui.main.fragments.favorite.FavoriteFragment"
-        android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorite" />
+        android:label="@string/title_favorites" />
 </navigation>
