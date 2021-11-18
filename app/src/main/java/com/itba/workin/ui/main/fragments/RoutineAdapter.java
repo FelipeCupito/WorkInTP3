@@ -71,7 +71,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
             textView.setText(routine.getName());
             Picasso.get().load(routine.getRoutineUrl()).placeholder(imageView.getDrawable()).resize(150,100).into(imageView);
             difficultyBar.setRating(routine.getDifficulty());
-            scoreBar.setRating(routine.getScore());
+            scoreBar.setRating((float)(routine.getScore()/2.0));
         }
     }
 }
