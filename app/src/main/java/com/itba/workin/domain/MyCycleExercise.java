@@ -4,17 +4,19 @@ import com.itba.workin.backend.models.FullCycleExercise;
 
 import java.util.Objects;
 
-public class MyCycleExcercise implements Comparable<MyCycleExcercise> {
+public class MyCycleExercise implements Comparable<MyCycleExercise> {
     private final int order;
     private final int duration;
     private final int repetitions;
-    private final MyExcercise excercise;
+    private final MyExercise exercise;
+    private final int routineOrder;
 
-    public MyCycleExcercise(FullCycleExercise exercise) {
+    public MyCycleExercise(FullCycleExercise exercise, int routineOrder) {
         this.order = exercise.getOrder();
         this.duration = exercise.getDuration();
         this.repetitions = exercise.getRepetitions();
-        this.excercise = new MyExcercise(exercise.getExercise());
+        this.exercise = new MyExercise(exercise.getExercise());
+        this.routineOrder = routineOrder;
     }
 
     public int getOrder() {
@@ -29,25 +31,29 @@ public class MyCycleExcercise implements Comparable<MyCycleExcercise> {
         return repetitions;
     }
 
-    public MyExcercise getExcercise() {
-        return excercise;
+    public MyExercise getExercise() {
+        return exercise;
+    }
+
+    public int getRoutineOrder() {
+        return routineOrder;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MyCycleExcercise that = (MyCycleExcercise) o;
-        return Objects.equals(getExcercise(), that.getExcercise());
+        MyCycleExercise that = (MyCycleExercise) o;
+        return Objects.equals(getExercise(), that.getExercise());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getExcercise());
+        return Objects.hash(getExercise());
     }
 
     @Override
-    public int compareTo(MyCycleExcercise o) {
+    public int compareTo(MyCycleExercise o) {
         return Integer.compare(this.order, o.getOrder());
     }
 }

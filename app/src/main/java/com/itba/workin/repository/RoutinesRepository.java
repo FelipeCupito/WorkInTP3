@@ -19,7 +19,7 @@ import com.itba.workin.backend.models.FullRoutine;
 import com.itba.workin.backend.models.PagedList;
 import com.itba.workin.backend.models.Review;
 import com.itba.workin.domain.MyCycle;
-import com.itba.workin.domain.MyCycleExcercise;
+import com.itba.workin.domain.MyCycleExercise;
 import com.itba.workin.domain.MyRoutine;
 
 import java.util.List;
@@ -38,10 +38,6 @@ public class RoutinesRepository {
         this.apiUserService = ApiClient.create(application, ApiUserService.class);
         this.apiCycleService = ApiClient.create(application, ApiCycleService.class);
         this.apiReviewService = ApiClient.create(application, ApiReviewService.class );
-    }
-
-    private MyRoutine mapRoutineModelToDomain(FullRoutine routine) {
-        return new MyRoutine(routine);
     }
 
     public LiveData<Resource<List<MyRoutine>>> getRoutines(int page, int size, String search, SORT order) {
@@ -72,10 +68,10 @@ public class RoutinesRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<List<MyCycleExcercise>>> getCycleExercises(int cycleId) {
-        return new NetworkBoundResource<PagedList<FullCycleExercise>, List<MyCycleExcercise>>(model ->
+    public LiveData<Resource<List<MyCycleExercise>>> getCycleExercises(int cycleId, int cycleOrder) {
+        return new NetworkBoundResource<PagedList<FullCycleExercise>, List<MyCycleExercise>>(model ->
                 model.getContent().stream()
-                        .map(MyCycleExcercise::new)
+                        .map(exercise -> new MyCycleExercise(exercise,cycleOrder))
                         .collect(toList()))
         {
             @NonNull
@@ -114,7 +110,7 @@ public class RoutinesRepository {
 
 
     public LiveData<Resource<MyRoutine>> getRoutine(int routineId) {
-        return new NetworkBoundResource<FullRoutine, MyRoutine>(this::mapRoutineModelToDomain)
+        return new NetworkBoundResource<FullRoutine, MyRoutine>(MyRoutine::new)
         {
             @NonNull
             @Override

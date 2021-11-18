@@ -20,14 +20,13 @@ import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.ScoreActivity;
 import com.itba.workin.ui.login.LoginActivity;
+import com.itba.workin.ui.workout.WorkoutActivity;
 import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 
 public class RoutineDetailActivity extends AppCompatActivity {
 
-
     private MyRoutine routine;
-    private String cycleText;
     private int id;
     private RoutinesRepository routinesRepository;
     private RoutineDetailBinding binding;
@@ -112,7 +111,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
     }
 
     private void goToScore(View view) {
-        Intent intent = new Intent(this, ScoreActivity.class);
+        Intent intent = new Intent(this, WorkoutActivity.class);
         intent.putExtra("id", id);
         startActivity(intent);
     }
