@@ -105,8 +105,10 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
     }
 
     public void stopTimer() {
-        timer.cancel();
-        timer = null;
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
     }
 
     public void resumeTimer() {
@@ -143,7 +145,10 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
                     ((MyCycleExercise) allObjects.get(j)).setRepetitions(allCycles.get(currentCycle.getOrder()-1).getExercises().get(i).getRepetitions());
                     ((MyCycleExercise) allObjects.get(j)).setDuration(allCycles.get(currentCycle.getOrder()-1).getExercises().get(i).getDuration());
                 }
-                current.setValue(allObjects.get(++position));
+                if (allCycles.get(currentCycle.getOrder()-1).getExercises().size() != 0) {
+                    position++;
+                }
+                current.setValue(allObjects.get(position));
                 currentCycle.decreaseRepetitions();
             }
             advanceCurrent();
