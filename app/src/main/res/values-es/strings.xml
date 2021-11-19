@@ -44,7 +44,6 @@
     <string name="routine_start_title">Comenzar Rutina</string>
     <string name="routine_description_title">Descripción</string>
     <string name="next">Próximo</string>
-    <string name="previous">Anterior</string>
     <string name="app_bar_clock">Cronómetro</string>
     <string name="app_bar_list">Lista</string>
     <string name="app_bar_favorite">Favorito</string>
@@ -70,4 +69,6 @@
     <string name="sort_difficulty">Dificultad</string>
     <string name="sort_category">Categoría</string>
     <string name="rated">Has puntuado esta rutina</string>
+    <string name="pause">Pausar</string>
+    <string name="cycleRepetitions">%s repeticiones restantes</string>
 </resources>

@@ -53,6 +53,11 @@ public class WorkoutActivity extends AppCompatActivity {
             // TODO check
         }
         cycleViewModel.setRoutineId(id);
+
+        workoutActivitybinding.nextButton.setOnClickListener(v -> {
+            cycleViewModel.stopTimer();
+            cycleViewModel.advanceCurrent();
+        });
     }
 
     @Override

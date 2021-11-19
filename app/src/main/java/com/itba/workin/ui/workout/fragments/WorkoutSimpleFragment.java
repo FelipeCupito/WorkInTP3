@@ -93,11 +93,6 @@ public class WorkoutSimpleFragment extends Fragment {
             }
         });
 
-        binding.nextButton.setOnClickListener(v -> {
-            cycleViewModel.stopTimer();
-            cycleViewModel.advanceCurrent();
-        });
-
         return binding.getRoot();
     }
 

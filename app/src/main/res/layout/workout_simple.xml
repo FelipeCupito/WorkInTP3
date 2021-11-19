@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,6 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/cycleReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cycleName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:text="@string/cycleRepetitions"/>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
@@ -26,7 +38,7 @@
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cycleName">
+        app:layout_constraintTop_toBottomOf="@id/cycleReps">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -61,12 +73,12 @@
         android:id="@+id/remainingRepetitions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="10"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/repsTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintTop_toBottomOf="@id/progressBar"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
     <TextView
@@ -85,7 +97,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="175dp"
         android:layout_height="175dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/background_circle"
         android:indeterminate="false"
         android:max="100"
@@ -94,7 +106,7 @@
         android:rotation="-90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/remainingRepetitions" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
         android:id="@+id/textViewTime"
@@ -109,53 +121,5 @@
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
-    <ImageButton
-        android:id="@+id/pauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:contentDescription="@string/play_button"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/playButton"
-        app:layout_constraintStart_toStartOf="@+id/playButton"
-        app:layout_constraintTop_toTopOf="@+id/playButton"
-        app:srcCompat="@drawable/ic_pause" />
-
-    <ImageButton
-        android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@null"
-        android:contentDescription="@string/pause_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:srcCompat="@drawable/ic_play"
-        app:tint="?attr/colorPrimary" />
     <!--TODO COLORES-->
-
-    <Button
-        style="?attr/borderlessButtonStyle"
-        android:id="@+id/nextButton"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prevButton" />
-
-    <Button
-        style="?attr/borderlessButtonStyle"
-        android:id="@+id/prevButton"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nextButton"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
