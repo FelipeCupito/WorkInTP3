@@ -63,32 +63,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn">
-
-        <TextView
-            android:id="@+id/text_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_account" />
-
-        <TextView
-            android:id="@+id/text_sign_in"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:clickable="true"
-            android:text="@string/sign_up"
-            android:textColor="@color/ic_launcher_background"
-            android:textStyle="bold" />
-    </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

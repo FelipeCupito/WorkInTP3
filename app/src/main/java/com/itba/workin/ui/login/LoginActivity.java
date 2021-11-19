@@ -12,14 +12,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.itba.workin.App;
-import com.itba.workin.ui.main.MainActivity;
 import com.itba.workin.R;
 import com.itba.workin.backend.models.Credentials;
 import com.itba.workin.backend.models.Error;
 import com.itba.workin.databinding.ActivityLoginBinding;
 import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.Status;
-import com.itba.workin.ui.register.Register;
+import com.itba.workin.ui.main.MainActivity;
 import com.itba.workin.ui.routineDetail.RoutineDetailActivity;
 
 
@@ -39,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         
         binding.loginBtn.setOnClickListener(this::login);
-        binding.textSignIn.setOnClickListener(this::goToRegister);
 
         sp = getSharedPreferences("login",MODE_PRIVATE);
 
@@ -125,11 +123,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void goToRegister(View view) {
-        Intent i = new Intent(this, Register.class);
-        startActivity(i);
-        finish();
-    }
     public void goToMainActivity(){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
