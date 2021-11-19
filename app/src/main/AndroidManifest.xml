@@ -40,6 +40,7 @@
         <activity
             android:name=".ui.routineDetail.RoutineDetailActivity"
             android:parentActivityName=".ui.main.MainActivity"
+            android:launchMode="singleTop"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -54,7 +55,11 @@
         <activity
             android:name=".ui.workout.WorkoutActivity"
             android:parentActivityName=".ui.routineDetail.RoutineDetailActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.exerciseDetail.ExerciseDetail"
+            android:parentActivityName=".ui.workout.WorkoutActivity" />
     </application>
 
 </manifest>

@@ -21,11 +21,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
 
     private final MutableLiveData<Object> current = new MutableLiveData<>();
-    private CountDownTimer timer;
+    private PauseCountdownTimer timer;
     private MyCycle currentCycle;
     private MyCycleExercise currentExercise;
     private int cyclePosition;
-    private long ticks;
     private int position;
     private int routineId;
     private int exerciseTime;
@@ -81,42 +80,24 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
     }
 
     public void startTimer(long millis) {
-        timer = new CountDownTimer(millis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                ticks = millisUntilFinished;
-                MyCycleExercise exercise = (MyCycleExercise) current.getValue();
-                exercise.decreaseDuration();
-                current.setValue(exercise);
-            }
-
-            @Override
-            public void onFinish() {
-                ticks = 0;
-                stopTimer();
-                advanceCurrent();
-            }
-        };
+        timer = new PauseCountdownTimer(millis, 1000);
         timer.start();
     }
 
     public void stopTimer() {
-        if (timer != null) {
-            pauseTimer();
-            currentExercise.decreaseRepetitions();
-        }
+        pauseTimer();
+        currentExercise.decreaseRepetitions();
     }
 
     public void pauseTimer() {
         if (timer != null) {
-            timer.cancel();
-            timer = null;
+            timer.pause();
         }
     }
 
     public void resumeTimer() {
-        if (ticks != 0) {
-            startTimer(ticks);
+        if (timer != null) {
+            timer = timer.resume();
         }
     }
 
@@ -238,6 +219,57 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
 
     public static class Finish {
         public Finish() {
+        }
+    }
+
+
+    public class PauseCountdownTimer extends CountDownTimer {
+
+        private long remainingTime;
+        private long interval;
+
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+        public PauseCountdownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            this.interval = countDownInterval;
+            this.remainingTime = countDownInterval;
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            remainingTime = millisUntilFinished;
+            MyCycleExercise exercise = (MyCycleExercise) current.getValue();
+            if (exercise != null) {
+                exercise.setDuration((int) remainingTime / 1000);
+                current.setValue(exercise);
+            }
+        }
+
+        @Override
+        public void onFinish() {
+            remainingTime = 0;
+            stopTimer();
+            advanceCurrent();
+        }
+
+
+        public void pause(){
+            this.cancel();
+        }
+
+        public PauseCountdownTimer resume() {
+            // Create a counter with last saved data (just before pause)
+            PauseCountdownTimer newTimer = new PauseCountdownTimer(remainingTime,interval);
+            // Start this new timer that start where old one stop
+            newTimer.start();
+            // Return this new timer
+            return newTimer;
         }
     }
 }

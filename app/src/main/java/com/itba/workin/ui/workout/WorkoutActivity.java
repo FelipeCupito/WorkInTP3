@@ -72,6 +72,18 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        cycleViewModel.resumeTimer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cycleViewModel.pauseTimer();
+    }
+
+    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("id",id);

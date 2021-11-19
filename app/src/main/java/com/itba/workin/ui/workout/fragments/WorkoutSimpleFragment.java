@@ -23,6 +23,7 @@ import com.itba.workin.domain.MyCycle;
 import com.itba.workin.domain.MyCycleExercise;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.ScoreActivity;
+import com.itba.workin.ui.exerciseDetail.ExerciseDetail;
 import com.itba.workin.ui.workout.CycleViewModel;
 import com.itba.workin.ui.workout.WorkoutActivity;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
@@ -59,7 +60,6 @@ public class WorkoutSimpleFragment extends Fragment {
                     loading.setVisibility(View.VISIBLE);
                     break;
                 case SUCCESS:
-                    requireActivity().findViewById(R.id.pauseButton).setVisibility(View.VISIBLE);
                     requireActivity().findViewById(R.id.nav_host_fragment_activity_workout).setVisibility(View.VISIBLE);
                     requireActivity().findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
                     loading.setVisibility(View.GONE);
@@ -97,6 +97,12 @@ public class WorkoutSimpleFragment extends Fragment {
             }
         });
 
+        binding.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(binding.getRoot().getContext(), ExerciseDetail.class);
+            intent.putExtra("id", currentExercise.getExercise().getId());
+            startActivity(intent);
+        });
+
         return binding.getRoot();
     }
 
@@ -112,9 +118,11 @@ public class WorkoutSimpleFragment extends Fragment {
         if (cycleViewModel.getExerciseTime() == 0) {
             binding.progressBar.setVisibility(View.GONE);
             binding.textViewTime.setVisibility(View.GONE);
+            requireActivity().findViewById(R.id.pauseButton).setVisibility(View.GONE);
         } else {
             binding.progressBar.setVisibility(View.VISIBLE);
             binding.textViewTime.setVisibility(View.VISIBLE);
+            requireActivity().findViewById(R.id.pauseButton).setVisibility(View.VISIBLE);
         }
         binding.textViewTime.setText(String.format(getString(R.string.num_with_seconds),exercise.getDuration()));
         binding.progressBar.setProgress(exercise.getDuration());

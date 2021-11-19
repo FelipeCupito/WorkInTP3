@@ -1,5 +1,6 @@
 package com.itba.workin.ui.workout;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.itba.workin.R;
 import com.itba.workin.domain.MyCycle;
 import com.itba.workin.domain.MyCycleExercise;
+import com.itba.workin.ui.exerciseDetail.ExerciseDetail;
 
 import java.util.List;
 
@@ -81,7 +83,7 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private final TextView remainingRepetitions;
         private final TextView remainingTime;
         private final MaterialCardView card;
-        private ColorStateList cardBackgroundColor;
+        private final ColorStateList cardBackgroundColor;
 
         public ExerciseViewHolder(@NonNull View view) {
             super(view);
@@ -92,10 +94,10 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             cardBackgroundColor = card.getCardBackgroundColor();
 
             view.findViewById(R.id.exerciseDetails).setOnClickListener(v -> {
-//                int position = getAdapterPosition();
-//                Intent intent = new Intent(context, RoutineDetailActivity.class);
-//                intent.putExtra("id", ((MyCycleExercise) dataSet.get(position)).getExercise().getId());
-//                context.startActivity(intent);
+                int position = getAdapterPosition();
+                Intent intent = new Intent(view.getContext(), ExerciseDetail.class);
+                intent.putExtra("id", ((MyCycleExercise) dataSet.get(position)).getExercise().getId());
+                view.getContext().startActivity(intent);
             });
         }
 

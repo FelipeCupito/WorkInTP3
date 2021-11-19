@@ -70,7 +70,6 @@ public class WorkoutDetailedFragment extends Fragment {
                         cycles.addAll(r.getData());
                         adapter.notifyDataSetChanged();
                     }
-                    requireActivity().findViewById(R.id.pauseButton).setVisibility(View.VISIBLE);
                     requireActivity().findViewById(R.id.nav_host_fragment_activity_workout).setVisibility(View.VISIBLE);
                     requireActivity().findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
                     loading.setVisibility(View.GONE);
@@ -86,6 +85,11 @@ public class WorkoutDetailedFragment extends Fragment {
 
         cycleViewModel.getCurrent().observe(getViewLifecycleOwner(), r -> {
             if (r instanceof MyCycleExercise && (currentExercise == null || !currentExercise.equals(r))) {
+                if (cycleViewModel.getExerciseTime() == 0) {
+                    requireActivity().findViewById(R.id.pauseButton).setVisibility(View.GONE);
+                } else {
+                    requireActivity().findViewById(R.id.pauseButton).setVisibility(View.VISIBLE);
+                }
                 currentExercise = (MyCycleExercise) r;
                 adapter.setCurrentExercise(currentExercise);
                 binding.recyclerview.scrollToPosition(cycles.indexOf(r));
