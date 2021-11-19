@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.WorkIn" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/workin_primary_light</item>
+        <item name="colorPrimary">@color/workin_primary_darkest</item>
         <item name="colorPrimaryVariant">@color/workin_primary_darkest</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorAccent">@color/purple_500</item>

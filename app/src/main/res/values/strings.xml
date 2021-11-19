@@ -1,14 +1,13 @@
 <resources>
     <string name="app_name">WorkIn</string>
-    <string name="title_my_routines">My routines</string>
+    <string name="title_my_routines">My Routines</string>
     <string name="title_community">Community</string>
     <string name="title_favorites">Favorites</string>
-    <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Login</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">Welcome!</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_text">Don\'t have an account yet?</string>
     <string name="register">register</string>
@@ -17,7 +16,7 @@
     <string name="password">Password</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="account">Already have an account?</string>
-    <string name="sign_in">Sing In</string>
+    <string name="sign_in">Sign In</string>
     <string name="workin">WorkIn</string>
     <string name="logInBtn">login</string>
     <string name="no_account">Don\'t have an account</string>
@@ -42,6 +41,7 @@
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
     <string name="details_button">Details</string>
+    <string name="remainign_sets_text">remainign sets</string>
 
     <string name="favorite_yes">This routine has been added to favorites</string>
     <string name="favorite_no">This routine has been removed from favorites</string>
@@ -57,12 +57,9 @@
     <string name="invalid_password_conf">The passwords do not match</string>
     <string name="invalid_credentials">Your username/password is not valid</string>
     <string name="unexpected_error">An unexpected error occurred, please try again later</string>
-
-    <string name="remainign_sets_text">remainign sets</string>
-
     <string name="logout">Log Out</string>
-    <string name="socre_text">Congratulations! \nyou have finished this routine. \nDo you want to rate?</string>
-    <string name="socre_bnt">next</string>
+    <string name="score_text">Congratulations! \nyou have finished this routine. \nDo you want to rate?</string>
+    <string name="score_btn">next</string>
     <string name="title_activity_score">ScoreActivity</string>
 
     <string name="query_too_short">Your search is too short! please make it longer</string>
@@ -74,6 +71,7 @@
     <string name="sort_score">Score</string>
     <string name="sort_difficulty">Difficulty</string>
     <string name="sort_category">Category</string>
-    <string name="rated">you have rated this routine</string>
+    <string name="rated">You have rated this routine</string>
+    <string name="title_activity_login">Login</string>
 
 </resources>
