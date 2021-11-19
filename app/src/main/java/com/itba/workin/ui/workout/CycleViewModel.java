@@ -98,19 +98,21 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
             public void onFinish() {
                 ticks = 0;
                 stopTimer();
+                advanceCurrent();
             }
         };
+        timer.start();
     }
 
     public void stopTimer() {
         timer.cancel();
         timer = null;
-        advanceCurrent();
     }
 
     public void resumeTimer() {
         if (ticks != 0) {
             startTimer(ticks);
+            timer.start();
         }
     }
 
@@ -147,6 +149,7 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
             advanceCurrent();
         } else if (currentValue instanceof MyCycleExercise) {
             currentExercise = (MyCycleExercise) currentValue;
+            currentExercise.setDuration(allCycles.get(currentCycle.getOrder()-1).getExercises().get(currentExercise.getOrder()-1).getDuration());
             int repetitions = currentExercise.getRepetitions();
             int time = currentExercise.getDuration();
             if (repetitions == 0) {
@@ -157,8 +160,8 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
                     return;
                 }
                 position++;
-                ((MyCycleExercise) allObjects.get(position)).decreaseRepetitions();
                 current.setValue(allObjects.get(position));
+                advanceCurrent();
             } else {
                 currentExercise.decreaseRepetitions();
                 exerciseTime = time;

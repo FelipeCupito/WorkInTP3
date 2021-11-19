@@ -23,7 +23,6 @@ import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 public class WorkoutActivity extends AppCompatActivity {
 
     NavController navController;
-    MenuItem clockItem, listItem;
     WorkoutActivityBinding workoutActivitybinding;
     CycleViewModel cycleViewModel;
     private int id;
@@ -57,27 +56,8 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        clockItem = menu.findItem(R.id.workoutSimpleFragment);
-        listItem = menu.findItem(R.id.workoutDetailedFragment);
-        listItem.setVisible(true);
-
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.workoutSimpleFragment) {
-            listItem.setVisible(true);
-            clockItem.setVisible(false);
-            return NavigationUI.onNavDestinationSelected(item, navController);
-        } else if (item.getItemId() == R.id.workoutDetailedFragment) {
-            listItem.setVisible(false);
-            clockItem.setVisible(true);
-            return NavigationUI.onNavDestinationSelected(item, navController);
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
+        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
     @Override

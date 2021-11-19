@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -32,6 +35,12 @@ public class WorkoutSimpleFragment extends Fragment {
     private CycleViewModel cycleViewModel;
     private MyCycle currentCycle;
     private MyCycleExercise currentExercise;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = WorkoutSimpleBinding.inflate(inflater, container, false);
@@ -85,6 +94,7 @@ public class WorkoutSimpleFragment extends Fragment {
         });
 
         binding.nextButton.setOnClickListener(v -> {
+            cycleViewModel.stopTimer();
             cycleViewModel.advanceCurrent();
         });
 
@@ -102,6 +112,12 @@ public class WorkoutSimpleFragment extends Fragment {
         binding.textViewTime.setText(exercise.getDuration() + "s");
         binding.progressBar.setProgress(exercise.getDuration());
         binding.progressBar.setMax(cycleViewModel.getExerciseTime());
+    }
+
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem listItem = menu.findItem(R.id.workoutDetailedFragment);
+        listItem.setVisible(true);
     }
 
     @Override
