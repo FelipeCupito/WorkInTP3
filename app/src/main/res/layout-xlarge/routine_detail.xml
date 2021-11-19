@@ -66,7 +66,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/routineName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/userTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/dateTitle"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/userTitle"
                     app:layout_constraintStart_toEndOf="@+id/userTitle" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/dateTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/difficultyTitle"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/dateTitle"
                     app:layout_constraintStart_toEndOf="@+id/dateTitle" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/difficultyTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/difficultyTitle"
                     app:layout_constraintStart_toEndOf="@+id/difficultyTitle" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/ratingTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ratingTitle"
                     app:layout_constraintStart_toEndOf="@+id/ratingTitle" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/categoryTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/divider6"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/categoryName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -240,7 +240,7 @@
             android:layout_height="wrap_content"
             tools:context=".ui.routineDetail.RoutineDetailActivity">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/descriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -251,7 +251,7 @@
                 app:layout_constraintStart_toStartOf="@+id/descriptionText"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/exerciseText"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -284,7 +284,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/startRoutine"
         android:layout_width="300dp"
         android:layout_height="wrap_content"

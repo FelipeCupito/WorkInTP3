@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/exerciseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/timeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="@id/exerciseName"
             app:layout_constraintTop_toBottomOf="@id/repetitionsTitle"/>
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/remainingTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toEndOf="@+id/timeTitle"
             app:layout_constraintTop_toTopOf="@+id/timeTitle"/>
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/repetitionsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             app:layout_constraintStart_toStartOf="@+id/exerciseName"
             app:layout_constraintTop_toBottomOf="@+id/exerciseName"/>
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/remainingRepetitions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

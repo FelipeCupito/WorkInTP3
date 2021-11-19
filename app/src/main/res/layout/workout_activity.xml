@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:navGraph="@navigation/workout_navigation" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:visibility="gone"
         android:id="@+id/nextButton"
         android:layout_width="150dp"
@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/pauseButton" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:visibility="gone"
         android:id="@+id/pauseButton"
         android:layout_width="150dp"

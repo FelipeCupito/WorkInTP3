@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/routine_picture" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/routineName"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             tools:context=".ui.routineDetail.RoutineDetailActivity">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/userTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 app:layout_constraintStart_toEndOf="@+id/userTitle"
                 app:layout_constraintTop_toTopOf="@+id/userTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/dateTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                 app:layout_constraintStart_toEndOf="@+id/dateTitle"
                 app:layout_constraintTop_toTopOf="@+id/dateTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/difficultyTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 app:layout_constraintStart_toEndOf="@+id/difficultyTitle"
                 app:layout_constraintTop_toTopOf="@+id/difficultyTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/ratingTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
                 app:layout_constraintStart_toEndOf="@+id/ratingTitle"
                 app:layout_constraintTop_toTopOf="@+id/ratingTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/categoryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratingTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/categoryName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                 app:layout_constraintStart_toEndOf="@+id/categoryTitle"
                 app:layout_constraintTop_toTopOf="@+id/categoryTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/descriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryTitle" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/startRoutine"
         android:layout_width="364dp"
         android:layout_height="48dp"
