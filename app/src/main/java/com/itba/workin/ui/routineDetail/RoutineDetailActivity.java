@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.itba.workin.App;
 import com.itba.workin.R;
@@ -20,7 +21,10 @@ import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.ScoreActivity;
 import com.itba.workin.ui.login.LoginActivity;
+import com.itba.workin.ui.main.fragments.RoutineViewModel;
+import com.itba.workin.ui.workout.CycleViewModel;
 import com.itba.workin.ui.workout.WorkoutActivity;
+import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 
@@ -30,17 +34,17 @@ public class RoutineDetailActivity extends AppCompatActivity {
     private int id;
     private RoutinesRepository routinesRepository;
     private RoutineDetailBinding binding;
+    private DetailViewModel detailViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = RoutineDetailBinding.inflate(getLayoutInflater());
-        View root = binding.getRoot();
-        setContentView(root);
+        setContentView(binding.getRoot());
 
         routinesRepository = ((App) getApplication()).getRoutinesRepository();
 
-        ToolbarMainBinding toolbarBinding = ToolbarMainBinding.bind(root);
+        ToolbarMainBinding toolbarBinding = ToolbarMainBinding.bind(binding.getRoot());
         toolbarBinding.toolbar.inflateMenu(R.menu.app_bar_menu);
         setSupportActionBar(toolbarBinding.toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -49,7 +53,9 @@ public class RoutineDetailActivity extends AppCompatActivity {
         }
 
         binding.loading.setVisibility(View.VISIBLE);
-        if (savedInstanceState == null) {
+        if (savedInstanceState != null) {
+            id = savedInstanceState.getInt("id");
+        } else {
             Intent intent = getIntent();
             if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_VIEW)) {
                 Uri data = intent.getData();
@@ -61,16 +67,38 @@ public class RoutineDetailActivity extends AppCompatActivity {
             } else {
                 id = intent.getIntExtra("id", -1);
             }
-            if (id == -1) {
-                // TODO check
-            }
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        detailViewModel.restart();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        fetchRoutines();
+    }
+
+    public void fetchRoutines() {
+        if (id == -1) {
+            binding.loading.setVisibility(View.GONE);
+            Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
+        } else {
             App app = (App) getApplication();
-            app.getRoutinesRepository().getRoutine(id).observe(this, r -> {
+            ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+            detailViewModel = new ViewModelProvider(this, viewModelFactory).get(DetailViewModel.class);
+            detailViewModel.setRoutineId(id);
+
+            routine = detailViewModel.getOldRoutine();
+
+            detailViewModel.getRoutine().observe(this, r -> {
                 switch (r.getStatus()) {
                     case SUCCESS:
                         routine = r.getData();
                         assert routine != null;
-                        id = routine.getId();
                         setView();
                         break;
                     case ERROR:
@@ -81,15 +109,11 @@ public class RoutineDetailActivity extends AppCompatActivity {
                             finish();
                         } else {
                             binding.loading.setVisibility(View.GONE);
-                            Toast.makeText(root.getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
+                            Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
                             break;
                         }
                 }
             });
-        } else {
-            routine = (MyRoutine) savedInstanceState.getSerializable("MyRoutine");
-            id = savedInstanceState.getInt("id");
-            setView();
         }
     }
 
@@ -120,7 +144,6 @@ public class RoutineDetailActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("MyRoutine",routine);
         outState.putInt("id",id);
     }
 
@@ -142,7 +165,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.app_bar_share) {
+        if (item.getItemId() == R.id.app_bar_share && routine != null) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
             intent.putExtra(Intent.EXTRA_TEXT, "http://workin.app/routine?id=" + routine.getId());

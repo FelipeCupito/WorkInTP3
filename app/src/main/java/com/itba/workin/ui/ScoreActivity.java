@@ -62,15 +62,14 @@ public class ScoreActivity extends AppCompatActivity {
             routinesRepository.addReview(id, new Review((int) score.floatValue(),"")).observe((LifecycleOwner) context, r -> {
                 if (r.getStatus() == Status.SUCCESS) {
                     Toast.makeText(context,getText(R.string.rated),Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Resource.defaultResourceHandler(r);
+                }
+                if (r.getStatus() != Status.LOADING) {
+                    finish();
                 }
             });
         }
-
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();
     }
 
 }
