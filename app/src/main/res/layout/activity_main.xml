@@ -22,9 +22,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/purple_500" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:visibility="gone"

@@ -70,5 +70,7 @@
     <string name="sort_category">Categoría</string>
     <string name="rated">Has puntuado esta rutina</string>
     <string name="pause">Pausar</string>
-    <string name="cycleRepetitions">%s repeticiones restantes</string>
+    <string name="resume">Continuar</string>
+    <string name="cycleRepetitions">%d repeticiones restantes</string>
+    <string name="num_with_seconds">%d s</string>
 </resources>

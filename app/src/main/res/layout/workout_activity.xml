@@ -9,7 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <androidx.fragment.app.FragmentContainerView
+        android:visibility="gone"
         android:id="@+id/nav_host_fragment_activity_workout"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
@@ -23,6 +35,7 @@
         app:navGraph="@navigation/workout_navigation" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/nextButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -34,6 +47,7 @@
         app:layout_constraintStart_toEndOf="@+id/pauseButton" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/pauseButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"

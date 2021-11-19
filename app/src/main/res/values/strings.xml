@@ -45,7 +45,7 @@
     <string name="favorite_yes">This routine has been added to favorites</string>
     <string name="favorite_no">This routine has been removed from favorites</string>
 
-    <string name="cycleRepetitions">%s remaining repetitions</string>
+    <string name="cycleRepetitions">%d remaining repetitions</string>
 
     <!-- ERRORS -->
     <string name="invalid_username">Not a valid username</string>
@@ -75,5 +75,7 @@
     <string name="rated">You have rated this routine</string>
     <string name="title_activity_login">Login</string>
     <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="num_with_seconds">%d s</string>
 
 </resources>

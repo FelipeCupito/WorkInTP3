@@ -39,21 +39,14 @@ public class ScoreActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
-        if (id == -1) {
-            // TODO check
-        }
 
         routinesRepository = ((App) getApplication()).getRoutinesRepository();
         context = this;
 
-        binding.scoreRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                if (fromUser) {
-                    score = rating * 2;
-                }
+        binding.scoreRatingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
+            if (fromUser) {
+                score = rating * 2;
             }
-
         });
     }
 

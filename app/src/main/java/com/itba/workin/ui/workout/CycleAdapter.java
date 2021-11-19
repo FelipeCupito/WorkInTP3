@@ -1,5 +1,7 @@
 package com.itba.workin.ui.workout;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.itba.workin.R;
 import com.itba.workin.domain.MyCycle;
 import com.itba.workin.domain.MyCycleExercise;
@@ -17,9 +20,14 @@ import java.util.List;
 public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<Object> dataSet;
     private final static int CYCLE_VIEW = 0, EXERCISE_VIEW = 1;
+    private MyCycleExercise currentExercise;
 
     public CycleAdapter(List<Object> dataSet) {
         this.dataSet = dataSet;
+    }
+
+    public void setCurrentExercise(MyCycleExercise currentExercise) {
+        this.currentExercise = currentExercise;
     }
 
     @NonNull
@@ -68,16 +76,21 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         throw new IllegalStateException("viewCycleadaptererrorgetitemviewtype");
     }
 
-    public static class ExerciseViewHolder extends RecyclerView.ViewHolder {
+    public  class ExerciseViewHolder extends RecyclerView.ViewHolder {
         private final TextView exerciseName;
         private final TextView remainingRepetitions;
         private final TextView remainingTime;
+        private final MaterialCardView card;
+        private ColorStateList cardBackgroundColor;
 
         public ExerciseViewHolder(@NonNull View view) {
             super(view);
             exerciseName = view.findViewById(R.id.exerciseName);
             remainingRepetitions = view.findViewById(R.id.remainingRepetitions);
             remainingTime = view.findViewById(R.id.remainingTime);
+            card = view.findViewById(R.id.exerciseCard);
+            cardBackgroundColor = card.getCardBackgroundColor();
+
             view.findViewById(R.id.exerciseDetails).setOnClickListener(v -> {
 //                int position = getAdapterPosition();
 //                Intent intent = new Intent(context, RoutineDetailActivity.class);
@@ -87,6 +100,11 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         public void bindTo(MyCycleExercise exercise) {
+            if (exercise.equals(currentExercise)) {
+                card.setCardBackgroundColor(Color.GRAY);
+            } else {
+                card.setCardBackgroundColor(cardBackgroundColor);
+            }
             exerciseName.setText(exercise.getExercise().getName());
             remainingRepetitions.setText(String.valueOf(exercise.getRepetitions()));
             remainingTime.setText(String.valueOf(exercise.getDuration()));

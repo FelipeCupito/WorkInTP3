@@ -47,10 +47,11 @@ public class WorkoutActivity extends AppCompatActivity {
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
         cycleViewModel = new ViewModelProvider(this, viewModelFactory).get(CycleViewModel.class);
 
-        Intent intent = getIntent();
-        id = intent.getIntExtra("id",-1);
-        if (id == -1) {
-            // TODO check
+        if (savedInstanceState != null) {
+            id = savedInstanceState.getInt("id");
+        } else {
+            Intent intent = getIntent();
+            id = intent.getIntExtra("id", -1);
         }
         cycleViewModel.setRoutineId(id);
 
@@ -58,6 +59,22 @@ public class WorkoutActivity extends AppCompatActivity {
             cycleViewModel.stopTimer();
             cycleViewModel.advanceCurrent();
         });
+
+        workoutActivitybinding.pauseButton.setOnClickListener(v -> {
+            if (workoutActivitybinding.pauseButton.getText().equals(getText(R.string.pause))) {
+                cycleViewModel.pauseTimer();
+                workoutActivitybinding.pauseButton.setText(R.string.resume);
+            } else if (workoutActivitybinding.pauseButton.getText().equals(getText(R.string.resume))) {
+                cycleViewModel.resumeTimer();
+                workoutActivitybinding.pauseButton.setText(R.string.pause);
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("id",id);
     }
 
     @Override

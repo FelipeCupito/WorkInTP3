@@ -19,13 +19,11 @@ import com.itba.workin.databinding.RoutineDetailBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.ui.ScoreActivity;
 import com.itba.workin.ui.login.LoginActivity;
-import com.itba.workin.ui.main.fragments.RoutineViewModel;
-import com.itba.workin.ui.workout.CycleViewModel;
 import com.itba.workin.ui.workout.WorkoutActivity;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 import com.squareup.picasso.Picasso;
+
 import java.text.SimpleDateFormat;
 
 public class RoutineDetailActivity extends AppCompatActivity {

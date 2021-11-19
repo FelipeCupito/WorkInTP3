@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@ public class WorkoutSimpleFragment extends Fragment {
     private CycleViewModel cycleViewModel;
     private MyCycle currentCycle;
     private MyCycleExercise currentExercise;
+    private ProgressBar loading;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,19 +51,21 @@ public class WorkoutSimpleFragment extends Fragment {
         ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
         cycleViewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(CycleViewModel.class);
 
+        loading = requireActivity().findViewById(R.id.loading);
+
         cycleViewModel.getCycles().observe(getViewLifecycleOwner(), r -> {
             switch (r.getStatus()) {
                 case LOADING:
-                    // TODO
-//                    loading.setVisibility(View.VISIBLE);
+                    loading.setVisibility(View.VISIBLE);
                     break;
                 case SUCCESS:
-                    // TODO
-//                    loading.setVisibility(View.GONE);
+                    requireActivity().findViewById(R.id.pauseButton).setVisibility(View.VISIBLE);
+                    requireActivity().findViewById(R.id.nav_host_fragment_activity_workout).setVisibility(View.VISIBLE);
+                    requireActivity().findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
+                    loading.setVisibility(View.GONE);
                     break;
                 case ERROR:
-                    // TODO
-//                    loading.setVisibility(View.GONE);
+                    loading.setVisibility(View.GONE);
                     Toast toast = Toast.makeText(binding.getRoot().getContext(),getText(R.string.unexpected_error),Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                     toast.show();
@@ -98,13 +102,21 @@ public class WorkoutSimpleFragment extends Fragment {
 
     private void setCycle(MyCycle cycle) {
         binding.cycleName.setText(cycle.getName());
+        binding.cycleReps.setText(String.format(getString(R.string.cycleRepetitions), cycle.getRepetitions()));
     }
 
     private void setExercise(MyCycleExercise exercise) {
         Picasso.get().load(exercise.getExercise().getExcerciseUrl()).placeholder(binding.exerciseImg.getDrawable()).resize(300,200).into(binding.exerciseImg);
         binding.exerciseTitle.setText(exercise.getExercise().getName());
         binding.remainingRepetitions.setText(String.valueOf(exercise.getRepetitions()));
-        binding.textViewTime.setText(exercise.getDuration() + "s");
+        if (cycleViewModel.getExerciseTime() == 0) {
+            binding.progressBar.setVisibility(View.GONE);
+            binding.textViewTime.setVisibility(View.GONE);
+        } else {
+            binding.progressBar.setVisibility(View.VISIBLE);
+            binding.textViewTime.setVisibility(View.VISIBLE);
+        }
+        binding.textViewTime.setText(String.format(getString(R.string.num_with_seconds),exercise.getDuration()));
         binding.progressBar.setProgress(exercise.getDuration());
         binding.progressBar.setMax(cycleViewModel.getExerciseTime());
     }

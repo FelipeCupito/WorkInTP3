@@ -10,14 +10,14 @@ public class MyCycleExercise implements Comparable<MyCycleExercise>, Serializabl
     private int duration;
     private int repetitions;
     private final MyExercise exercise;
-    private final int routineOrder;
+    private final int cycleOrder;
 
-    public MyCycleExercise(FullCycleExercise exercise, int routineOrder) {
+    public MyCycleExercise(FullCycleExercise exercise, int cycleOrder) {
         this.order = exercise.getOrder();
         this.duration = exercise.getDuration();
         this.repetitions = exercise.getRepetitions();
         this.exercise = new MyExercise(exercise.getExercise());
-        this.routineOrder = routineOrder;
+        this.cycleOrder = cycleOrder;
     }
 
     public MyCycleExercise(MyCycleExercise exercise) {
@@ -25,7 +25,7 @@ public class MyCycleExercise implements Comparable<MyCycleExercise>, Serializabl
         this.duration = exercise.duration;
         this.repetitions = exercise.repetitions;
         this.exercise = new MyExercise(exercise.getExercise());
-        this.routineOrder = exercise.routineOrder;
+        this.cycleOrder = exercise.cycleOrder;
     }
 
     public int getOrder() {
@@ -44,8 +44,8 @@ public class MyCycleExercise implements Comparable<MyCycleExercise>, Serializabl
         return exercise;
     }
 
-    public int getRoutineOrder() {
-        return routineOrder;
+    public int getCycleOrder() {
+        return cycleOrder;
     }
 
     public void decreaseDuration() {
@@ -68,13 +68,13 @@ public class MyCycleExercise implements Comparable<MyCycleExercise>, Serializabl
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MyCycleExercise that = (MyCycleExercise) o;
-        return Objects.equals(getExercise(), that.getExercise());
+        MyCycleExercise exercise = (MyCycleExercise) o;
+        return getOrder() == exercise.getOrder() && getCycleOrder() == exercise.getCycleOrder();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getExercise());
+        return Objects.hash(getOrder(), getCycleOrder());
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.itba.workin.ui.workout;
 
-import android.content.Intent;
 import android.os.CountDownTimer;
 
 import androidx.lifecycle.LiveData;
@@ -9,15 +8,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.itba.workin.domain.MyCycle;
 import com.itba.workin.domain.MyCycleExercise;
-import com.itba.workin.domain.MyExercise;
 import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
 import com.itba.workin.viewmodel.RepositoryViewModel;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -38,19 +34,19 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
         if (o1 instanceof MyCycle && o2 instanceof MyCycle) {
             return ((MyCycle) o1).compareTo((MyCycle) o2);
         } else if (o1 instanceof MyCycleExercise && o2 instanceof MyCycleExercise) {
-            int result = Integer.compare(((MyCycleExercise) o1).getRoutineOrder(),((MyCycleExercise) o2).getRoutineOrder());
+            int result = Integer.compare(((MyCycleExercise) o1).getCycleOrder(),((MyCycleExercise) o2).getCycleOrder());
             if (result == 0) {
                 return ((MyCycleExercise) o1).compareTo((MyCycleExercise) o2);
             }
             return result;
         } else if (o1 instanceof MyCycle && o2 instanceof MyCycleExercise) {
-            int result = Integer.compare(((MyCycle) o1).getOrder(),((MyCycleExercise) o2).getRoutineOrder());
+            int result = Integer.compare(((MyCycle) o1).getOrder(),((MyCycleExercise) o2).getCycleOrder());
             if (result == 0) {
                 return -1;
             }
             return result;
         } else if (o1 instanceof MyCycleExercise && o2 instanceof MyCycle) {
-            int result = Integer.compare(((MyCycleExercise) o1).getRoutineOrder(),((MyCycle) o2).getOrder());
+            int result = Integer.compare(((MyCycleExercise) o1).getCycleOrder(),((MyCycle) o2).getOrder());
             if (result == 0) {
                 return 1;
             }
@@ -106,6 +102,13 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
 
     public void stopTimer() {
         if (timer != null) {
+            pauseTimer();
+            currentExercise.decreaseRepetitions();
+        }
+    }
+
+    public void pauseTimer() {
+        if (timer != null) {
             timer.cancel();
             timer = null;
         }
@@ -114,7 +117,6 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
     public void resumeTimer() {
         if (ticks != 0) {
             startTimer(ticks);
-            timer.start();
         }
     }
 
@@ -168,7 +170,6 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
                 current.setValue(allObjects.get(position));
                 advanceCurrent();
             } else {
-                currentExercise.decreaseRepetitions();
                 exerciseTime = time;
                 if (time != 0) {
                     startTimer(time * 1000L);
