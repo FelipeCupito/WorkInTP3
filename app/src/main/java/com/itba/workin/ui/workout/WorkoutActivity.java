@@ -62,10 +62,10 @@ public class WorkoutActivity extends AppCompatActivity {
 
         workoutActivitybinding.pauseButton.setOnClickListener(v -> {
             if (workoutActivitybinding.pauseButton.getText().equals(getText(R.string.pause))) {
-                cycleViewModel.pauseTimer();
+                cycleViewModel.userPauseTimer();
                 workoutActivitybinding.pauseButton.setText(R.string.resume);
             } else if (workoutActivitybinding.pauseButton.getText().equals(getText(R.string.resume))) {
-                cycleViewModel.resumeTimer();
+                cycleViewModel.userResumeTimer();
                 workoutActivitybinding.pauseButton.setText(R.string.pause);
             }
         });

@@ -12,18 +12,9 @@ public class Review {
     @Expose
     private String review;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public Review() {
     }
 
-    /**
-     *
-     * @param score
-     * @param review
-     */
     public Review(int score, String review) {
         super();
         this.score = score;

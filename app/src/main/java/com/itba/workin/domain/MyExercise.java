@@ -1,5 +1,7 @@
 package com.itba.workin.domain;
 
+import androidx.annotation.NonNull;
+
 import com.itba.workin.backend.models.ExcerciseMetadata;
 import com.itba.workin.backend.models.FullExercise;
 
@@ -73,5 +75,11 @@ public class MyExercise implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -48,8 +48,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:contentDescription="Description"
-                android:visibility="visible"
+                android:contentDescription="@string/title_my_routines"
+                android:visibility="gone"
                 app:srcCompat="@drawable/routine_picture" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -61,7 +61,6 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="RoutineName"
                 android:textSize="24sp"
                 android:visibility="visible" />
 
@@ -119,7 +118,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="Nombre"
                         app:layout_constraintStart_toEndOf="@+id/userTitle"
                         app:layout_constraintTop_toTopOf="@+id/userTitle" />
 
@@ -137,7 +135,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="01/09/2021"
                         app:layout_constraintStart_toEndOf="@+id/dateTitle"
                         app:layout_constraintTop_toTopOf="@+id/dateTitle" />
 
@@ -156,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:contentDescription="Rating Dificultad"
+                        android:contentDescription="@string/routine_difficulty_title"
                         android:isIndicator="true"
                         android:numStars="3"
                         android:rating="2"
@@ -179,7 +176,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:contentDescription="Rating Puntuación"
+                        android:contentDescription="@string/routine_score_title"
                         android:isIndicator="true"
                         android:numStars="5"
                         android:rating="2.5"
@@ -192,16 +189,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="@string/routine_category"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ratingTitle" />
-
-                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/categoryName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="CategoryName"
                         app:layout_constraintStart_toEndOf="@+id/categoryTitle"
                         app:layout_constraintTop_toTopOf="@+id/categoryTitle" />
 
@@ -223,18 +215,16 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/square"
                         android:padding="3dp"
-                        android:text="TODO Descripton"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/exerciseText"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/square"
                         android:padding="3dp"
-                        android:text="Ejercicios....."
                         app:layout_constraintTop_toBottomOf="@+id/descriptionText"
                         tools:layout_editor_absoluteX="0dp" />
 

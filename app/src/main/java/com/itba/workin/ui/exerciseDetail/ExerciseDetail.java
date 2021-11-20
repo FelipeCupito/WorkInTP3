@@ -1,7 +1,6 @@
 package com.itba.workin.ui.exerciseDetail;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -17,15 +16,9 @@ import com.itba.workin.R;
 import com.itba.workin.databinding.ExerciseDetailsBinding;
 import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyExercise;
-import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.ExerciseRepository;
-import com.itba.workin.repository.RoutinesRepository;
-import com.itba.workin.ui.login.LoginActivity;
-import com.itba.workin.ui.routineDetail.DetailViewModel;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
 
 public class ExerciseDetail extends AppCompatActivity {
 
@@ -48,8 +41,6 @@ public class ExerciseDetail extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        binding.loading.setVisibility(View.VISIBLE);
-
         if (savedInstanceState != null) {
             id = savedInstanceState.getInt("id");
         } else {
@@ -58,6 +49,11 @@ public class ExerciseDetail extends AppCompatActivity {
                 id = intent.getIntExtra("id", -1);
             }
         }
+
+        App app = (App) getApplication();
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(ExerciseRepository.class, app.getExerciseRepository());
+        exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
+        exerciseViewModel.setExerciseId(id);
     }
 
     @Override
@@ -80,14 +76,8 @@ public class ExerciseDetail extends AppCompatActivity {
 
     private void fetchExercises(){
         if (id == -1) {
-            binding.loading.setVisibility(View.GONE);
             Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
         } else {
-            App app = (App) getApplication();
-            ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(ExerciseRepository.class, app.getExerciseRepository());
-            exerciseViewModel = new ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel.class);
-            exerciseViewModel.setExerciseId(id);
-
             exercise = exerciseViewModel.getOldExercise();
 
             exerciseViewModel.getExercise().observe(this, r -> {
@@ -101,6 +91,8 @@ public class ExerciseDetail extends AppCompatActivity {
                         binding.loading.setVisibility(View.GONE);
                         Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
                         break;
+                    case LOADING:
+                        binding.loading.setVisibility(View.VISIBLE);
                 }
             });
         }

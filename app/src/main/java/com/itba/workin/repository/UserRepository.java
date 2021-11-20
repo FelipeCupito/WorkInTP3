@@ -9,7 +9,6 @@ import com.itba.workin.backend.ApiResponse;
 import com.itba.workin.backend.ApiUserService;
 import com.itba.workin.backend.models.Credentials;
 import com.itba.workin.backend.models.Token;
-import com.itba.workin.backend.models.FullUser;
 
 public class UserRepository {
 
@@ -41,14 +40,4 @@ public class UserRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<FullUser>> getCurrentUser() {
-        return new NetworkBoundResource<FullUser, FullUser>(null)
-        {
-            @NonNull
-            @Override
-            protected LiveData<ApiResponse<FullUser>> createCall() {
-                return apiService.getCurrentUser();
-            }
-        }.asLiveData();
-    }
 }

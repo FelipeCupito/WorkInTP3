@@ -16,19 +16,9 @@ public class Category {
     @Expose
     private String detail;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public Category() {
     }
 
-    /**
-     *
-     * @param name
-     * @param id
-     * @param detail
-     */
     public Category(int id, String name, String detail) {
         super();
         this.id = id;

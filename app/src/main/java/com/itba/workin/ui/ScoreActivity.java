@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import com.itba.workin.databinding.ActivityScoreBinding;
 import com.itba.workin.repository.Resource;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.repository.Status;
-import com.itba.workin.ui.main.MainActivity;
 
 
 public class ScoreActivity extends AppCompatActivity {

@@ -20,6 +20,7 @@ import com.itba.workin.databinding.ToolbarMainBinding;
 import com.itba.workin.domain.MyRoutine;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.login.LoginActivity;
+import com.itba.workin.ui.workout.CycleViewModel;
 import com.itba.workin.ui.workout.WorkoutActivity;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 import com.squareup.picasso.Picasso;
@@ -33,6 +34,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
     private RoutinesRepository routinesRepository;
     private RoutineDetailBinding binding;
     private DetailViewModel detailViewModel;
+    private CycleViewModel cycleViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,6 @@ public class RoutineDetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        binding.loading.setVisibility(View.VISIBLE);
         if (savedInstanceState != null) {
             id = savedInstanceState.getInt("id");
         } else {
@@ -66,6 +67,15 @@ public class RoutineDetailActivity extends AppCompatActivity {
                 id = intent.getIntExtra("id", -1);
             }
         }
+
+        App app = (App) getApplication();
+        ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
+        ViewModelProvider viewModelProvider = new ViewModelProvider(this, viewModelFactory);
+        detailViewModel = viewModelProvider.get(DetailViewModel.class);
+        detailViewModel.setRoutineId(id);
+
+        cycleViewModel = viewModelProvider.get(CycleViewModel.class);
+        cycleViewModel.setRoutineId(id);
     }
 
     @Override
@@ -82,13 +92,8 @@ public class RoutineDetailActivity extends AppCompatActivity {
 
     public void fetchRoutines() {
         if (id == -1) {
-            binding.loading.setVisibility(View.GONE);
             Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
         } else {
-            App app = (App) getApplication();
-            ViewModelProvider.Factory viewModelFactory = new RepositoryViewModelFactory<>(RoutinesRepository.class, app.getRoutinesRepository());
-            detailViewModel = new ViewModelProvider(this, viewModelFactory).get(DetailViewModel.class);
-            detailViewModel.setRoutineId(id);
 
             routine = detailViewModel.getOldRoutine();
 
@@ -110,6 +115,8 @@ public class RoutineDetailActivity extends AppCompatActivity {
                             Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
                             break;
                         }
+                    case LOADING:
+                        binding.loading.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -119,7 +126,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
         Picasso.get().load(routine.getRoutineUrl()).placeholder(binding.image.getDrawable()).resize(300,200).into(binding.image);
         binding.routineName.setText(routine.getName());
         binding.user.setText(routine.getUserName());
-        binding.date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()).toString());
+        binding.date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()));
         binding.descriptionText.setText(routine.getDetail());
         binding.rating.setRating((float)(routine.getScore()/2.0));
         binding.difficulty.setRating(routine.getDifficulty());
@@ -131,6 +138,35 @@ public class RoutineDetailActivity extends AppCompatActivity {
         binding.startRoutine.setVisibility(View.VISIBLE);
         binding.loading.setVisibility(View.GONE);
         binding.startRoutine.setOnClickListener(this::goToWorkout);
+
+        fetchCycles();
+    }
+
+    private void fetchCycles() {
+        if (id == -1) {
+            Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
+        } else {
+
+            binding.exerciseText.setText(cycleViewModel.toString());
+
+            cycleViewModel.getCycles().observe(this, r -> {
+                switch (r.getStatus()) {
+                    case SUCCESS:
+                        if (r.getData() != null) {
+                            binding.exerciseText.setText(cycleViewModel.toString());
+                        }
+                        cycleViewModel.pauseTimer();
+                        binding.loading.setVisibility(View.GONE);
+                        break;
+                    case ERROR:
+                        binding.loading.setVisibility(View.GONE);
+                        Toast.makeText(binding.getRoot().getContext(), getText(R.string.unexpected_error), Toast.LENGTH_LONG).show();
+                        break;
+                    case LOADING:
+                        binding.loading.setVisibility(View.VISIBLE);
+                }
+            });
+        }
     }
 
     private void goToWorkout(View view) {

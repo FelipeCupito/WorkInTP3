@@ -13,18 +13,9 @@ public class Credentials {
     @Expose
     private String password;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public Credentials() {
     }
 
-    /**
-     *
-     * @param password
-     * @param username
-     */
     public Credentials(String username, String password) {
         super();
         this.username = username;

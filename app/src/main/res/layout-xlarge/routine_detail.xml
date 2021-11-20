@@ -46,7 +46,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:contentDescription="Description"
+                android:contentDescription="@string/title_my_routines"
                 android:visibility="gone"
                 app:srcCompat="@drawable/routine_picture" />
         </LinearLayout>
@@ -73,7 +73,6 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="RoutineName"
                 android:textSize="34sp"
                 android:visibility="gone" />
 
@@ -108,7 +107,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Nombre"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/userTitle"
                     app:layout_constraintStart_toEndOf="@+id/userTitle" />
@@ -129,7 +127,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="01/09/2021"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/dateTitle"
                     app:layout_constraintStart_toEndOf="@+id/dateTitle" />
@@ -152,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="1dp"
-                    android:contentDescription="Rating Dificultad"
+                    android:contentDescription="@string/routine_difficulty_title"
                     android:isIndicator="true"
                     android:numStars="3"
                     android:rating="2"
@@ -178,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="1dp"
-                    android:contentDescription="Rating Puntuación"
+                    android:contentDescription="@string/routine_score_title"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="2.5"
@@ -192,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="160dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Category"
+                    android:text="@string/sort_category"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/divider6"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
@@ -202,7 +199,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="CategoryName"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/categoryTitle"
                     app:layout_constraintStart_toEndOf="@+id/categoryTitle" />
@@ -260,7 +256,6 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/square"
                 android:padding="3dp"
-                android:text="TODO Descripton"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -269,13 +264,12 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/exerciseText"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/square"
                 android:padding="3dp"
-                android:text="Ejercicios....."
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
