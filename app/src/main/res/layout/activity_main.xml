@@ -14,27 +14,27 @@
         android:layout_height="wrap_content" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/loading"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        style="?android:attr/progressBarStyleHorizontal"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:visibility="gone"
         android:id="@+id/search_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="20sp"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
-        app:drawableEndCompat="@drawable/ic_baseline_close_24" />
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:drawableEndCompat="@drawable/ic_baseline_close_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

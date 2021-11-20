@@ -19,65 +19,67 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/exerciseName"
+            style="@style/textM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/timeTitle"
+            style="@style/normalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/remaining_time"
-            android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintStart_toStartOf="@id/exerciseName"
-            app:layout_constraintTop_toBottomOf="@id/repetitionsTitle"/>
+            app:layout_constraintTop_toBottomOf="@id/repetitionsTitle" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/remainingTime"
+            style="@style/normalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintStart_toEndOf="@+id/timeTitle"
-            app:layout_constraintTop_toTopOf="@+id/timeTitle"/>
+            app:layout_constraintTop_toTopOf="@+id/timeTitle" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/repetitionsTitle"
+            style="@style/normalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/remaining_sets"
-            android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintStart_toStartOf="@+id/exerciseName"
-            app:layout_constraintTop_toBottomOf="@+id/exerciseName"/>
+            app:layout_constraintTop_toBottomOf="@+id/exerciseName" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/remainingRepetitions"
+            style="@style/normalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintStart_toEndOf="@+id/repetitionsTitle"
-            app:layout_constraintTop_toTopOf="@+id/repetitionsTitle"/>
+            app:layout_constraintTop_toTopOf="@+id/repetitionsTitle" />
 
         <com.google.android.material.button.MaterialButton
-            style="?attr/borderlessButtonStyle"
             android:id="@+id/exerciseDetails"
+            style="?attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="8dp"
             android:text="@string/details_button"
-            android:layout_centerVertical="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@color/workin_primary_light"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

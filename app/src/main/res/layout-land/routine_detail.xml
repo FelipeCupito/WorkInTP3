@@ -54,6 +54,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/routineName"
+                style="@style/textL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -61,11 +62,11 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:textSize="24sp"
                 android:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/startRoutine"
+                style="@style/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -106,6 +107,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/userTitle"
+                        style="@style/normalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -115,6 +117,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/user"
+                        style="@style/normalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -123,6 +126,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/dateTitle"
+                        style="@style/normalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -132,6 +136,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/date"
+                        style="@style/normalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -140,6 +145,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/difficultyTitle"
+                        style="@style/normalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -163,6 +169,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/ratingTitle"
+                        style="@style/normalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -186,6 +193,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/categoryTitle"
+                        style="@style/normalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -203,16 +211,17 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/descriptionTitle"
+                        style="@style/textS"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="@string/routine_description_title"
-                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/categoryTitle" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/descriptionText"
+                        style="@style/normalText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -223,6 +232,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/exerciseText"
+                        style="@style/normalText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"

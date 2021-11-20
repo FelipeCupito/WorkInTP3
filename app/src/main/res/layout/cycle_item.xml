@@ -6,31 +6,31 @@
     android:padding="8dp">
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/cycleName"
+        style="@style/textM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cycleName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/repetitionsTitle"
+        style="@style/textS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/repetitionsTitle"
+        android:layout_marginEnd="10dp"
         android:text="@string/repetitions_left"
         app:layout_constraintEnd_toStartOf="@+id/repetitions"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintTop_toTopOf="@+id/repetitions"
-        android:textSize="16sp" />
+        app:layout_constraintTop_toTopOf="@+id/repetitions" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/repetitions"
+        style="@style/textS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/repetitions"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="4dp"
-        android:textSize="16sp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="match_parent"

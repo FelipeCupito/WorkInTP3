@@ -6,10 +6,10 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/cycleName"
+        style="@style/textL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="24sp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,14 +17,15 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/cycleReps"
+        style="@style/textM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cycleName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/cycleRepetitions"
         android:textSize="20sp"
-        android:text="@string/cycleRepetitions"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cycleName" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
@@ -56,32 +57,32 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/exerciseTitle"
+                style="@style/textM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/exerciseImg" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/remainingRepetitions"
+                style="@style/textM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/repsTitle"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/exerciseTitle"
-                app:layout_constraintHorizontal_chainStyle="packed"/>
+                app:layout_constraintTop_toBottomOf="@id/exerciseTitle" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/repsTitle"
+                style="@style/textM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/remainign_sets_text"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/remainingRepetitions"
                 app:layout_constraintTop_toTopOf="@id/remainingRepetitions" />
@@ -93,12 +94,13 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="175dp"
         android:layout_height="175dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/background_circle"
         android:indeterminate="false"
         android:max="100"
         android:progress="100"
         android:progressDrawable="@drawable/progress_circle"
+        android:progressTint="@color/workin_primary_light"
         android:rotation="-90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:textColor="@color/workin_primary_light"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"

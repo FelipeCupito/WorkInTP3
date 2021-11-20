@@ -26,6 +26,7 @@
 
     <EditText
         android:id="@+id/login_name"
+        style="@style/textS"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="200dp"
@@ -38,6 +39,7 @@
 
     <EditText
         android:id="@+id/login_password"
+        style="@style/textS"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -52,6 +54,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginBtn"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"

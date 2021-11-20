@@ -47,7 +47,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:contentDescription="@string/title_my_routines"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:srcCompat="@drawable/routine_picture" />
         </LinearLayout>
 
@@ -68,13 +68,13 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/routineName"
+                style="@style/textL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:textSize="34sp"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -93,52 +93,52 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/userTitle"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="160dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/routine_user_title"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/dateTitle"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/user"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/userTitle"
                     app:layout_constraintStart_toEndOf="@+id/userTitle" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/dateTitle"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="160dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/routine_date"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/difficultyTitle"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/date"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/dateTitle"
                     app:layout_constraintStart_toEndOf="@+id/dateTitle" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/difficultyTitle"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="160dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/routine_difficulty_title"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/ratingTitle"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
@@ -159,12 +159,12 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/ratingTitle"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="160dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/routine_score_title"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/categoryTitle"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
@@ -185,21 +185,21 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/categoryTitle"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="160dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/sort_category"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/divider6"
                     app:layout_constraintEnd_toEndOf="@+id/divider5" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/categoryName"
+                    style="@style/textM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/categoryTitle"
                     app:layout_constraintStart_toEndOf="@+id/categoryTitle" />
 
@@ -223,7 +223,7 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -238,17 +238,18 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/descriptionTitle"
+                style="@style/textL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/routine_description_title"
-                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="@+id/descriptionText"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/descriptionText"
+                style="@style/textS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -256,13 +257,14 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/square"
                 android:padding="3dp"
-                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/exerciseText"
+                style="@style/textS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -270,7 +272,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/square"
                 android:padding="3dp"
-                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
@@ -280,12 +282,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/startRoutine"
+        style="@style/button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="@string/routine_start_title"
-        android:textSize="16sp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

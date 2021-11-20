@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="difficultyRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/fire_selectors</item>
         <item name="android:minHeight">23dip</item>
@@ -17,13 +17,28 @@
         <item name="colorControlActivated">@color/gold</item>
     </style>
 
-    <style name="button" parent="Theme.AppCompat">
-
-        <item name="colorControlNormal">@color/grey</item>
-        <item name="colorControlActivated">@color/gold</item>
+    <style name="button" parent="@style/Widget.MaterialComponents.Button">
+        <item name="background">@color/workin_primary_light</item>
+        <item name="backgroundTint">@color/workin_primary_light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Button</item>
     </style>
 
+    <style name="normalText" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+    </style>
 
+    <style name="textS" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="textM" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="textL" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textSize">24sp</item>
+    </style>
 
 
 </resources>

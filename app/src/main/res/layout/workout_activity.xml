@@ -10,23 +10,23 @@
         android:layout_height="wrap_content" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/loading"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        style="?android:attr/progressBarStyleHorizontal"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:visibility="gone"
         android:id="@+id/nav_host_fragment_activity_workout"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
+        android:visibility="visible"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/nextButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,23 +35,25 @@
         app:navGraph="@navigation/workout_navigation" />
 
     <com.google.android.material.button.MaterialButton
-        android:visibility="gone"
         android:id="@+id/nextButton"
+        style="@style/button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/next"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/pauseButton" />
 
     <com.google.android.material.button.MaterialButton
-        android:visibility="gone"
         android:id="@+id/pauseButton"
+        style="@style/button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/pause"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/nextButton"
         app:layout_constraintEnd_toStartOf="@+id/nextButton"
         app:layout_constraintHorizontal_bias="0.5"
