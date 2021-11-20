@@ -57,10 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         String pass = passView.getText().toString();
         boolean error = false;
 
-//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.trim().length() == 0){
-//            error = true;
-//            emailView.setError(getText(R.string.invalid_email));
-//        }
+        if (email.trim().length() == 0){
+            error = true;
+            emailView.setError(getText(R.string.invalid_email));
+        }
 
         if (pass.trim().length() < 8){
             error = true;

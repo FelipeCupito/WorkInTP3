@@ -1,5 +1,6 @@
 package com.itba.workin.ui.workout.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -45,6 +46,7 @@ public class WorkoutDetailedFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = WorkoutDetailedBinding.inflate(inflater, container, false);
 
@@ -112,6 +114,7 @@ public class WorkoutDetailedFragment extends Fragment {
         clockItem.setVisible(true);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onStart() {
         super.onStart();

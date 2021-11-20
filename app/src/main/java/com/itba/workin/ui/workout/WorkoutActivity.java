@@ -13,6 +13,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.itba.workin.App;
 import com.itba.workin.R;
 import com.itba.workin.databinding.ToolbarMainBinding;
@@ -96,8 +97,14 @@ public class WorkoutActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // TODO dialog JUAN
-        finish();
+        // TODO pause
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+        builder.setTitle(R.string.confirmed_exit_title);
+        builder.setMessage(R.string.confirmed_exit_text);
+        builder.setCancelable(false);
+        builder.setNegativeButton(R.string.exit, (dialog, which) -> finish());
+        builder.setPositiveButton(R.string.continue_dialog, (dialog, which) -> dialog.dismiss());
+        builder.show();
     }
 
     @Override

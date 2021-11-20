@@ -5,12 +5,11 @@
     <string name="title_favorites">Favorites</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Login</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">Welcome!</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_text">Don\'t have an account yet?</string>
-    <string name="register">register</string>
+    <string name="register">Register</string>
     <string name="register_name">Name</string>
     <string name="register_email">Email</string>
     <string name="password">Password</string>
@@ -36,7 +35,7 @@
     <string name="app_bar_list">CheckList</string>
     <string name="app_bar_favorite">Favorite</string>
     <string name="app_bar_search">Search</string>
-    <string name="app_bar_sort">Filter</string>
+    <string name="app_bar_sort">Sort</string>
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
     <string name="details_button">Details</string>
@@ -61,9 +60,9 @@
     <string name="logout">Log Out</string>
     <string name="score_text">Congratulations! \nyou have finished this routine. \nDo you want to rate?</string>
     <string name="score_btn">next</string>
-    <string name="title_activity_score">ScoreActivity</string>
+    <string name="title_activity_score">Rate Routine</string>
 
-    <string name="query_too_short">Your search is too short! please make it longer</string>
+    <string name="query_too_short">Your search is too short! Please make it longer</string>
 
     <string name="search_text">Showing results for %s, click here to reset search</string>
     <string name="sort_default">Default</string>
@@ -82,5 +81,9 @@
     <string name="exercise">Exercise</string>
     <string name="remaining_time">Remaining time</string>
     <string name="remaining_sets">Remaining sets</string>
+    <string name="confirmed_exit_title">Are you sure you want to exit?</string>
+    <string name="confirmed_exit_text">You will lose your progress in the workout</string>
+    <string name="exit">Exit</string>
+    <string name="continue_dialog">Continue</string>
 
 </resources>
