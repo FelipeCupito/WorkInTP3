@@ -63,6 +63,7 @@ public class ScoreActivity extends AppCompatActivity {
                 }
             });
         }
+        finish();
     }
 
 }

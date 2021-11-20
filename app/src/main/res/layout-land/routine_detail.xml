@@ -49,7 +49,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Description"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:srcCompat="@drawable/routine_picture" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -63,7 +63,7 @@
                 android:gravity="center"
                 android:text="RoutineName"
                 android:textSize="24sp"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/startRoutine"
@@ -73,7 +73,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/routine_start_title"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <View
@@ -98,7 +98,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Category"
+                        android:text="@string/routine_category"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ratingTitle" />
 

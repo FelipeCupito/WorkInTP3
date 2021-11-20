@@ -77,5 +77,6 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="num_with_seconds">%d s</string>
+    <string name="routine_category">Category</string>
 
 </resources>
