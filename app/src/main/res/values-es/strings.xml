@@ -73,4 +73,9 @@
     <string name="resume">Continuar</string>
     <string name="cycleRepetitions">%d repeticiones restantes</string>
     <string name="num_with_seconds">%d s</string>
+    <string name="repetitions_left">Repeticiones restantes</string>
+    <string name="exercise">Ejercicio</string>
+    <string name="remaining_time">Tiempo restante</string>
+    <string name="remaining_sets">Repeticiones restantes</string>
+
 </resources>

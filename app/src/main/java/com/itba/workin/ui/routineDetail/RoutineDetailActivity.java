@@ -126,7 +126,7 @@ public class RoutineDetailActivity extends AppCompatActivity {
         Picasso.get().load(routine.getRoutineUrl()).placeholder(binding.image.getDrawable()).resize(300,200).into(binding.image);
         binding.routineName.setText(routine.getName());
         binding.user.setText(routine.getUserName());
-        binding.date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()).toString());
+        binding.date.setText(new SimpleDateFormat("dd/MM/yyyy").format(routine.getDate()));
         binding.descriptionText.setText(routine.getDetail());
         binding.rating.setRating((float)(routine.getScore()/2.0));
         binding.difficulty.setRating(routine.getDifficulty());

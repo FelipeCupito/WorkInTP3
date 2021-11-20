@@ -18,18 +18,9 @@ public class FullCycleExercise {
     @Expose
     private int repetitions;
 
-    /**
-     * No args constructor for use in serialization
-     */
     public FullCycleExercise() {
     }
 
-    /**
-     * @param duration
-     * @param exercise
-     * @param repetitions
-     * @param order
-     */
     public FullCycleExercise(FullExercise exercise, int order, int duration, int repetitions) {
         super();
         this.exercise = exercise;

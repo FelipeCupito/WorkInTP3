@@ -260,15 +260,8 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
     public class PauseCountdownTimer extends CountDownTimer {
 
         private long remainingTime;
-        private long interval;
+        private final long interval;
 
-        /**
-         * @param millisInFuture    The number of millis in the future from the call
-         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
-         *                          is called.
-         * @param countDownInterval The interval along the way to receive
-         *                          {@link #onTick(long)} callbacks.
-         */
         public PauseCountdownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
             this.interval = countDownInterval;

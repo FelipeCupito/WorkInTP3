@@ -3,7 +3,6 @@ package com.itba.workin.ui.main.fragments.myRoutines;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,11 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.itba.workin.App;
-import com.itba.workin.R;
 import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.main.fragments.RoutineFragment;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
-import com.itba.workin.databinding.MainActivityFragmentBinding;
 
 public class MyRoutinesFragment extends RoutineFragment {
 

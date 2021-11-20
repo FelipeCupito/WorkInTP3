@@ -40,26 +40,9 @@ public class FullRoutine {
 
     private boolean isFavourite = false;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public FullRoutine() {
     }
 
-    /**
-     *
-     * @param date
-     * @param difficulty
-     * @param metadata
-     * @param score
-     * @param name
-     * @param isPublic
-     * @param id
-     * @param detail
-     * @param category
-     * @param publicUser
-     */
     public FullRoutine(int id, String name, String detail, Date date, int score, boolean isPublic, String difficulty, PublicUser publicUser, Category category, RoutineMetadata metadata) {
         super();
         this.id = id;

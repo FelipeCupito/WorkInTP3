@@ -27,23 +27,9 @@ public class FullCycle {
     @Expose
     private Object metadata;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public FullCycle() {
     }
 
-    /**
-     *
-     * @param metadata
-     * @param name
-     * @param id
-     * @param detail
-     * @param type
-     * @param repetitions
-     * @param order
-     */
     public FullCycle(int id, String name, String detail, String type, int order, int repetitions, Object metadata) {
         super();
         this.id = id;

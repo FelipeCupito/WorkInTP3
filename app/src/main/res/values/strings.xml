@@ -40,7 +40,7 @@
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
     <string name="details_button">Details</string>
-    <string name="remainign_sets_text">remainign sets</string>
+    <string name="remainign_sets_text">remaining sets</string>
 
     <string name="favorite_yes">This routine has been added to favorites</string>
     <string name="favorite_no">This routine has been removed from favorites</string>
@@ -77,5 +77,9 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="num_with_seconds">%d s</string>
+    <string name="repetitions_left">Repetitions Left</string>
+    <string name="exercise">Exercise</string>
+    <string name="remaining_time">Remaining time</string>
+    <string name="remaining_sets">Remaining sets</string>
 
 </resources>

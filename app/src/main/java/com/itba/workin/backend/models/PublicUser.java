@@ -27,22 +27,9 @@ public class PublicUser {
     @Expose
     private Date lastActivity;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public PublicUser() {
     }
 
-    /**
-     *
-     * @param date
-     * @param gender
-     * @param avatarUrl
-     * @param lastActivity
-     * @param id
-     * @param username
-     */
     public PublicUser(int id, String username, String gender, String avatarUrl, Date date, Date lastActivity) {
         super();
         this.id = id;

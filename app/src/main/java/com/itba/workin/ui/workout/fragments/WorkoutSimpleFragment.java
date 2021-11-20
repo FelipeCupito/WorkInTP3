@@ -25,12 +25,8 @@ import com.itba.workin.repository.RoutinesRepository;
 import com.itba.workin.ui.ScoreActivity;
 import com.itba.workin.ui.exerciseDetail.ExerciseDetail;
 import com.itba.workin.ui.workout.CycleViewModel;
-import com.itba.workin.ui.workout.WorkoutActivity;
 import com.itba.workin.viewmodel.RepositoryViewModelFactory;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class WorkoutSimpleFragment extends Fragment {
     private WorkoutSimpleBinding binding;

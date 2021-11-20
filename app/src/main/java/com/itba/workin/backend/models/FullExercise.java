@@ -30,22 +30,9 @@ public class FullExercise {
     @Expose
     ExcerciseMetadata metadata;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public FullExercise() {
     }
 
-    /**
-     *
-     * @param date
-     * @param name
-     * @param id
-     * @param detail
-     * @param type
-     * @param order
-     */
     public FullExercise(int id, String name, String detail, String type, Date date, int order, ExcerciseMetadata metadata) {
         super();
         this.id = id;

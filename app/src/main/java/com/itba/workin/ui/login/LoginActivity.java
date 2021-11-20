@@ -2,7 +2,6 @@ package com.itba.workin.ui.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     public static final String COMEBACK_URL = "com.itba.workin.COMEBACK_URL";
     SharedPreferences sp;
-    Uri uri;
     int id;
 
     @Override
@@ -42,11 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         sp = getSharedPreferences("login",MODE_PRIVATE);
 
         id = getIntent().getIntExtra("id",-1);
-
-        if (getIntent().getExtras() == null || getIntent().getExtras().getString(COMEBACK_URL) == null)
-            uri = null;
-        else
-            uri = Uri.parse(getIntent().getExtras().getString(COMEBACK_URL));
 
         if (sp.getBoolean("logged",false)){
             goToMainActivity();
@@ -85,13 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             if (r.getStatus() == Status.SUCCESS) {
                 app.getPreferences().setAuthToken(r.getData().getToken());
                 sp.edit().putBoolean("logged",true).apply();
-                if (uri != null) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(uri);
-                    i.setPackage("com.itba.workin");
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
-                } else if (id != -1) {
+                if (id != -1) {
                     Intent intent = new Intent(this, RoutineDetailActivity.class);
                     intent.putExtra("id", id);
                     startActivity(intent);

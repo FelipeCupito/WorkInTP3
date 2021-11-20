@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/workin"
         android:textColor="@color/ic_launcher_background"
-        android:textSize="70dp"
+        android:textSize="70sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/login_name"
         app:layout_constraintEnd_toEndOf="parent"
