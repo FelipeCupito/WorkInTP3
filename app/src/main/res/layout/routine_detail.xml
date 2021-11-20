@@ -187,15 +187,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/exerciseText"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:background="@drawable/square"-->
-<!--                android:padding="3dp"-->
-<!--                android:text="Ejercicios....."-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />-->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/exerciseText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/square"
+                android:padding="3dp"
+                android:text="Ejercicios....."
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

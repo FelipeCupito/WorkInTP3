@@ -1,5 +1,7 @@
 package com.itba.workin.domain;
 
+import androidx.annotation.NonNull;
+
 import com.itba.workin.backend.models.FullCycle;
 
 import java.io.Serializable;
@@ -81,5 +83,16 @@ public class MyCycle implements Comparable<MyCycle>, Serializable {
     @Override
     public int compareTo(MyCycle o) {
         return Integer.compare(this.order, o.getOrder());
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(": \n");
+        for (MyCycleExercise exercise : exercises) {
+            sb.append("\t").append(exercise.toString()).append("\n");
+        }
+        return sb.toString();
     }
 }

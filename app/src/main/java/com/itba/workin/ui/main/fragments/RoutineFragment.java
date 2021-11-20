@@ -1,5 +1,6 @@
 package com.itba.workin.ui.main.fragments;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -66,7 +67,15 @@ public abstract class RoutineFragment extends Fragment {
             searchText.setVisibility(View.GONE);
         });
 
-        binding.recyclerview.setLayoutManager(new GridLayoutManager(binding.getRoot().getContext(), 2));
+        int orientation = getResources().getConfiguration().orientation;
+        int spanCount;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            spanCount = 4;
+        } else {
+            spanCount = 2;
+        }
+
+        binding.recyclerview.setLayoutManager(new GridLayoutManager(binding.getRoot().getContext(), spanCount));
         binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -78,7 +87,7 @@ public abstract class RoutineFragment extends Fragment {
             }
         });
         binding.recyclerview.setAdapter(adapter);
-        binding.recyclerview.addItemDecoration(new GridSpacingItemDecoration(2,20,false, getContext()));
+        binding.recyclerview.addItemDecoration(new GridSpacingItemDecoration(spanCount,20,false, getContext()));
         return binding.getRoot();
     }
 

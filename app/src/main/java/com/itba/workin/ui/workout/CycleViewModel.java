@@ -2,6 +2,7 @@ package com.itba.workin.ui.workout;
 
 import android.os.CountDownTimer;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -26,6 +27,7 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
     private MyCycleExercise currentExercise;
     private int cyclePosition;
     private int position;
+    private boolean userStop;
     private int routineId;
     private int exerciseTime;
     private boolean firstTime = true;
@@ -95,7 +97,26 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
         }
     }
 
+    public void userPauseTimer() {
+        if (!userStop) {
+            pauseTimer();
+            userStop = true;
+        }
+    }
+
+    public void userResumeTimer() {
+        if (userStop) {
+            if (timer != null) {
+                timer = timer.resume();
+            }
+            userStop = false;
+        }
+    }
+
     public void resumeTimer() {
+        if (userStop) {
+            return;
+        }
         if (timer != null) {
             timer = timer.resume();
         }
@@ -215,6 +236,19 @@ public class CycleViewModel extends RepositoryViewModel<RoutinesRepository> {
                 called = false;
             }
         });
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        if (allCycles.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (MyCycle cycle : allCycles) {
+            sb.append(cycle.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     public static class Finish {
