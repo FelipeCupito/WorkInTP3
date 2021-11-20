@@ -11,7 +11,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/app_name"
         app:titleTextColor="@color/app_bar_text" />
 </merge>
