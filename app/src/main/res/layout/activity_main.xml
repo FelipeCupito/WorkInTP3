@@ -25,16 +25,16 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:visibility="gone"
         android:id="@+id/search_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:drawableEndCompat="@drawable/ic_baseline_close_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:drawableEndCompat="@drawable/ic_baseline_close_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

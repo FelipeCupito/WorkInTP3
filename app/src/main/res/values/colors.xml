@@ -11,14 +11,14 @@
     <color name="grey">#8a8b8b</color>
     <color name="app_bar_text">@color/white</color>
 
-    <color name="workin_primary_light">#3f51b5</color>
-    <color name="workin_primary_darkest">#25306C</color>
+    <color name="workin_primary_light">#5D72E3</color>
+    <color name="workin_primary_darkest">#313D7E</color>
 
     <color name="workin_secondary_light">#41545E</color>
     <color name="workin_secondary_darkest">#2A363C</color>
 
     <color name="workin_error">#FF5252</color>
-    <color name="workin_accent">#3A703C</color>
+    <color name="workin_accent">#4AC393</color>
 
     <color name="ic_launcher_background">#3F50B3</color>
 
