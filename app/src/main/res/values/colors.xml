@@ -21,6 +21,5 @@
     <color name="workin_accent">#4AC393</color>
 
     <color name="ic_launcher_background">#3F50B3</color>
-
-
+    <color name="dark_grey">#53525E</color>
 </resources>

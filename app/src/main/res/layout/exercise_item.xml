@@ -76,6 +76,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="8dp"
             android:text="@string/details_button"
+            android:drawableTop="@drawable/ic_baseline_info_24"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textColor="@color/workin_primary_light"
             app:layout_constraintBottom_toBottomOf="parent"

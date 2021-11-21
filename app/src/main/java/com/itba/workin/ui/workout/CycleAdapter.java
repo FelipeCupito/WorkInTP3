@@ -2,6 +2,8 @@ package com.itba.workin.ui.workout;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +86,8 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private final TextView remainingTime;
         private final MaterialCardView card;
         private final ColorStateList cardBackgroundColor;
+        private final int uiMode;
+        public final int accent;
 
         public ExerciseViewHolder(@NonNull View view) {
             super(view);
@@ -92,6 +96,8 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             remainingTime = view.findViewById(R.id.remainingTime);
             card = view.findViewById(R.id.exerciseCard);
             cardBackgroundColor = card.getCardBackgroundColor();
+            uiMode = view.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            accent = view.getResources().getColor(R.color.dark_grey, null);
 
             view.findViewById(R.id.exerciseDetails).setOnClickListener(v -> {
                 int position = getAdapterPosition();
@@ -103,7 +109,10 @@ public class CycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public void bindTo(MyCycleExercise exercise) {
             if (exercise.equals(currentExercise)) {
-                card.setCardBackgroundColor(Color.GRAY);
+                if (uiMode == Configuration.UI_MODE_NIGHT_YES)
+                    card.setCardBackgroundColor(accent);
+                else
+                card.setCardBackgroundColor(Color.LTGRAY);
             } else {
                 card.setCardBackgroundColor(cardBackgroundColor);
             }

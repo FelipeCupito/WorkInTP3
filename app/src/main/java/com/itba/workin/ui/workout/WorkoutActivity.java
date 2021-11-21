@@ -97,13 +97,15 @@ public class WorkoutActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // TODO pause
+        cycleViewModel.pauseTimer();
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
         builder.setTitle(R.string.confirmed_exit_title);
         builder.setMessage(R.string.confirmed_exit_text);
         builder.setCancelable(false);
         builder.setNegativeButton(R.string.exit, (dialog, which) -> finish());
-        builder.setPositiveButton(R.string.continue_dialog, (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton(R.string.continue_dialog, (dialog, which) -> {
+            dialog.dismiss();
+            cycleViewModel.resumeTimer();});
         builder.show();
     }
 

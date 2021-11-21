@@ -118,5 +118,5 @@
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
-    <!--TODO COLORES-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
